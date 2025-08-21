@@ -174,7 +174,7 @@ export default function CaseStudiesSection() {
                           <h4 className="font-semibold mb-2 text-card-foreground">{t.kpiHighlights}:</h4>
                           <div className="flex flex-wrap gap-2">
                             {study.kpis.map((kpi, kpiIndex) => (
-                              <Badge key={kpiIndex} variant={kpi.change === 'increase' ? 'default' : 'destructive'}>
+                              <Badge key={kpiIndex} variant={kpi.change === 'increase' ? 'secondary' : 'destructive'}>
                                 {kpi.metric}: <span className="font-bold ml-1">{kpi.value}</span>
                               </Badge>
                             ))}
