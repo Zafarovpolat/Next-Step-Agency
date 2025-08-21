@@ -144,7 +144,7 @@ export default function CaseStudiesSection() {
                   <div className="p-1 h-full">
                     <Card className="h-full flex flex-col bg-card/80 backdrop-blur-sm border-border hover:border-primary transition-all duration-300 shadow-lg hover:shadow-primary/20">
                       <CardHeader>
-                        <CardTitle className="text-2xl font-bold text-primary-foreground">{study.client}</CardTitle>
+                        <CardTitle className="text-2xl font-bold text-card-foreground">{study.client}</CardTitle>
                       </CardHeader>
                       <CardContent className="flex-grow">
                         <div className="relative mb-4">
@@ -172,7 +172,7 @@ export default function CaseStudiesSection() {
                           </div>
                         </div>
                         <div className="my-4">
-                          <h4 className="font-semibold mb-2 text-primary-foreground">{t.kpiHighlights}:</h4>
+                          <h4 className="font-semibold mb-2 text-card-foreground">{t.kpiHighlights}:</h4>
                           <div className="flex flex-wrap gap-2">
                             {study.kpis.map((kpi, kpiIndex) => (
                               <Badge key={kpiIndex} variant={kpi.change === 'increase' ? 'default' : 'destructive'} className="bg-primary/20 text-primary-foreground border-primary/50">
