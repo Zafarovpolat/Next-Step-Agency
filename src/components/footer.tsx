@@ -9,12 +9,12 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-black/50 py-8 mt-16">
+    <footer className="bg-card py-8 mt-16 border-t">
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="flex items-center gap-2">
             <Rocket className="h-8 w-8 text-primary" />
-            <span className="text-2xl font-bold text-foreground">Next Step Agency</span>
+            <span className="text-2xl font-bold text-card-foreground">Next Step Agency</span>
           </div>
           <div className="text-center md:text-left text-muted-foreground">
             <p>123 Future Drive, Innovation City, 12345</p>
@@ -35,7 +35,7 @@ export default function Footer() {
             ))}
           </div>
         </div>
-        <div className="mt-8 border-t border-secondary pt-6 text-center text-sm text-muted-foreground flex flex-col sm:flex-row justify-between items-center gap-4">
+        <div className="mt-8 border-t border-border pt-6 text-center text-sm text-muted-foreground flex flex-col sm:flex-row justify-between items-center gap-4">
           <p>&copy; {new Date().getFullYear()} Next Step Agency. All Rights Reserved.</p>
           <div className="flex gap-4">
             <Link href="#" className="hover:text-primary transition-colors">Privacy Policy</Link>
