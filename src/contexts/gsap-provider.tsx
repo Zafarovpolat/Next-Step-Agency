@@ -67,11 +67,11 @@ export const GSAPProvider = ({ children }: { children: ReactNode }) => {
               position: fixed;
               top: 0;
               left: 0;
-              width: 400px;
-              height: 400px;
+              width: 250px;
+              height: 250px;
               border-radius: 50%;
-              background-image: radial-gradient(circle, hsl(var(--primary) / 0.15) 0%, transparent 70%);
-              filter: blur(80px);
+              background-image: radial-gradient(circle, hsl(var(--primary) / 0.3) 0%, transparent 70%);
+              filter: blur(50px);
               transform: translate(-50%, -50%);
               pointer-events: none;
               z-index: 999;
