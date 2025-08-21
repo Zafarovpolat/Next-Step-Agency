@@ -1,3 +1,4 @@
+
 "use client";
 
 import { Check } from 'lucide-react';
@@ -21,9 +22,9 @@ export default function PricingSection() {
         trigger: ".pricing-title",
         start: "top 80%",
       },
-      y: 50,
+      y: 30,
       opacity: 0,
-      duration: 1,
+      duration: 0.8,
       ease: "power3.out",
     });
 
@@ -32,10 +33,10 @@ export default function PricingSection() {
         trigger: ".pricing-card",
         start: "top 85%",
       },
-      y: 50,
+      y: 30,
       opacity: 0,
-      stagger: 0.2,
-      duration: 1,
+      stagger: 0.15,
+      duration: 0.8,
       ease: "power3.out",
     });
   }, []);

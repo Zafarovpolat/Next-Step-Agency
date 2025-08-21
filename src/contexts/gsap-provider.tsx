@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useGSAP } from "@gsap/react";
@@ -17,7 +18,7 @@ export const GSAPProvider = ({ children }: { children: ReactNode }) => {
   
   useGSAP(() => {
     ScrollSmoother.create({
-      smooth: 1.5,
+      smooth: 1,
       effects: true,
       smoothTouch: 0.1,
     });

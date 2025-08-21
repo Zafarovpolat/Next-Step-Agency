@@ -31,12 +31,12 @@ export default function HeroSection() {
 
     const handleMouseMove = (e: MouseEvent) => {
       const { clientX, clientY } = e;
-      const { top, left, width, height } = hero.getBoundingClientRect();
+      const { top, left } = hero.getBoundingClientRect();
       const x = clientX - left;
       const y = clientY - top;
 
       gsap.to(spotlight, {
-        duration: 0.7,
+        duration: 0.5,
         x: x,
         y: y,
         ease: 'power2.out'

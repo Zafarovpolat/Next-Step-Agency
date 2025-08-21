@@ -1,3 +1,4 @@
+
 "use client";
 import { useState, type FormEvent } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -24,9 +25,9 @@ export default function LeadCaptureSection() {
         trigger: ".lead-capture-card",
         start: "top 80%",
       },
-      y: 50,
+      y: 30,
       opacity: 0,
-      duration: 1,
+      duration: 0.8,
       ease: "power3.out",
     });
   }, []);

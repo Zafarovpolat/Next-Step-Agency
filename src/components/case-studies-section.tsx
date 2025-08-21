@@ -24,9 +24,9 @@ export default function CaseStudiesSection() {
         trigger: ".case-studies-title",
         start: "top 80%",
       },
-      y: 50,
+      y: 30,
       opacity: 0,
-      duration: 1,
+      duration: 0.8,
       ease: "power3.out",
     });
 
@@ -35,10 +35,10 @@ export default function CaseStudiesSection() {
         trigger: ".case-study-card",
         start: "top 85%",
       },
-      y: 50,
+      y: 30,
       opacity: 0,
-      stagger: 0.2,
-      duration: 1,
+      stagger: 0.15,
+      duration: 0.8,
       ease: "power3.out",
     });
   }, []);
@@ -133,7 +133,6 @@ export default function CaseStudiesSection() {
               Autoplay({
                 delay: 3000,
                 stopOnInteraction: false,
-                stopOnMouseEnter: false,
               }),
             ]}
             className="w-full"

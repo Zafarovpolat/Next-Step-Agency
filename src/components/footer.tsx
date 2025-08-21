@@ -1,3 +1,4 @@
+
 "use client";
 
 import { Rocket, Linkedin, Twitter, Facebook } from 'lucide-react';
@@ -19,9 +20,9 @@ export default function Footer() {
         trigger: ".footer-content",
         start: "top 95%",
       },
-      y: 50,
+      y: 30,
       opacity: 0,
-      duration: 1,
+      duration: 0.8,
       ease: "power3.out",
     });
   }, []);
