@@ -23,10 +23,10 @@ export default function HeroSection() {
 
   useGSAP(() => {
     gsap.from(".hero-element", {
-      duration: 1,
+      duration: 0.8,
       y: 50,
       opacity: 0,
-      stagger: 0.2,
+      stagger: 0.15,
       ease: "power3.out",
       delay: 0.5
     });
@@ -45,7 +45,7 @@ export default function HeroSection() {
       const y = clientY - top;
 
       gsap.to(spotlight, {
-        duration: 0.5,
+        duration: 0.3,
         x: x,
         y: y,
         ease: 'power2.out'
@@ -95,8 +95,8 @@ export default function HeroSection() {
           width: 500px;
           height: 500px;
           border-radius: 50%;
-          background-image: radial-gradient(circle, hsl(var(--primary) / 0.25) 0%, transparent 70%);
-          filter: blur(80px);
+          background-image: radial-gradient(circle, hsl(var(--primary) / 0.5) 0%, transparent 70%);
+          filter: blur(100px);
           transform: translate(-50%, -50%);
           pointer-events: none;
         }
