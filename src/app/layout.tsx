@@ -3,6 +3,7 @@ import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
 import { ThemeProvider } from '@/components/theme-provider';
 import { LanguageProvider } from '@/contexts/language-context';
+import { SmoothScrollProvider } from '@/contexts/smooth-scroll-provider';
 
 export const metadata: Metadata = {
   title: 'Next Step Agency',
@@ -29,7 +30,9 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            {children}
+            <SmoothScrollProvider>
+              {children}
+            </SmoothScrollProvider>
             <Toaster />
           </ThemeProvider>
         </LanguageProvider>

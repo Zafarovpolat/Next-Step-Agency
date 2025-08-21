@@ -1,16 +1,20 @@
-
 "use client";
-import { useState, type FormEvent } from "react";
+import { useState, type FormEvent, useRef } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { CheckCircle2, Loader2 } from "lucide-react";
 import { useLanguage } from "@/contexts/language-context";
+import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
+import { cn } from "@/lib/utils";
 
 export default function LeadCaptureSection() {
   const { translations } = useLanguage();
   const { leadCaptureSection: t } = translations;
   
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const isVisible = useIntersectionObserver(sectionRef, { threshold: 0.1 });
+
   const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");
   const [error, setError] = useState<string | null>(null);
 
@@ -38,49 +42,51 @@ export default function LeadCaptureSection() {
   }
 
   return (
-    <section id="contact" className="py-16 sm:py-24 bg-accent/30 relative overflow-hidden">
+    <section id="contact" ref={sectionRef} className="py-16 sm:py-24 bg-accent/30 relative overflow-hidden">
       <div className="absolute inset-0 bg-grid-pattern-small opacity-10"></div>
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-2xl mx-auto">
-            <Card className="bg-card/80 backdrop-blur-sm border-secondary shadow-xl">
-                {status === "success" ? (
-                    <CardContent className="p-10 text-center flex flex-col items-center gap-4 success-animation">
-                        <CheckCircle2 className="h-16 w-16 text-green-500" />
-                        <h2 className="text-2xl font-bold text-foreground">{t.success.title}</h2>
-                        <p className="text-muted-foreground">{t.success.message}</p>
-                    </CardContent>
-                ) : (
-                    <>
-                        <CardHeader className="text-center">
-                            <CardTitle className="text-3xl md:text-4xl font-bold font-headline">{t.title}</CardTitle>
-                            <CardDescription className="text-lg">
-                            {t.subtitle}
-                            </CardDescription>
-                        </CardHeader>
-                        <CardContent>
-                            <form onSubmit={handleSubmit} className="space-y-4">
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <Input name="name" placeholder={t.placeholders.name} required className="dark-glass" />
-                                    <Input name="phone" type="tel" placeholder={t.placeholders.phone} required className="dark-glass"/>
-                                </div>
-                                <Input name="email" type="email" placeholder={t.placeholders.email} required className="dark-glass"/>
-                                <Input name="company" placeholder={t.placeholders.company} className="dark-glass"/>
-                                <Button type="submit" className="w-full" size="lg" disabled={status === 'submitting'}>
-                                    {status === 'submitting' ? (
-                                        <>
-                                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                                            {t.submitting}
-                                        </>
-                                    ) : (
-                                        t.buttonText
-                                    )}
-                                </Button>
-                                {error && <p className="text-sm text-destructive text-center">{error}</p>}
-                            </form>
-                        </CardContent>
-                    </>
-                )}
-            </Card>
+            <div className={cn("slide-in-from-bottom", isVisible && "in-view")}>
+              <Card className="bg-card/80 backdrop-blur-sm border-secondary shadow-xl">
+                  {status === "success" ? (
+                      <CardContent className="p-10 text-center flex flex-col items-center gap-4 success-animation">
+                          <CheckCircle2 className="h-16 w-16 text-green-500" />
+                          <h2 className="text-2xl font-bold text-foreground">{t.success.title}</h2>
+                          <p className="text-muted-foreground">{t.success.message}</p>
+                      </CardContent>
+                  ) : (
+                      <>
+                          <CardHeader className="text-center">
+                              <CardTitle className="text-3xl md:text-4xl font-bold font-headline">{t.title}</CardTitle>
+                              <CardDescription className="text-lg">
+                              {t.subtitle}
+                              </CardDescription>
+                          </CardHeader>
+                          <CardContent>
+                              <form onSubmit={handleSubmit} className="space-y-4">
+                                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                      <Input name="name" placeholder={t.placeholders.name} required className="dark-glass" />
+                                      <Input name="phone" type="tel" placeholder={t.placeholders.phone} required className="dark-glass"/>
+                                  </div>
+                                  <Input name="email" type="email" placeholder={t.placeholders.email} required className="dark-glass"/>
+                                  <Input name="company" placeholder={t.placeholders.company} className="dark-glass"/>
+                                  <Button type="submit" className="w-full" size="lg" disabled={status === 'submitting'}>
+                                      {status === 'submitting' ? (
+                                          <>
+                                              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                              {t.submitting}
+                                          </>
+                                      ) : (
+                                          t.buttonText
+                                      )}
+                                  </Button>
+                                  {error && <p className="text-sm text-destructive text-center">{error}</p>}
+                              </form>
+                          </CardContent>
+                      </>
+                  )}
+              </Card>
+            </div>
         </div>
       </div>
       <style jsx>{`
