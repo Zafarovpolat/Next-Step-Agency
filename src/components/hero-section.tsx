@@ -83,11 +83,11 @@ export default function HeroSection() {
         }
         .spotlight {
           position: absolute;
-          width: 400px;
-          height: 400px;
+          width: 500px;
+          height: 500px;
           border-radius: 50%;
-          background-image: radial-gradient(circle, hsl(var(--primary) / 0.15) 0%, transparent 70%);
-          filter: blur(50px);
+          background-image: radial-gradient(circle, hsl(var(--primary) / 0.2) 0%, transparent 70%);
+          filter: blur(60px);
           transform: translate(-50%, -50%);
           pointer-events: none;
         }
