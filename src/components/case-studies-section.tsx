@@ -134,6 +134,7 @@ export default function CaseStudiesSection() {
                 delay: 3000,
                 stopOnInteraction: true,
                 stopOnMouseEnter: true,
+                stopOnLastSnap: false,
               }),
             ]}
             className="w-full"
