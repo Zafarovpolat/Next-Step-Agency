@@ -24,5 +24,11 @@ export const GSAPProvider = ({ children }: { children: ReactNode }) => {
     });
   }, []);
 
-  return <>{children}</>;
+  return (
+      <div id="smooth-wrapper">
+        <div id="smooth-content">
+            {children}
+        </div>
+      </div>
+  );
 }

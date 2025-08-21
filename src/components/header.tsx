@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from 'next/link';
@@ -11,11 +12,31 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useLanguage } from '@/contexts/language-context';
+import gsap from 'gsap';
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
+
+gsap.registerPlugin(ScrollToPlugin);
+
 
 export default function Header() {
   const { setTheme, theme } = useTheme();
   const { setLanguage, translations } = useLanguage();
   const { header: t } = translations;
+
+  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, target: string) => {
+    e.preventDefault();
+    const element = document.querySelector(target);
+    if (element) {
+        gsap.to(window, {
+            scrollTo: {
+                y: element,
+                autoKill: false
+            },
+            duration: 1,
+            ease: "power2.inOut"
+        });
+    }
+  }
 
   const navLinks = [
     { href: '#pricing', label: t.nav.pricing },
@@ -32,14 +53,15 @@ export default function Header() {
         </Link>
         <nav className="hidden md:flex items-center gap-2">
           {navLinks.map((link) => (
-            <Link
+            <a
               key={link.href}
               href={link.href}
+              onClick={(e) => handleScroll(e, link.href)}
               className="px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-primary relative group"
             >
               {link.label}
               <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300 ease-out"></span>
-            </Link>
+            </a>
           ))}
         </nav>
         <div className="flex items-center gap-2">
@@ -70,10 +92,11 @@ export default function Header() {
           </Button>
 
           <Button asChild>
-              <Link href="#contact">{t.getQuote}</Link>
+              <a href="#contact" onClick={(e) => handleScroll(e, "#contact")}>{t.getQuote}</a>
           </Button>
         </div>
       </div>
     </header>
   );
 }
+

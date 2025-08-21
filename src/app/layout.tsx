@@ -1,3 +1,4 @@
+
 import type {Metadata} from 'next';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
@@ -31,13 +32,9 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <GSAPProvider>
-              <div id="smooth-wrapper">
-                <div id="smooth-content">
-                  {children}
-                  <Toaster />
-                </div>
-              </div>
+              {children}
             </GSAPProvider>
+            <Toaster />
           </ThemeProvider>
         </LanguageProvider>
       </body>
