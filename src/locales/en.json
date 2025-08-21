@@ -1,0 +1,122 @@
+
+{
+  "header": {
+    "agencyName": "Next Step Agency",
+    "nav": {
+      "pricing": "Pricing",
+      "caseStudies": "Case Studies",
+      "contact": "Contact"
+    },
+    "getQuote": "Get a Free Quote"
+  },
+  "heroSection": {
+    "title": "Your Next Step in Digital Evolution",
+    "subtitle": "We are a future-focused agency building high-performance websites and applications that drive growth, engagement, and ROI.",
+    "explorePlans": "Explore Plans",
+    "seeOurWork": "See Our Work"
+  },
+  "pricingSection": {
+    "title": "Clear Pricing, Powerful Results",
+    "subtitle": "Choose the plan that fits your ambition. No hidden fees, just transparent partnership.",
+    "mostPopular": "Most Popular",
+    "getStarted": "Get Started",
+    "plans": {
+      "starter": {
+        "name": "Starter",
+        "description": "For new businesses and startups ready to make their mark.",
+        "features": {
+          "landingPage": "Custom Landing Page",
+          "seo": "SEO Basics",
+          "responsive": "Mobile-Responsive Design",
+          "analytics": "Basic Analytics"
+        }
+      },
+      "business": {
+        "name": "Business",
+        "description": "For growing businesses aiming to scale and optimize.",
+        "features": {
+          "multiPage": "Multi-page Website (up to 10 pages)",
+          "advancedSeo": "Advanced SEO & Content Strategy",
+          "cms": "CMS Integration",
+          "leadCapture": "Lead Capture Forms",
+          "reports": "Monthly Performance Reports"
+        }
+      },
+      "premium": {
+        "name": "Premium",
+        "price": "Contact Us",
+        "description": "For established enterprises requiring a full-service solution.",
+        "features": {
+          "customApp": "Custom Web Application",
+          "ecommerce": "E-commerce Functionality",
+          "api": "API Integrations",
+          "accountManager": "Dedicated Account Manager",
+          "support": "24/7 Priority Support"
+        }
+      }
+    }
+  },
+  "roiCalculator": {
+    "title": "Calculate Your Potential ROI",
+    "subtitle": "Use our interactive calculator to estimate the return on your investment. See the potential for growth with Next Step Agency.",
+    "labels": {
+      "avgCheck": "Average Check Size",
+      "monthlyOrders": "Monthly Orders",
+      "serviceCost": "One-Time Service Cost"
+    },
+    "projectedROI": "Projected 12-Month ROI",
+    "growthProjection": "with a {0}% projected growth.",
+    "netGain": "Projected Net Gain",
+    "initialInvestment": "Initial Investment"
+  },
+  "caseStudiesSection": {
+    "title": "Proven Results, Tangible Growth",
+    "subtitle": "We don't just promise results; we deliver them. Explore our case studies to see how we've helped businesses like yours achieve their goals.",
+    "before": "Before",
+    "after": "After",
+    "kpiHighlights": "KPI Highlights",
+    "kpis": {
+      "revenue": "Revenue",
+      "conversion": "Conversion",
+      "aov": "AOV",
+      "userEngagement": "User Engagement",
+      "leadGen": "Lead Gen",
+      "bounceRate": "Bounce Rate",
+      "organicTraffic": "Organic Traffic",
+      "keywordRankings": "Keyword Rankings",
+      "adSpendROI": "Ad Spend ROI"
+    },
+    "testimonials": {
+      "techCorp": "Next Step Agency transformed our business. The results speak for themselves. We've never been more profitable.",
+      "innovate": "The team's expertise in UI/UX and development is unmatched. Our new platform is a joy to use and has boosted engagement significantly.",
+      "marketPro": "Our visibility has skyrocketed since partnering with them. Their marketing strategies are data-driven and highly effective."
+    }
+  },
+  "leadCaptureSection": {
+    "title": "Ready for the Next Step?",
+    "subtitle": "Let's talk about your project. Fill out the form below for a free consultation.",
+    "placeholders": {
+      "name": "Full Name",
+      "phone": "Phone Number",
+      "email": "Email Address",
+      "company": "Company Name (Optional)"
+    },
+    "buttonText": "Get My Free Quote",
+    "submitting": "Submitting...",
+    "error": {
+      "allFields": "Please fill out all required fields."
+    },
+    "success": {
+      "title": "Thank You!",
+      "message": "Your request has been sent successfully. We'll be in touch shortly."
+    }
+  },
+  "footer": {
+    "agencyName": "Next Step Agency",
+    "address": "123 Future Drive, Innovation City, 12345",
+    "contact": "contact@nextstep.agency | (555) 123-4567",
+    "copyright": "Next Step Agency. All Rights Reserved.",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service"
+  }
+}

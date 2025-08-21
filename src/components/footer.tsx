@@ -1,7 +1,13 @@
+"use client";
+
 import { Rocket, Linkedin, Twitter, Facebook } from 'lucide-react';
 import Link from 'next/link';
+import { useLanguage } from '@/contexts/language-context';
 
 export default function Footer() {
+  const { translations } = useLanguage();
+  const { footer: t } = translations;
+
   const socialLinks = [
     { icon: Twitter, href: '#', name: 'Twitter' },
     { icon: Facebook, href: '#', name: 'Facebook' },
@@ -14,11 +20,11 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="flex items-center gap-2">
             <Rocket className="h-8 w-8 text-primary" />
-            <span className="text-2xl font-bold text-card-foreground">Next Step Agency</span>
+            <span className="text-2xl font-bold text-card-foreground">{t.agencyName}</span>
           </div>
           <div className="text-center md:text-left text-muted-foreground">
-            <p>123 Future Drive, Innovation City, 12345</p>
-            <p>contact@nextstep.agency | (555) 123-4567</p>
+            <p>{t.address}</p>
+            <p>{t.contact}</p>
           </div>
           <div className="flex gap-4">
             {socialLinks.map((link) => (
@@ -36,10 +42,10 @@ export default function Footer() {
           </div>
         </div>
         <div className="mt-8 border-t border-border pt-6 text-center text-sm text-muted-foreground flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p>&copy; {new Date().getFullYear()} Next Step Agency. All Rights Reserved.</p>
+          <p>&copy; {new Date().getFullYear()} {t.copyright}</p>
           <div className="flex gap-4">
-            <Link href="#" className="hover:text-primary transition-colors">Privacy Policy</Link>
-            <Link href="#" className="hover:text-primary transition-colors">Terms of Service</Link>
+            <Link href="#" className="hover:text-primary transition-colors">{t.privacyPolicy}</Link>
+            <Link href="#" className="hover:text-primary transition-colors">{t.termsOfService}</Link>
           </div>
         </div>
       </div>

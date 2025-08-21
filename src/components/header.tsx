@@ -10,22 +10,25 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-
-const navLinks = [
-    { href: '#pricing', label: 'Pricing' },
-    { href: '#case-studies', label: 'Case Studies' },
-    { href: '#contact', label: 'Contact' },
-];
+import { useLanguage } from '@/contexts/language-context';
 
 export default function Header() {
   const { setTheme, theme } = useTheme();
+  const { setLanguage, translations } = useLanguage();
+  const { header: t } = translations;
+
+  const navLinks = [
+    { href: '#pricing', label: t.nav.pricing },
+    { href: '#case-studies', label: t.nav.caseStudies },
+    { href: '#contact', label: t.nav.contact },
+  ];
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 max-w-screen-2xl items-center justify-between mx-auto px-4">
         <Link href="/" className="flex items-center gap-2">
           <Rocket className="h-6 w-6 text-primary" />
-          <span className="font-bold text-lg">Next Step Agency</span>
+          <span className="font-bold text-lg">{t.agencyName}</span>
         </Link>
         <nav className="hidden md:flex items-center gap-2">
           {navLinks.map((link) => (
@@ -48,13 +51,13 @@ export default function Header() {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-              <DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setLanguage('en')}>
                 English
               </DropdownMenuItem>
-              <DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setLanguage('ru')}>
                 Русский
               </DropdownMenuItem>
-              <DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setLanguage('uz')}>
                 O'zbek
               </DropdownMenuItem>
             </DropdownMenuContent>
@@ -67,7 +70,7 @@ export default function Header() {
           </Button>
 
           <Button asChild>
-              <Link href="#contact">Get a Free Quote</Link>
+              <Link href="#contact">{t.getQuote}</Link>
           </Button>
         </div>
       </div>

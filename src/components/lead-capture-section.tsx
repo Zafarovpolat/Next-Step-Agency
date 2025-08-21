@@ -5,8 +5,12 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { CheckCircle2, Loader2 } from "lucide-react";
+import { useLanguage } from "@/contexts/language-context";
 
 export default function LeadCaptureSection() {
+  const { translations } = useLanguage();
+  const { leadCaptureSection: t } = translations;
+  
   const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");
   const [error, setError] = useState<string | null>(null);
 
@@ -20,7 +24,7 @@ export default function LeadCaptureSection() {
 
     // Basic validation
     if (!data.name || !data.email || !data.phone) {
-        setError("Please fill out all required fields.");
+        setError(t.error.allFields);
         setStatus("idle");
         return;
     }
@@ -41,33 +45,33 @@ export default function LeadCaptureSection() {
                 {status === "success" ? (
                     <CardContent className="p-10 text-center flex flex-col items-center gap-4 success-animation">
                         <CheckCircle2 className="h-16 w-16 text-green-500" />
-                        <h2 className="text-2xl font-bold text-foreground">Thank You!</h2>
-                        <p className="text-muted-foreground">Your request has been sent successfully. We'll be in touch shortly.</p>
+                        <h2 className="text-2xl font-bold text-foreground">{t.success.title}</h2>
+                        <p className="text-muted-foreground">{t.success.message}</p>
                     </CardContent>
                 ) : (
                     <>
                         <CardHeader className="text-center">
-                            <CardTitle className="text-3xl md:text-4xl font-bold font-headline">Ready for the Next Step?</CardTitle>
+                            <CardTitle className="text-3xl md:text-4xl font-bold font-headline">{t.title}</CardTitle>
                             <CardDescription className="text-lg">
-                            Let's talk about your project. Fill out the form below for a free consultation.
+                            {t.subtitle}
                             </CardDescription>
                         </CardHeader>
                         <CardContent>
                             <form onSubmit={handleSubmit} className="space-y-4">
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <Input name="name" placeholder="Full Name" required className="bg-input/50" />
-                                    <Input name="phone" type="tel" placeholder="Phone Number" required className="bg-input/50"/>
+                                    <Input name="name" placeholder={t.placeholders.name} required className="bg-input/50" />
+                                    <Input name="phone" type="tel" placeholder={t.placeholders.phone} required className="bg-input/50"/>
                                 </div>
-                                <Input name="email" type="email" placeholder="Email Address" required className="bg-input/50"/>
-                                <Input name="company" placeholder="Company Name (Optional)" className="bg-input/50"/>
+                                <Input name="email" type="email" placeholder={t.placeholders.email} required className="bg-input/50"/>
+                                <Input name="company" placeholder={t.placeholders.company} className="bg-input/50"/>
                                 <Button type="submit" className="w-full" size="lg" disabled={status === 'submitting'}>
                                     {status === 'submitting' ? (
                                         <>
                                             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                                            Submitting...
+                                            {t.submitting}
                                         </>
                                     ) : (
-                                        "Get My Free Quote"
+                                        t.buttonText
                                     )}
                                 </Button>
                                 {error && <p className="text-sm text-destructive text-center">{error}</p>}

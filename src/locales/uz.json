@@ -1,0 +1,122 @@
+
+{
+  "header": {
+    "agencyName": "Next Step Agentligi",
+    "nav": {
+      "pricing": "Narxlar",
+      "caseStudies": "Keyslar",
+      "contact": "Aloqa"
+    },
+    "getQuote": "Bepul Hisob-kitob Olish"
+  },
+  "heroSection": {
+    "title": "Raqamli Evolyutsiyada Sizning Keyingi Qadamingiz",
+    "subtitle": "Biz o'sish, jalb qilish va ROI'ni ta'minlaydigan yuqori samarali veb-saytlar va ilovalarni yaratadigan kelajakka yo'naltirilgan agentlikmiz.",
+    "explorePlans": "Rejalarni Ko'rib Chiqish",
+    "seeOurWork": "Ishlarimizni Ko'rish"
+  },
+  "pricingSection": {
+    "title": "Aniq Narxlar, Kuchli Natijalar",
+    "subtitle": "O'z ambitsiyalaringizga mos rejani tanlang. Yashirin to'lovlar yo'q, faqat shaffof hamkorlik.",
+    "mostPopular": "Eng Ommabop",
+    "getStarted": "Boshlash",
+    "plans": {
+      "starter": {
+        "name": "Boshlang'ich",
+        "description": "O'z izini qoldirishga tayyor yangi biznes va startaplar uchun.",
+        "features": {
+          "landingPage": "Maxsus Lending Sahifa",
+          "seo": "SEO Asoslari",
+          "responsive": "Mobil-moslashuvchan Dizayn",
+          "analytics": "Asosiy Analitika"
+        }
+      },
+      "business": {
+        "name": "Biznes",
+        "description": "Kengayish va optimallashtirishni maqsad qilgan o'sayotgan bizneslar uchun.",
+        "features": {
+          "multiPage": "Ko'p sahifali veb-sayt (10 sahifagacha)",
+          "advancedSeo": "Ilg'or SEO va Kontent Strategiyasi",
+          "cms": "CMS Integratsiyasi",
+          "leadCapture": "Lidlarni Qamrab Olish Formalari",
+          "reports": "Oylik Samaradorlik Hisobotlari"
+        }
+      },
+      "premium": {
+        "name": "Premium",
+        "price": "Biz bilan bog'laning",
+        "description": "To'liq xizmat yechimini talab qiladigan yirik korxonalar uchun.",
+        "features": {
+          "customApp": "Maxsus Veb-Ilova",
+          "ecommerce": "Elektron Tijorat Funktsionalligi",
+          "api": "API Integratsiyalari",
+          "accountManager": "Maxsus Hisob Menejeri",
+          "support": "24/7 Ustuvor Qo'llab-quvvatlash"
+        }
+      }
+    }
+  },
+  "roiCalculator": {
+    "title": "Potentsial ROI'ingizni Hisoblang",
+    "subtitle": "Sarmoyangizning daromadini taxmin qilish uchun interaktiv kalkulyatorimizdan foydalaning. Next Step Agentligi bilan o'sish potentsialini ko'ring.",
+    "labels": {
+      "avgCheck": "O'rtacha Chek Hajmi",
+      "monthlyOrders": "Oylik Buyurtmalar",
+      "serviceCost": "Bir Martalik Xizmat Narxi"
+    },
+    "projectedROI": "Prognoz Qilingan 12 Oylik ROI",
+    "growthProjection": "{0}% prognoz qilingan o'sish bilan.",
+    "netGain": "Prognoz Qilingan Sof Foyda",
+    "initialInvestment": "Dastlabki Sarmoya"
+  },
+  "caseStudiesSection": {
+    "title": "Isbotlangan Natijalar, Sezilarli O'sish",
+    "subtitle": "Biz nafaqat natijalarni va'da qilamiz, balki ularni amalga oshiramiz. Siz kabi bizneslarga o'z maqsadlariga erishishda qanday yordam berganimizni ko'rish uchun keyslarimizni o'rganing.",
+    "before": "Oldin",
+    "after": "Keyin",
+    "kpiHighlights": "KPI Muhim Jihatlari",
+    "kpis": {
+      "revenue": "Daromad",
+      "conversion": "Konversiya",
+      "aov": "O'rtacha Buyurtma Qiymati",
+      "userEngagement": "Foydalanuvchi Faolligi",
+      "leadGen": "Lid Generatsiyasi",
+      "bounceRate": "Chiqib Ketish Darajasi",
+      "organicTraffic": "Organik Trafik",
+      "keywordRankings": "Kalit So'zlar Reytingi",
+      "adSpendROI": "Reklama Xarajatlari ROI"
+    },
+    "testimonials": {
+      "techCorp": "Next Step Agentligi bizning biznesimizni o'zgartirdi. Natijalar o'zi uchun gapiradi. Biz hech qachon bunchalik daromadli bo'lmaganmiz.",
+      "innovate": "Jamoaning UI/UX va ishlab chiqish bo'yicha tajribasi beqiyos. Bizning yangi platformamizdan foydalanish juda yoqimli va faollikni sezilarli darajada oshirdi.",
+      "marketPro": "Ular bilan hamkorlik qilganimizdan beri ko'rinishimiz osmonga ko'tarildi. Ularning marketing strategiyalari ma'lumotlarga asoslangan va juda samarali."
+    }
+  },
+  "leadCaptureSection": {
+    "title": "Keyingi Qadamga Tayyormisiz?",
+    "subtitle": "Loyihangiz haqida gaplashaylik. Bepul maslahat uchun quyidagi formani to'ldiring.",
+    "placeholders": {
+      "name": "To'liq Ism",
+      "phone": "Telefon Raqami",
+      "email": "Elektron Pochta Manzili",
+      "company": "Kompaniya Nomi (Ixtiyoriy)"
+    },
+    "buttonText": "Bepul Hisob-kitob Olish",
+    "submitting": "Yuborilmoqda...",
+    "error": {
+      "allFields": "Iltimos, barcha kerakli maydonlarni to'ldiring."
+    },
+    "success": {
+      "title": "Rahmat!",
+      "message": "Sizning so'rovingiz muvaffaqiyatli yuborildi. Tez orada siz bilan bog'lanamiz."
+    }
+  },
+  "footer": {
+    "agencyName": "Next Step Agentligi",
+    "address": "123 Kelajak Drive, Innovatsiya Shahri, 12345",
+    "contact": "contact@nextstep.agency | (555) 123-4567",
+    "copyright": "Next Step Agentligi. Barcha huquqlar himoyalangan.",
+    "privacyPolicy": "Maxfiylik Siyosati",
+    "termsOfService": "Xizmat Ko'rsatish Shartlari"
+  }
+}

@@ -1,59 +1,65 @@
+"use client";
+
 import { Check } from 'lucide-react';
 import { Button } from './ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from './ui/card';
 import { cn } from '@/lib/utils';
-
-const plans = [
-  {
-    name: 'Starter',
-    price: '$999',
-    description: 'For new businesses and startups ready to make their mark.',
-    features: [
-      'Custom Landing Page',
-      'SEO Basics',
-      'Mobile-Responsive Design',
-      'Basic Analytics',
-    ],
-    isPopular: false,
-  },
-  {
-    name: 'Business',
-    price: '$2,499',
-    description: 'For growing businesses aiming to scale and optimize.',
-    features: [
-      'Multi-page Website (up to 10 pages)',
-      'Advanced SEO & Content Strategy',
-      'CMS Integration',
-      'Lead Capture Forms',
-      'Monthly Performance Reports',
-    ],
-    isPopular: true,
-  },
-  {
-    name: 'Premium',
-    price: 'Contact Us',
-    description: 'For established enterprises requiring a full-service solution.',
-    features: [
-      'Custom Web Application',
-      'E-commerce Functionality',
-      'API Integrations',
-      'Dedicated Account Manager',
-      '24/7 Priority Support',
-    ],
-    isPopular: false,
-  },
-];
+import { useLanguage } from '@/contexts/language-context';
 
 export default function PricingSection() {
+  const { translations } = useLanguage();
+  const { pricingSection: t } = translations;
+
+  const plans = [
+    {
+      name: t.plans.starter.name,
+      price: '$999',
+      description: t.plans.starter.description,
+      features: [
+        t.plans.starter.features.landingPage,
+        t.plans.starter.features.seo,
+        t.plans.starter.features.responsive,
+        t.plans.starter.features.analytics,
+      ],
+      isPopular: false,
+    },
+    {
+      name: t.plans.business.name,
+      price: '$2,499',
+      description: t.plans.business.description,
+      features: [
+        t.plans.business.features.multiPage,
+        t.plans.business.features.advancedSeo,
+        t.plans.business.features.cms,
+        t.plans.business.features.leadCapture,
+        t.plans.business.features.reports,
+      ],
+      isPopular: true,
+    },
+    {
+      name: t.plans.premium.name,
+      price: t.plans.premium.price,
+      description: t.plans.premium.description,
+      features: [
+        t.plans.premium.features.customApp,
+        t.plans.premium.features.ecommerce,
+        t.plans.premium.features.api,
+        t.plans.premium.features.accountManager,
+        t.plans.premium.features.support,
+      ],
+      isPopular: false,
+    },
+  ];
+
   return (
     <section id="pricing" className="py-16 sm:py-24 bg-accent/20">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold font-headline tracking-tight text-foreground">
-            Clear Pricing, Powerful Results
+            {t.title}
           </h2>
           <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-            Choose the plan that fits your ambition. No hidden fees, just transparent partnership.
+            {t.subtitle}
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -68,7 +74,7 @@ export default function PricingSection() {
               <CardHeader className="relative">
                 {plan.isPopular && (
                   <div className="absolute top-0 right-6 -translate-y-1/2 bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-semibold">
-                    Most Popular
+                    {t.mostPopular}
                   </div>
                 )}
                 <CardTitle className="text-3xl font-bold">{plan.name}</CardTitle>
@@ -87,7 +93,7 @@ export default function PricingSection() {
               </CardContent>
               <CardFooter>
                 <Button className="w-full" size="lg" variant={plan.isPopular ? 'default' : 'secondary'}>
-                  Get Started
+                  {t.getStarted}
                 </Button>
               </CardFooter>
             </Card>

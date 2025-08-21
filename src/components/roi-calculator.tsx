@@ -4,8 +4,12 @@ import { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useLanguage } from '@/contexts/language-context';
 
 export default function RoiCalculator() {
+  const { translations } = useLanguage();
+  const { roiCalculator: t } = translations;
+
   const [avgCheck, setAvgCheck] = useState(50);
   const [monthlyOrders, setMonthlyOrders] = useState(100);
   const [serviceCost, setServiceCost] = useState(2499);
@@ -37,17 +41,17 @@ export default function RoiCalculator() {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-bold font-headline tracking-tight text-foreground">
-                Calculate Your Potential ROI
+                {t.title}
             </h2>
             <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-                Use our interactive calculator to estimate the return on your investment. See the potential for growth with Next Step Agency.
+                {t.subtitle}
             </p>
         </div>
         <Card className="max-w-4xl mx-auto bg-card/50 backdrop-blur-md border-secondary shadow-lg">
           <CardContent className="p-8 grid md:grid-cols-2 gap-8 items-center">
             <div className="space-y-6">
               <div>
-                <Label htmlFor="avg-check" className="text-base">Average Check Size</Label>
+                <Label htmlFor="avg-check" className="text-base">{t.labels.avgCheck}</Label>
                 <Input
                   id="avg-check"
                   type="number"
@@ -58,7 +62,7 @@ export default function RoiCalculator() {
                 />
               </div>
               <div>
-                <Label htmlFor="monthly-orders" className="text-base">Monthly Orders</Label>
+                <Label htmlFor="monthly-orders" className="text-base">{t.labels.monthlyOrders}</Label>
                 <Input
                   id="monthly-orders"
                   type="number"
@@ -69,7 +73,7 @@ export default function RoiCalculator() {
                 />
               </div>
               <div>
-                <Label htmlFor="service-cost" className="text-base">One-Time Service Cost</Label>
+                <Label htmlFor="service-cost" className="text-base">{t.labels.serviceCost}</Label>
                 <Input
                   id="service-cost"
                   type="number"
@@ -81,18 +85,18 @@ export default function RoiCalculator() {
               </div>
             </div>
             <div className="text-center bg-accent/50 p-8 rounded-lg">
-                <p className="text-muted-foreground text-lg">Projected 12-Month ROI</p>
+                <p className="text-muted-foreground text-lg">{t.projectedROI}</p>
                 <p className="text-6xl md:text-7xl font-black my-2" style={{color: roi >= 0 ? 'hsl(142 71% 45%)' : 'hsl(0 84% 60%)'}}>
                     {isFinite(roi) ? `${roi.toFixed(0)}%` : '∞'}
                 </p>
-                <p className="text-muted-foreground">with a {projectedGrowth * 100}% projected growth.</p>
+                <p className="text-muted-foreground">{t.growthProjection.replace('{0}', String(projectedGrowth * 100))}</p>
                 <div className='mt-6 text-left space-y-2 text-sm'>
                   <div className='flex justify-between'>
-                    <span className='text-muted-foreground'>Projected Net Gain:</span>
+                    <span className='text-muted-foreground'>{t.netGain}:</span>
                     <span className='font-mono'>{formatCurrency((avgCheck * monthlyOrders * projectedGrowth) - serviceCost)}</span>
                   </div>
                    <div className='flex justify-between'>
-                    <span className='text-muted-foreground'>Initial Investment:</span>
+                    <span className='text-muted-foreground'>{t.initialInvestment}:</span>
                     <span className='font-mono'>{formatCurrency(serviceCost)}</span>
                   </div>
                 </div>

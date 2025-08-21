@@ -4,59 +4,63 @@ import Image from "next/image";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Badge } from "./ui/badge";
-
-const caseStudies = [
-  {
-    client: "TechCorp",
-    beforeImage: "https://placehold.co/600x400.png",
-    beforeHint: "old dashboard",
-    afterImage: "https://placehold.co/600x400.png",
-    afterHint: "new dashboard",
-    kpis: [
-      { metric: "Revenue", value: "+300%", change: "increase" },
-      { metric: "Conversion", value: "+75%", change: "increase" },
-      { metric: "AOV", value: "+50%", change: "increase" },
-    ],
-    testimonial: "Next Step Agency transformed our business. The results speak for themselves. We've never been more profitable.",
-  },
-  {
-    client: "Innovate LLC",
-    beforeImage: "https://placehold.co/600x400.png",
-    beforeHint: "outdated website",
-    afterImage: "https://placehold.co/600x400.png",
-    afterHint: "modern website",
-    kpis: [
-      { metric: "User Engagement", value: "+250%", change: "increase" },
-      { metric: "Lead Gen", value: "+120%", change: "increase" },
-      { metric: "Bounce Rate", value: "-40%", change: "decrease" },
-    ],
-    testimonial: "The team's expertise in UI/UX and development is unmatched. Our new platform is a joy to use and has boosted engagement significantly.",
-  },
-  {
-    client: "MarketPro",
-    beforeImage: "https://placehold.co/600x400.png",
-    beforeHint: "low traffic",
-    afterImage: "https://placehold.co/600x400.png",
-    afterHint: "high traffic",
-    kpis: [
-      { metric: "Organic Traffic", value: "+500%", change: "increase" },
-      { metric: "Keyword Rankings", value: "+80%", change: "increase" },
-      { metric: "Ad Spend ROI", value: "+150%", change: "increase" },
-    ],
-    testimonial: "Our visibility has skyrocketed since partnering with them. Their marketing strategies are data-driven and highly effective.",
-  },
-];
+import { useLanguage } from "@/contexts/language-context";
 
 export default function CaseStudiesSection() {
+  const { translations } = useLanguage();
+  const { caseStudiesSection: t } = translations;
+
+  const caseStudies = [
+    {
+      client: "TechCorp",
+      beforeImage: "https://placehold.co/600x400.png",
+      beforeHint: "old dashboard",
+      afterImage: "https://placehold.co/600x400.png",
+      afterHint: "new dashboard",
+      kpis: [
+        { metric: t.kpis.revenue, value: "+300%", change: "increase" },
+        { metric: t.kpis.conversion, value: "+75%", change: "increase" },
+        { metric: t.kpis.aov, value: "+50%", change: "increase" },
+      ],
+      testimonial: t.testimonials.techCorp,
+    },
+    {
+      client: "Innovate LLC",
+      beforeImage: "https://placehold.co/600x400.png",
+      beforeHint: "outdated website",
+      afterImage: "https://placehold.co/600x400.png",
+      afterHint: "modern website",
+      kpis: [
+        { metric: t.kpis.userEngagement, value: "+250%", change: "increase" },
+        { metric: t.kpis.leadGen, value: "+120%", change: "increase" },
+        { metric: t.kpis.bounceRate, value: "-40%", change: "decrease" },
+      ],
+      testimonial: t.testimonials.innovate,
+    },
+    {
+      client: "MarketPro",
+      beforeImage: "https://placehold.co/600x400.png",
+      beforeHint: "low traffic",
+      afterImage: "https://placehold.co/600x400.png",
+      afterHint: "high traffic",
+      kpis: [
+        { metric: t.kpis.organicTraffic, value: "+500%", change: "increase" },
+        { metric: t.kpis.keywordRankings, value: "+80%", change: "increase" },
+        { metric: t.kpis.adSpendROI, value: "+150%", change: "increase" },
+      ],
+      testimonial: t.testimonials.marketPro,
+    },
+  ];
+
   return (
     <section id="case-studies" className="py-16 sm:py-24 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold font-headline tracking-tight text-foreground">
-            Proven Results, Tangible Growth
+            {t.title}
           </h2>
           <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-            We don't just promise results; we deliver them. Explore our case studies to see how we've helped businesses like yours achieve their goals.
+            {t.subtitle}
           </p>
         </div>
         
@@ -78,8 +82,8 @@ export default function CaseStudiesSection() {
                     <CardContent className="flex-grow">
                       <div className="relative mb-4">
                         <div className="flex justify-between items-center mb-2 text-sm font-semibold">
-                          <span>Before</span>
-                          <span>After</span>
+                          <span>{t.before}</span>
+                          <span>{t.after}</span>
                         </div>
                         <div className="grid grid-cols-2 gap-2">
                           <Image
@@ -101,7 +105,7 @@ export default function CaseStudiesSection() {
                         </div>
                       </div>
                       <div className="my-4">
-                        <h4 className="font-semibold mb-2 text-primary-foreground">KPI Highlights:</h4>
+                        <h4 className="font-semibold mb-2 text-primary-foreground">{t.kpiHighlights}:</h4>
                         <div className="flex flex-wrap gap-2">
                           {study.kpis.map((kpi, kpiIndex) => (
                             <Badge key={kpiIndex} variant={kpi.change === 'increase' ? 'default' : 'destructive'} className="bg-primary/20 text-primary-foreground border-primary/50">

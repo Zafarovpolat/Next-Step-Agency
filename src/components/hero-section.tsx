@@ -1,8 +1,12 @@
 "use client";
 import Link from 'next/link';
 import { Button } from './ui/button';
+import { useLanguage } from '@/contexts/language-context';
 
 export default function HeroSection() {
+  const { translations } = useLanguage();
+  const { heroSection: t } = translations;
+
   return (
     <section className="relative w-full py-24 sm:py-32 md:py-48 flex items-center justify-center text-center overflow-hidden">
         <div className="absolute inset-0 bg-background z-10">
@@ -14,17 +18,17 @@ export default function HeroSection() {
       <div className="container mx-auto px-4 z-20">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-5xl md:text-7xl font-black font-headline tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-foreground to-muted-foreground">
-            Your Next Step in Digital Evolution
+            {t.title}
           </h1>
           <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-            We are a future-focused agency building high-performance websites and applications that drive growth, engagement, and ROI.
+            {t.subtitle}
           </p>
           <div className="mt-10 flex justify-center gap-4">
             <Button size="lg" asChild>
-              <Link href="#pricing">Explore Plans</Link>
+              <Link href="#pricing">{t.explorePlans}</Link>
             </Button>
             <Button size="lg" variant="secondary" asChild>
-              <Link href="#case-studies">See Our Work</Link>
+              <Link href="#case-studies">{t.seeOurWork}</Link>
             </Button>
           </div>
         </div>
