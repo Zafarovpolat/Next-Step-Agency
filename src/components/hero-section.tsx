@@ -31,39 +31,11 @@ export default function HeroSection() {
       delay: 0.5
     });
 
-    if (!heroRef.current) return;
-
-    const hero = heroRef.current;
-    const spotlight = hero.querySelector('.spotlight');
-
-    if (!spotlight) return;
-
-    const handleMouseMove = (e: MouseEvent) => {
-      const { clientX, clientY } = e;
-      const { top, left } = hero.getBoundingClientRect();
-      const x = clientX - left;
-      const y = clientY - top;
-
-      gsap.to(spotlight, {
-        duration: 0.3,
-        x: x,
-        y: y,
-        ease: 'power2.out'
-      });
-    };
-
-    hero.addEventListener('mousemove', handleMouseMove);
-
-    return () => {
-      hero.removeEventListener('mousemove', handleMouseMove);
-    };
-
   }, { scope: heroRef });
 
   return (
     <section ref={heroRef} className="relative w-full h-[calc(100vh_-_4rem)] flex items-center justify-center text-center overflow-hidden">
         <div className="absolute inset-0 bg-background z-10">
-            <div className="spotlight"></div>
             <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
             <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent"></div>
         </div>
@@ -89,16 +61,6 @@ export default function HeroSection() {
         .bg-grid-pattern {
           background-image: linear-gradient(hsl(var(--border)) 1px, transparent 1px), linear-gradient(to right, hsl(var(--border)) 1px, hsl(var(--background)) 1px);
           background-size: 2rem 2rem;
-        }
-        .spotlight {
-          position: absolute;
-          width: 800px;
-          height: 800px;
-          border-radius: 50%;
-          background-image: radial-gradient(circle, hsl(var(--primary) / 0.8) 0%, transparent 70%);
-          filter: blur(120px);
-          transform: translate(-50%, -50%);
-          pointer-events: none;
         }
       `}</style>
     </section>
