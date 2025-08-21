@@ -1,20 +1,15 @@
 "use client";
-import { useState, type FormEvent, useRef } from "react";
+import { useState, type FormEvent } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { CheckCircle2, Loader2 } from "lucide-react";
 import { useLanguage } from "@/contexts/language-context";
-import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
-import { cn } from "@/lib/utils";
 
 export default function LeadCaptureSection() {
   const { translations } = useLanguage();
   const { leadCaptureSection: t } = translations;
   
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const isVisible = useIntersectionObserver(sectionRef, { threshold: 0.1 });
-
   const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");
   const [error, setError] = useState<string | null>(null);
 
@@ -42,11 +37,11 @@ export default function LeadCaptureSection() {
   }
 
   return (
-    <section id="contact" ref={sectionRef} className="py-16 sm:py-24 bg-accent/30 relative overflow-hidden">
+    <section id="contact" className="py-16 sm:py-24 bg-accent/30 relative overflow-hidden">
       <div className="absolute inset-0 bg-grid-pattern-small opacity-10"></div>
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-2xl mx-auto">
-            <div className={cn("slide-in-from-bottom", isVisible && "in-view")}>
+            <div>
               <Card className="bg-card/80 backdrop-blur-sm border-secondary shadow-xl">
                   {status === "success" ? (
                       <CardContent className="p-10 text-center flex flex-col items-center gap-4 success-animation">

@@ -2,19 +2,13 @@
 import Link from 'next/link';
 import { Button } from './ui/button';
 import { useLanguage } from '@/contexts/language-context';
-import { useIntersectionObserver } from '@/hooks/use-intersection-observer';
-import { useRef } from 'react';
-import { cn } from '@/lib/utils';
 
 export default function HeroSection() {
   const { translations } = useLanguage();
   const { heroSection: t } = translations;
 
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const isVisible = useIntersectionObserver(sectionRef, { threshold: 0.1 });
-
   return (
-    <section ref={sectionRef} className="relative w-full py-24 sm:py-32 md:py-48 flex items-center justify-center text-center overflow-hidden">
+    <section className="relative w-full py-24 sm:py-32 md:py-48 flex items-center justify-center text-center overflow-hidden">
         <div className="absolute inset-0 bg-background z-10">
             <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
             <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent"></div>
@@ -23,13 +17,13 @@ export default function HeroSection() {
         </div>
       <div className="container mx-auto px-4 z-20">
         <div className="max-w-4xl mx-auto">
-          <h1 className={cn("text-5xl md:text-7xl font-black font-headline tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-foreground to-muted-foreground slide-in-from-bottom", isVisible && "in-view")}>
+          <h1 className="text-5xl md:text-7xl font-black font-headline tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-foreground to-muted-foreground animate-fade-in-up">
             {t.title}
           </h1>
-          <p className={cn("mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto slide-in-from-bottom-1", isVisible && "in-view")}>
+          <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto animate-fade-in-up animation-delay-200">
             {t.subtitle}
           </p>
-          <div className={cn("mt-10 flex justify-center gap-4 slide-in-from-bottom-2", isVisible && "in-view")}>
+          <div className="mt-10 flex justify-center gap-4 animate-fade-in-up animation-delay-400">
             <Button size="lg" asChild>
               <Link href="#pricing">{t.explorePlans}</Link>
             </Button>
@@ -46,6 +40,26 @@ export default function HeroSection() {
         }
         .bg-blue-glow {
             background-color: hsl(var(--primary) / 0.5);
+        }
+        @keyframes fade-in-up {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        .animate-fade-in-up {
+          animation: fade-in-up 0.8s ease-out forwards;
+          opacity: 0;
+        }
+        .animation-delay-200 {
+          animation-delay: 0.2s;
+        }
+        .animation-delay-400 {
+          animation-delay: 0.4s;
         }
       `}</style>
     </section>

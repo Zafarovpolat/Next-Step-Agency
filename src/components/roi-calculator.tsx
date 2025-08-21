@@ -1,18 +1,13 @@
 "use client";
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useLanguage } from '@/contexts/language-context';
-import { useIntersectionObserver } from '@/hooks/use-intersection-observer';
-import { cn } from '@/lib/utils';
 
 export default function RoiCalculator() {
   const { translations } = useLanguage();
   const { roiCalculator: t } = translations;
-
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const isVisible = useIntersectionObserver(sectionRef, { threshold: 0.1 });
 
   const [avgCheck, setAvgCheck] = useState(50);
   const [monthlyOrders, setMonthlyOrders] = useState(100);
@@ -41,17 +36,17 @@ export default function RoiCalculator() {
   }
 
   return (
-    <section id="roi-calculator" ref={sectionRef} className="py-16 sm:py-24 bg-background">
+    <section id="roi-calculator" className="py-16 sm:py-24 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-            <h2 className={cn("text-4xl md:text-5xl font-bold font-headline tracking-tight text-foreground slide-in-from-bottom", isVisible && "in-view")}>
+            <h2 className="text-4xl md:text-5xl font-bold font-headline tracking-tight text-foreground">
                 {t.title}
             </h2>
-            <p className={cn("mt-4 text-lg text-muted-foreground max-w-2xl mx-auto slide-in-from-bottom-1", isVisible && "in-view")}>
+            <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
                 {t.subtitle}
             </p>
         </div>
-        <Card className={cn("max-w-4xl mx-auto bg-card/50 backdrop-blur-md border-secondary shadow-lg slide-in-from-bottom-2", isVisible && "in-view")}>
+        <Card className="max-w-4xl mx-auto bg-card/50 backdrop-blur-md border-secondary shadow-lg">
           <CardContent className="p-8 grid md:grid-cols-2 gap-8 items-center">
             <div className="space-y-6">
               <div>

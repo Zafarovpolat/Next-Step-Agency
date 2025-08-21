@@ -5,15 +5,10 @@ import { Button } from './ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from './ui/card';
 import { cn } from '@/lib/utils';
 import { useLanguage } from '@/contexts/language-context';
-import { useIntersectionObserver } from '@/hooks/use-intersection-observer';
-import { useRef } from 'react';
 
 export default function PricingSection() {
   const { translations } = useLanguage();
   const { pricingSection: t } = translations;
-
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const isVisible = useIntersectionObserver(sectionRef, { threshold: 0.1 });
 
   const plans = [
     {
@@ -57,19 +52,19 @@ export default function PricingSection() {
   ];
 
   return (
-    <section id="pricing" ref={sectionRef} className="py-16 sm:py-24 bg-accent/20">
+    <section id="pricing" className="py-16 sm:py-24 bg-accent/20">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className={cn("text-4xl md:text-5xl font-bold font-headline tracking-tight text-foreground slide-in-from-bottom", isVisible && "in-view")}>
+          <h2 className="text-4xl md:text-5xl font-bold font-headline tracking-tight text-foreground">
             {t.title}
           </h2>
-          <p className={cn("mt-4 text-lg text-muted-foreground max-w-2xl mx-auto slide-in-from-bottom-1", isVisible && "in-view")}>
+          <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
             {t.subtitle}
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {plans.map((plan, index) => (
-            <div key={plan.name} className={cn(`slide-in-from-bottom-${index + 1}`, isVisible && "in-view")}>
+            <div key={plan.name}>
               <Card
                 className={cn(
                   'flex flex-col border-2 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 h-full',
