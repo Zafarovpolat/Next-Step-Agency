@@ -61,8 +61,8 @@ export default function PricingSection() {
             <Card
               key={plan.name}
               className={cn(
-                'flex flex-col border-2 transition-all duration-300',
-                plan.isPopular ? 'border-primary shadow-2xl shadow-primary/10' : 'border-secondary hover:border-primary/50'
+                'flex flex-col border-2 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2',
+                plan.isPopular ? 'border-primary shadow-2xl shadow-primary/20' : 'border-border hover:border-primary/50'
               )}
             >
               <CardHeader className="relative">

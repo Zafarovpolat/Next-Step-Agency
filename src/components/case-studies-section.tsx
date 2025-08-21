@@ -71,7 +71,7 @@ export default function CaseStudiesSection() {
             {caseStudies.map((study, index) => (
               <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
                 <div className="p-1 h-full">
-                  <Card className="h-full flex flex-col bg-card/80 backdrop-blur-sm border-secondary hover:border-primary transition-all duration-300 shadow-lg hover:shadow-primary/20">
+                  <Card className="h-full flex flex-col bg-card/80 backdrop-blur-sm border-border hover:border-primary transition-all duration-300 shadow-lg hover:shadow-primary/20 hover:-translate-y-2">
                     <CardHeader>
                       <CardTitle className="text-2xl font-bold text-primary-foreground">{study.client}</CardTitle>
                     </CardHeader>
