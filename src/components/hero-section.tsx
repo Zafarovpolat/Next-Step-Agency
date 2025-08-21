@@ -17,7 +17,7 @@ export default function HeroSection() {
   const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, target: string) => {
     e.preventDefault();
     if (smoother) {
-        smoother.scrollTo(target, true, "top top+=100");
+        smoother.scrollTo(target, true, "top top");
     }
   }
 
@@ -92,11 +92,11 @@ export default function HeroSection() {
         }
         .spotlight {
           position: absolute;
-          width: 500px;
-          height: 500px;
+          width: 800px;
+          height: 800px;
           border-radius: 50%;
-          background-image: radial-gradient(circle, hsl(var(--primary) / 0.5) 0%, transparent 70%);
-          filter: blur(100px);
+          background-image: radial-gradient(circle, hsl(var(--primary) / 0.8) 0%, transparent 70%);
+          filter: blur(120px);
           transform: translate(-50%, -50%);
           pointer-events: none;
         }

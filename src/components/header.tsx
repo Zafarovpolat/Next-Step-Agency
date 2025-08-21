@@ -23,7 +23,7 @@ export default function Header() {
   const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, target: string) => {
     e.preventDefault();
     if (smoother) {
-        smoother.scrollTo(target, true, "top top+=100");
+        smoother.scrollTo(target, true, "top top");
     }
   }
 
