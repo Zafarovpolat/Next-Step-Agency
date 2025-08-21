@@ -18,7 +18,7 @@ export const GSAPProvider = ({ children }: { children: ReactNode }) => {
   
   useGSAP(() => {
     ScrollSmoother.create({
-      smooth: 1,
+      smooth: 1.2,
       effects: true,
       smoothTouch: 0.1,
     });

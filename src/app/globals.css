@@ -4,18 +4,19 @@
 @tailwind utilities;
 
 @layer base {
+  html, body {
+    @apply overflow-x-hidden;
+  }
   html {
     @apply scroll-smooth;
   }
   body {
     font-family: Arial, Helvetica, sans-serif;
-  }
-  /* Hide scrollbar for Chrome, Safari and Opera */
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
-  /* Hide scrollbar for IE, Edge and Firefox */
-  .no-scrollbar {
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    /* Hide scrollbar for IE, Edge and Firefox */
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
   }
@@ -109,7 +110,7 @@
 
 @layer utilities {
   .fade-in {
-    animation: fade-in 0.8s ease-in-out forwards;
+    animation: fade-in 0.5s ease-in-out forwards;
   }
   
   .slide-in-from-bottom {
