@@ -1,16 +1,33 @@
 
 "use client";
 import { useEffect, useRef } from 'react';
-import Link from 'next/link';
 import { Button } from './ui/button';
 import { useLanguage } from '@/contexts/language-context';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
+
+gsap.registerPlugin(ScrollToPlugin);
 
 export default function HeroSection() {
   const { translations } = useLanguage();
   const { heroSection: t } = translations;
   const heroRef = useRef<HTMLDivElement>(null);
+
+  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, target: string) => {
+    e.preventDefault();
+    const element = document.querySelector(target);
+    if (element) {
+        gsap.to(window, {
+            scrollTo: {
+                y: element,
+                autoKill: false
+            },
+            duration: 1,
+            ease: "power2.inOut"
+        });
+    }
+  }
 
   useGSAP(() => {
     gsap.from(".hero-element", {
@@ -68,10 +85,10 @@ export default function HeroSection() {
           </p>
           <div className="mt-10 flex justify-center gap-4 hero-element">
             <Button size="lg" asChild>
-              <Link href="#pricing">{t.explorePlans}</Link>
+              <a href="#pricing" onClick={(e) => handleScroll(e, "#pricing")}>{t.explorePlans}</a>
             </Button>
             <Button size="lg" variant="secondary" asChild>
-              <Link href="#case-studies">{t.seeOurWork}</Link>
+              <a href="#case-studies" onClick={(e) => handleScroll(e, "#case-studies")}>{t.seeOurWork}</a>
             </Button>
           </div>
         </div>
@@ -86,8 +103,8 @@ export default function HeroSection() {
           width: 500px;
           height: 500px;
           border-radius: 50%;
-          background-image: radial-gradient(circle, hsl(var(--primary) / 0.2) 0%, transparent 70%);
-          filter: blur(60px);
+          background-image: radial-gradient(circle, hsl(var(--primary) / 0.25) 0%, transparent 70%);
+          filter: blur(80px);
           transform: translate(-50%, -50%);
           pointer-events: none;
         }
