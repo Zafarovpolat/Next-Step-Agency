@@ -132,9 +132,8 @@ export default function CaseStudiesSection() {
             plugins={[
               Autoplay({
                 delay: 3000,
-                stopOnInteraction: true,
-                stopOnMouseEnter: true,
-                stopOnLastSnap: false,
+                stopOnInteraction: false,
+                stopOnMouseEnter: false,
               }),
             ]}
             className="w-full"
