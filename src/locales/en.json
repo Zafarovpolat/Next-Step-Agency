@@ -84,12 +84,20 @@
       "bounceRate": "Bounce Rate",
       "organicTraffic": "Organic Traffic",
       "keywordRankings": "Keyword Rankings",
-      "adSpendROI": "Ad Spend ROI"
+      "adSpendROI": "Ad Spend ROI",
+      "dataAccuracy": "Data Accuracy",
+      "reportingTime": "Reporting Time",
+      "decisionMaking": "Decision Making",
+      "marketExpansion": "Market Expansion",
+      "uptime": "Uptime",
+      "userBase": "User Base"
     },
     "testimonials": {
       "techCorp": "Next Step Agency transformed our business. The results speak for themselves. We've never been more profitable.",
       "innovate": "The team's expertise in UI/UX and development is unmatched. Our new platform is a joy to use and has boosted engagement significantly.",
-      "marketPro": "Our visibility has skyrocketed since partnering with them. Their marketing strategies are data-driven and highly effective."
+      "marketPro": "Our visibility has skyrocketed since partnering with them. Their marketing strategies are data-driven and highly effective.",
+      "dataDriven": "The clarity and speed of their data visualization solution have been game-changing for our operations.",
+      "globalConnect": "They flawlessly executed our vision for a global platform, delivering a scalable and robust system ahead of schedule."
     }
   },
   "leadCaptureSection": {

@@ -1,3 +1,4 @@
+
 "use client"
 import Image from "next/image";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -8,6 +9,7 @@ import { cn } from "@/lib/utils";
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Autoplay from "embla-carousel-autoplay"
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -81,6 +83,32 @@ export default function CaseStudiesSection() {
       ],
       testimonial: t.testimonials.marketPro,
     },
+     {
+      client: "DataDriven Inc.",
+      beforeImage: "https://placehold.co/600x400.png",
+      beforeHint: "complex data",
+      afterImage: "https://placehold.co/600x400.png",
+      afterHint: "clear visualization",
+      kpis: [
+        { metric: t.kpis.dataAccuracy, value: "+99%", change: "increase" },
+        { metric: t.kpis.reportingTime, value: "-80%", change: "decrease" },
+        { metric: t.kpis.decisionMaking, value: "+60%", change: "increase" },
+      ],
+      testimonial: t.testimonials.dataDriven,
+    },
+    {
+      client: "Global Connect",
+      beforeImage: "https://placehold.co/600x400.png",
+      beforeHint: "local platform",
+      afterImage: "https://placehold.co/600x400.png",
+      afterHint: "global platform",
+      kpis: [
+        { metric: t.kpis.marketExpansion, value: "+200%", change: "increase" },
+        { metric: t.kpis.uptime, value: "99.99%", change: "increase" },
+        { metric: t.kpis.userBase, value: "+300%", change: "increase" },
+      ],
+      testimonial: t.testimonials.globalConnect,
+    },
   ];
 
   return (
@@ -101,6 +129,13 @@ export default function CaseStudiesSection() {
               align: "start",
               loop: true,
             }}
+            plugins={[
+              Autoplay({
+                delay: 3000,
+                stopOnInteraction: true,
+                stopOnMouseEnter: true,
+              }),
+            ]}
             className="w-full"
           >
             <CarouselContent>
