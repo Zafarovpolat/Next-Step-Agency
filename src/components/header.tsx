@@ -12,29 +12,18 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useLanguage } from '@/contexts/language-context';
-import gsap from 'gsap';
-import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
-
-gsap.registerPlugin(ScrollToPlugin);
-
+import { useScrollSmoother } from '@/contexts/gsap-provider';
 
 export default function Header() {
   const { setTheme, theme } = useTheme();
   const { setLanguage, translations } = useLanguage();
   const { header: t } = translations;
+  const smoother = useScrollSmoother();
 
   const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, target: string) => {
     e.preventDefault();
-    const element = document.querySelector(target);
-    if (element) {
-        gsap.to(window, {
-            scrollTo: {
-                y: element,
-                autoKill: false
-            },
-            duration: 1,
-            ease: "power2.inOut"
-        });
+    if (smoother) {
+        smoother.scrollTo(target, true, "top top+=100");
     }
   }
 
@@ -99,4 +88,3 @@ export default function Header() {
     </header>
   );
 }
-

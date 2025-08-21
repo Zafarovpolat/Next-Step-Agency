@@ -5,11 +5,19 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ReactNode, useEffect } from "react";
+import { ReactNode, useEffect, useState, createContext, useContext } from "react";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollSmoother);
 
+type ScrollSmootherContextType = ScrollSmoother | null;
+
+const ScrollSmootherContext = createContext<ScrollSmootherContextType>(null);
+
+export const useScrollSmoother = () => useContext(ScrollSmootherContext);
+
 export const GSAPProvider = ({ children }: { children: ReactNode }) => {
+  const [smoother, setSmoother] = useState<ScrollSmoother | null>(null);
+
   useEffect(() => {
     // Workaround for enterprise license missing.
     // @ts-ignore
@@ -17,18 +25,25 @@ export const GSAPProvider = ({ children }: { children: ReactNode }) => {
   }, []);
   
   useGSAP(() => {
-    ScrollSmoother.create({
+    const smootherInstance = ScrollSmoother.create({
       smooth: 1.2,
       effects: true,
       smoothTouch: 0.1,
     });
+    setSmoother(smootherInstance);
+
+    return () => {
+      smootherInstance.kill();
+    }
   }, []);
 
   return (
-      <div id="smooth-wrapper">
-        <div id="smooth-content">
-            {children}
+      <ScrollSmootherContext.Provider value={smoother}>
+        <div id="smooth-wrapper">
+          <div id="smooth-content">
+              {children}
+          </div>
         </div>
-      </div>
+      </ScrollSmootherContext.Provider>
   );
 }

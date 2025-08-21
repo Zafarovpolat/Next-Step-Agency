@@ -5,27 +5,19 @@ import { Button } from './ui/button';
 import { useLanguage } from '@/contexts/language-context';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
-import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
+import { useScrollSmoother } from '@/contexts/gsap-provider';
 
-gsap.registerPlugin(ScrollToPlugin);
 
 export default function HeroSection() {
   const { translations } = useLanguage();
   const { heroSection: t } = translations;
   const heroRef = useRef<HTMLDivElement>(null);
+  const smoother = useScrollSmoother();
 
   const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, target: string) => {
     e.preventDefault();
-    const element = document.querySelector(target);
-    if (element) {
-        gsap.to(window, {
-            scrollTo: {
-                y: element,
-                autoKill: false
-            },
-            duration: 1,
-            ease: "power2.inOut"
-        });
+    if (smoother) {
+        smoother.scrollTo(target, true, "top top+=100");
     }
   }
 
