@@ -1,7 +1,7 @@
 
 "use client";
 
-import { Rocket, Linkedin, Twitter, Facebook } from 'lucide-react';
+import { Rocket, Send, Instagram } from 'lucide-react';
 import Link from 'next/link';
 import { useLanguage } from '@/contexts/language-context';
 import { useGSAP } from '@gsap/react';
@@ -28,9 +28,8 @@ export default function Footer() {
   }, []);
 
   const socialLinks = [
-    { icon: Twitter, href: '#', name: 'Twitter' },
-    { icon: Facebook, href: '#', name: 'Facebook' },
-    { icon: Linkedin, href: '#', name: 'LinkedIn' },
+    { icon: Send, href: '#', name: 'Telegram' },
+    { icon: Instagram, href: '#', name: 'Instagram' },
   ];
 
   return (
