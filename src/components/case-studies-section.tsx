@@ -5,10 +5,41 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import { Badge } from "./ui/badge";
 import { useLanguage } from "@/contexts/language-context";
 import { cn } from "@/lib/utils";
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
+
 
 export default function CaseStudiesSection() {
   const { translations } = useLanguage();
   const { caseStudiesSection: t } = translations;
+
+  useGSAP(() => {
+    gsap.from(".case-studies-title", {
+      scrollTrigger: {
+        trigger: ".case-studies-title",
+        start: "top 80%",
+      },
+      y: 50,
+      opacity: 0,
+      duration: 1,
+      ease: "power3.out",
+    });
+
+    gsap.from(".case-study-card", {
+      scrollTrigger: {
+        trigger: ".case-study-card",
+        start: "top 85%",
+      },
+      y: 50,
+      opacity: 0,
+      stagger: 0.2,
+      duration: 1,
+      ease: "power3.out",
+    });
+  }, []);
 
   const caseStudies = [
     {
@@ -55,7 +86,7 @@ export default function CaseStudiesSection() {
   return (
     <section id="case-studies" className="py-16 sm:py-24 bg-background">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
+        <div className="text-center mb-12 case-studies-title">
           <h2 className="text-4xl md:text-5xl font-bold font-headline tracking-tight text-foreground">
             {t.title}
           </h2>
@@ -74,7 +105,7 @@ export default function CaseStudiesSection() {
           >
             <CarouselContent>
               {caseStudies.map((study, index) => (
-                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 case-study-card">
                   <div className="p-1 h-full">
                     <Card className="h-full flex flex-col bg-card/80 backdrop-blur-sm border-border hover:border-primary transition-all duration-300 shadow-lg hover:shadow-primary/20">
                       <CardHeader>

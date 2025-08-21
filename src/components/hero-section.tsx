@@ -2,13 +2,26 @@
 import Link from 'next/link';
 import { Button } from './ui/button';
 import { useLanguage } from '@/contexts/language-context';
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
 
 export default function HeroSection() {
   const { translations } = useLanguage();
   const { heroSection: t } = translations;
 
+  useGSAP(() => {
+    gsap.from(".hero-element", {
+      duration: 1,
+      y: 50,
+      opacity: 0,
+      stagger: 0.2,
+      ease: "power3.out",
+      delay: 0.5
+    });
+  }, []);
+
   return (
-    <section className="relative w-full py-24 sm:py-32 md:py-48 flex items-center justify-center text-center overflow-hidden">
+    <section className="relative w-full h-screen flex items-center justify-center text-center overflow-hidden">
         <div className="absolute inset-0 bg-background z-10">
             <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
             <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent"></div>
@@ -17,13 +30,13 @@ export default function HeroSection() {
         </div>
       <div className="container mx-auto px-4 z-20">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-5xl md:text-7xl font-black font-headline tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-foreground to-muted-foreground animate-fade-in-up">
+          <h1 className="text-5xl md:text-7xl font-black font-headline tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-foreground to-muted-foreground hero-element">
             {t.title}
           </h1>
-          <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto animate-fade-in-up animation-delay-200">
+          <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto hero-element">
             {t.subtitle}
           </p>
-          <div className="mt-10 flex justify-center gap-4 animate-fade-in-up animation-delay-400">
+          <div className="mt-10 flex justify-center gap-4 hero-element">
             <Button size="lg" asChild>
               <Link href="#pricing">{t.explorePlans}</Link>
             </Button>
@@ -40,26 +53,6 @@ export default function HeroSection() {
         }
         .bg-blue-glow {
             background-color: hsl(var(--primary) / 0.5);
-        }
-        @keyframes fade-in-up {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        .animate-fade-in-up {
-          animation: fade-in-up 0.8s ease-out forwards;
-          opacity: 0;
-        }
-        .animation-delay-200 {
-          animation-delay: 0.2s;
-        }
-        .animation-delay-400 {
-          animation-delay: 0.4s;
         }
       `}</style>
     </section>

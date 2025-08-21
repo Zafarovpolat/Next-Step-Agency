@@ -3,6 +3,7 @@ import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
 import { ThemeProvider } from '@/components/theme-provider';
 import { LanguageProvider } from '@/contexts/language-context';
+import { GSAPProvider } from '@/contexts/gsap-provider';
 
 export const metadata: Metadata = {
   title: 'Next Step Agency',
@@ -15,7 +16,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="!scroll-smooth" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -29,8 +30,14 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            {children}
-            <Toaster />
+            <GSAPProvider>
+              <div id="smooth-wrapper">
+                <div id="smooth-content">
+                  {children}
+                  <Toaster />
+                </div>
+              </div>
+            </GSAPProvider>
           </ThemeProvider>
         </LanguageProvider>
       </body>

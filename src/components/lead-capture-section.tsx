@@ -5,6 +5,11 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { CheckCircle2, Loader2 } from "lucide-react";
 import { useLanguage } from "@/contexts/language-context";
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function LeadCaptureSection() {
   const { translations } = useLanguage();
@@ -12,6 +17,19 @@ export default function LeadCaptureSection() {
   
   const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");
   const [error, setError] = useState<string | null>(null);
+
+  useGSAP(() => {
+    gsap.from(".lead-capture-card", {
+      scrollTrigger: {
+        trigger: ".lead-capture-card",
+        start: "top 80%",
+      },
+      y: 50,
+      opacity: 0,
+      duration: 1,
+      ease: "power3.out",
+    });
+  }, []);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -42,7 +60,7 @@ export default function LeadCaptureSection() {
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-2xl mx-auto">
             <div>
-              <Card className="bg-card/80 backdrop-blur-sm border-secondary shadow-xl">
+              <Card className="bg-card/80 backdrop-blur-sm border-secondary shadow-xl lead-capture-card">
                   {status === "success" ? (
                       <CardContent className="p-10 text-center flex flex-col items-center gap-4 success-animation">
                           <CheckCircle2 className="h-16 w-16 text-green-500" />

@@ -3,10 +3,28 @@
 import { Rocket, Linkedin, Twitter, Facebook } from 'lucide-react';
 import Link from 'next/link';
 import { useLanguage } from '@/contexts/language-context';
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Footer() {
   const { translations } = useLanguage();
   const { footer: t } = translations;
+
+  useGSAP(() => {
+    gsap.from(".footer-content", {
+      scrollTrigger: {
+        trigger: ".footer-content",
+        start: "top 95%",
+      },
+      y: 50,
+      opacity: 0,
+      duration: 1,
+      ease: "power3.out",
+    });
+  }, []);
 
   const socialLinks = [
     { icon: Twitter, href: '#', name: 'Twitter' },
@@ -16,7 +34,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-card py-8 mt-16 border-t">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 footer-content">
         <div className="flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="flex items-center gap-2">
             <Rocket className="h-8 w-8 text-primary" />

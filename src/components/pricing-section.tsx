@@ -5,10 +5,40 @@ import { Button } from './ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from './ui/card';
 import { cn } from '@/lib/utils';
 import { useLanguage } from '@/contexts/language-context';
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function PricingSection() {
   const { translations } = useLanguage();
   const { pricingSection: t } = translations;
+
+  useGSAP(() => {
+    gsap.from(".pricing-title", {
+      scrollTrigger: {
+        trigger: ".pricing-title",
+        start: "top 80%",
+      },
+      y: 50,
+      opacity: 0,
+      duration: 1,
+      ease: "power3.out",
+    });
+
+    gsap.from(".pricing-card", {
+      scrollTrigger: {
+        trigger: ".pricing-card",
+        start: "top 85%",
+      },
+      y: 50,
+      opacity: 0,
+      stagger: 0.2,
+      duration: 1,
+      ease: "power3.out",
+    });
+  }, []);
 
   const plans = [
     {
@@ -54,7 +84,7 @@ export default function PricingSection() {
   return (
     <section id="pricing" className="py-16 sm:py-24 bg-accent/20">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
+        <div className="text-center mb-12 pricing-title">
           <h2 className="text-4xl md:text-5xl font-bold font-headline tracking-tight text-foreground">
             {t.title}
           </h2>
@@ -64,7 +94,7 @@ export default function PricingSection() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {plans.map((plan, index) => (
-            <div key={plan.name}>
+            <div key={plan.name} className="pricing-card">
               <Card
                 className={cn(
                   'flex flex-col border-2 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 h-full',

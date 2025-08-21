@@ -4,6 +4,11 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useLanguage } from '@/contexts/language-context';
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function RoiCalculator() {
   const { translations } = useLanguage();
@@ -14,6 +19,30 @@ export default function RoiCalculator() {
   const [serviceCost, setServiceCost] = useState(2499);
   const [roi, setRoi] = useState(0);
   const [projectedGrowth] = useState(0.25); // 25% growth assumption
+
+  useGSAP(() => {
+    gsap.from(".roi-title", {
+      scrollTrigger: {
+        trigger: ".roi-title",
+        start: "top 80%",
+      },
+      y: 50,
+      opacity: 0,
+      duration: 1,
+      ease: "power3.out",
+    });
+
+    gsap.from(".roi-card", {
+      scrollTrigger: {
+        trigger: ".roi-card",
+        start: "top 85%",
+      },
+      y: 50,
+      opacity: 0,
+      duration: 1,
+      ease: "power3.out",
+    });
+  }, []);
 
   useEffect(() => {
     const calculateRoi = () => {
@@ -38,7 +67,7 @@ export default function RoiCalculator() {
   return (
     <section id="roi-calculator" className="py-16 sm:py-24 bg-background">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
+        <div className="text-center mb-12 roi-title">
             <h2 className="text-4xl md:text-5xl font-bold font-headline tracking-tight text-foreground">
                 {t.title}
             </h2>
@@ -46,7 +75,7 @@ export default function RoiCalculator() {
                 {t.subtitle}
             </p>
         </div>
-        <Card className="max-w-4xl mx-auto bg-card/50 backdrop-blur-md border-secondary shadow-lg">
+        <Card className="max-w-4xl mx-auto bg-card/50 backdrop-blur-md border-secondary shadow-lg roi-card">
           <CardContent className="p-8 grid md:grid-cols-2 gap-8 items-center">
             <div className="space-y-6">
               <div>
