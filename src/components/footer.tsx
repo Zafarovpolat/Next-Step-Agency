@@ -34,7 +34,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-card py-8 mt-16 border-t">
+    <footer className="bg-card py-8 border-t">
       <div className="container mx-auto px-4 footer-content">
         <div className="flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="flex items-center gap-2">

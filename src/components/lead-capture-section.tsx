@@ -56,7 +56,7 @@ export default function LeadCaptureSection() {
   }
 
   return (
-    <section id="contact" className="py-16 sm:py-24 bg-accent/30 relative overflow-hidden">
+    <section id="contact" className="py-16 sm:py-24 bg-accent/30 relative overflow-hidden pb-32 sm:pb-40">
       <div className="absolute inset-0 bg-grid-pattern-small opacity-10"></div>
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-2xl mx-auto">
