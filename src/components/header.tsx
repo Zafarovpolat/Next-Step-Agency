@@ -31,14 +31,10 @@ export default function Header() {
   }
 
   const handleMobileLinkClick = (target: string) => {
+    if (smoother) {
+      smoother.scrollTo(target, true);
+    }
     setIsMobileMenuOpen(false);
-    // Use a timeout to allow the sheet to start closing before the scroll begins.
-    // This prevents the conflict between the re-render and the scroll animation.
-    setTimeout(() => {
-      if (smoother) {
-        smoother.scrollTo(target, true);
-      }
-    }, 100); 
   };
   
 
