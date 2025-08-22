@@ -1,6 +1,7 @@
 
 "use client";
 
+import { useState } from 'react';
 import Link from 'next/link';
 import { Rocket, Moon, Sun, Languages, Menu } from 'lucide-react';
 import { Button } from './ui/button';
@@ -20,11 +21,18 @@ export default function Header() {
   const { setLanguage, translations } = useLanguage();
   const { header: t } = translations;
   const smoother = useScrollSmoother();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, target: string) => {
     e.preventDefault();
     if (smoother) {
         smoother.scrollTo(target, true, "top top");
+    }
+    // Close mobile menu after a short delay to allow scroll to start
+    if (isMobileMenuOpen) {
+      setTimeout(() => {
+        setIsMobileMenuOpen(false);
+      }, 300);
     }
   }
 
@@ -91,66 +99,64 @@ export default function Header() {
 
         {/* Mobile Navigation */}
         <div className="lg:hidden">
-            <Sheet>
+            <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
                 <SheetTrigger asChild>
                     <Button variant="outline" size="icon">
                         <Menu className="h-6 w-6" />
                         <span className="sr-only">Open menu</span>
                     </Button>
                 </SheetTrigger>
-                <SheetContent side="right" className="w-[300px] sm:w-[340px]">
-                    <div className="flex flex-col h-full">
-                        <div className="flex items-center gap-2 p-4 border-b">
-                             <Rocket className="h-6 w-6 text-primary" />
-                             <span className="font-bold text-lg">{t.agencyName}</span>
-                        </div>
-                        <nav className="flex flex-col gap-4 p-4 flex-grow">
-                            {navLinks.map((link) => (
-                                <SheetClose asChild key={link.href}>
-                                    <a
-                                    href={link.href}
-                                    onClick={(e) => handleScroll(e, link.href)}
-                                    className="text-lg font-medium text-foreground"
-                                    >
-                                    {link.label}
-                                    </a>
-                                </SheetClose>
-                            ))}
-                        </nav>
-                        <div className="p-4 border-t space-y-4">
-                             <Button asChild className='w-full'>
-                                <SheetClose asChild>
-                                  <a href="#contact" onClick={(e) => handleScroll(e, "#contact")}>{t.getQuote}</a>
-                                </SheetClose>
-                              </Button>
-                            <div className="flex justify-around">
-                                <DropdownMenu>
-                                    <DropdownMenuTrigger asChild>
-                                    <Button variant="outline" size="icon">
-                                        <Languages className="h-[1.2rem] w-[1.2rem]" />
-                                        <span className="sr-only">Change language</span>
-                                    </Button>
-                                    </DropdownMenuTrigger>
-                                    <DropdownMenuContent align="end">
-                                    <DropdownMenuItem onClick={() => setLanguage('en')}>
-                                        English
-                                    </DropdownMenuItem>
-                                    <DropdownMenuItem onClick={() => setLanguage('ru')}>
-                                        Русский
-                                    </DropdownMenuItem>
-                                    <DropdownMenuItem onClick={() => setLanguage('uz')}>
-                                        O'zbek
-                                    </DropdownMenuItem>
-                                    </DropdownMenuContent>
-                                </DropdownMenu>
-                                <Button variant="outline" size="icon" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
-                                    <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                                    <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-                                    <span className="sr-only">Toggle theme</span>
+                <SheetContent side="right" className="w-[300px] sm:w-[340px] flex flex-col p-0">
+                    <div className="flex items-center gap-2 p-4 border-b">
+                         <Rocket className="h-6 w-6 text-primary" />
+                         <span className="font-bold text-lg">{t.agencyName}</span>
+                    </div>
+                    <nav className="flex flex-col gap-4 p-4 flex-grow">
+                        {navLinks.map((link) => (
+                            <a
+                              key={link.href}
+                              href={link.href}
+                              onClick={(e) => handleScroll(e, link.href)}
+                              className="text-lg font-medium text-foreground"
+                            >
+                              {link.label}
+                            </a>
+                        ))}
+                    </nav>
+                    <div className="p-4 border-t space-y-4">
+                        <Button asChild className='w-full'>
+                            <a href="#contact" onClick={(e) => handleScroll(e, "#contact")}>{t.getQuote}</a>
+                        </Button>
+                        <div className="flex justify-around">
+                            <DropdownMenu>
+                                <DropdownMenuTrigger asChild>
+                                <Button variant="outline" size="icon">
+                                    <Languages className="h-[1.2rem] w-[1.2rem]" />
+                                    <span className="sr-only">Change language</span>
                                 </Button>
-                            </div>
+                                </DropdownMenuTrigger>
+                                <DropdownMenuContent align="end">
+                                <DropdownMenuItem onClick={() => setLanguage('en')}>
+                                    English
+                                </DropdownMenuItem>
+                                <DropdownMenuItem onClick={() => setLanguage('ru')}>
+                                    Русский
+                                </DropdownMenuItem>
+                                <DropdownMenuItem onClick={() => setLanguage('uz')}>
+                                    O'zbek
+                                </DropdownMenuItem>
+                                </DropdownMenuContent>
+                            </DropdownMenu>
+                            <Button variant="outline" size="icon" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
+                                <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                                <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                                <span className="sr-only">Toggle theme</span>
+                            </Button>
                         </div>
                     </div>
+                    <SheetClose className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary">
+                        <span className="sr-only">Close</span>
+                    </SheetClose>
                 </SheetContent>
             </Sheet>
         </div>
