@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Rocket, Moon, Sun, Languages, Menu } from 'lucide-react';
 import { Button } from './ui/button';
@@ -22,6 +22,7 @@ export default function Header() {
   const { header: t } = translations;
   const smoother = useScrollSmoother();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [scrollToTarget, setScrollToTarget] = useState<string | null>(null);
 
   const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, target: string) => {
     e.preventDefault();
@@ -30,15 +31,23 @@ export default function Header() {
     }
   }
 
-  const handleMobileLinkClick = async (target: string) => {
+  const handleMobileLinkClick = (target: string) => {
+    // First, set the target we want to scroll to.
+    setScrollToTarget(target);
+    // Then, close the menu. This will trigger the useEffect.
     setIsMobileMenuOpen(false);
-    // Wait for the sheet to close and UI to re-render before scrolling
-    await new Promise(resolve => setTimeout(resolve, 100));
-    if (smoother) {
-      smoother.scrollTo(target, true);
-    }
   };
   
+  useEffect(() => {
+    // This effect runs when isMobileMenuOpen changes or when a new target is set.
+    // We only scroll if the menu is closed and there's a target.
+    if (!isMobileMenuOpen && scrollToTarget && smoother) {
+      // Scroll to the target.
+      smoother.scrollTo(scrollToTarget, true);
+      // Reset the target so this doesn't re-run unintentionally.
+      setScrollToTarget(null);
+    }
+  }, [isMobileMenuOpen, scrollToTarget, smoother]);
 
   const navLinks = [
     { href: '#pricing', label: t.nav.pricing },
