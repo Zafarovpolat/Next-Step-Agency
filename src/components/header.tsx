@@ -30,11 +30,13 @@ export default function Header() {
     }
   }
 
-  const handleMobileLinkClick = (target: string) => {
+  const handleMobileLinkClick = async (target: string) => {
+    setIsMobileMenuOpen(false);
+    // Wait for the sheet to close and UI to re-render before scrolling
+    await new Promise(resolve => setTimeout(resolve, 100));
     if (smoother) {
       smoother.scrollTo(target, true);
     }
-    setIsMobileMenuOpen(false);
   };
   
 
