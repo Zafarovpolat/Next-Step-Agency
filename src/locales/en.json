@@ -121,8 +121,7 @@
   },
   "footer": {
     "agencyName": "Next Step Agency",
-    "phone1": "+998 99 301 99 49",
-    "phone2": "+998 95 973 88 88",
+    "phone": "+998 95 973 88 88",
     "copyright": "Next Step Agency. All Rights Reserved.",
     "privacyPolicy": "Privacy Policy",
     "termsOfService": "Terms of Service"

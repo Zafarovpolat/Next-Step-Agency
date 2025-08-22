@@ -121,8 +121,7 @@
   },
   "footer": {
     "agencyName": "Агентство Next Step",
-    "phone1": "+998 99 301 99 49",
-    "phone2": "+998 95 973 88 88",
+    "phone": "+998 95 973 88 88",
     "copyright": "Агентство Next Step. Все права защищены.",
     "privacyPolicy": "Политика конфиденциальности",
     "termsOfService": "Условия использования"

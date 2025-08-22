@@ -41,8 +41,7 @@ export default function Footer() {
             <span className="text-xl sm:text-2xl font-bold text-card-foreground">{t.agencyName}</span>
           </div>
           <div className="text-center text-muted-foreground">
-            <p>{t.phone1}</p>
-            <p>{t.phone2}</p>
+            <p>{t.phone}</p>
           </div>
           <div className="flex gap-4">
             {socialLinks.map((link) => (

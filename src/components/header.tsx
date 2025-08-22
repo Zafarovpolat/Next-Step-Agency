@@ -39,13 +39,11 @@ export default function Header() {
   };
   
   useEffect(() => {
-    // This effect runs when isMobileMenuOpen changes or when a new target is set.
-    // We only scroll if the menu is closed and there's a target.
     if (!isMobileMenuOpen && scrollToTarget && smoother) {
-      // Scroll to the target.
-      smoother.scrollTo(scrollToTarget, true);
-      // Reset the target so this doesn't re-run unintentionally.
-      setScrollToTarget(null);
+      setTimeout(() => {
+        smoother.scrollTo(scrollToTarget, true);
+        setScrollToTarget(null);
+      }, 350); // Slightly longer than the 300ms close duration to account for any lag
     }
   }, [isMobileMenuOpen, scrollToTarget, smoother]);
 
