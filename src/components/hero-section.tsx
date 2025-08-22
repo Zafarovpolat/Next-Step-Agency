@@ -1,6 +1,6 @@
 
 "use client";
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import { Button } from './ui/button';
 import { useLanguage } from '@/contexts/language-context';
 import { useGSAP } from '@gsap/react';
@@ -41,13 +41,13 @@ export default function HeroSection() {
         </div>
       <div className="container mx-auto px-4 z-20">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-5xl md:text-7xl font-black font-headline tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-foreground to-muted-foreground hero-element pb-2">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-black font-headline tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-foreground to-muted-foreground hero-element pb-2">
             {t.title}
           </h1>
-          <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto hero-element">
+          <p className="mt-6 text-md md:text-xl text-muted-foreground max-w-2xl mx-auto hero-element">
             {t.subtitle}
           </p>
-          <div className="mt-10 flex justify-center gap-4 hero-element">
+          <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4 hero-element">
             <Button size="lg" asChild>
               <a href="#pricing" onClick={(e) => handleScroll(e, "#pricing")}>{t.explorePlans}</a>
             </Button>

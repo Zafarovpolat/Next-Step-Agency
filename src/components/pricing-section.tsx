@@ -86,15 +86,15 @@ export default function PricingSection() {
     <section id="pricing" className="py-16 sm:py-24 bg-accent/20">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12 pricing-title">
-          <h2 className="text-4xl md:text-5xl font-bold font-headline tracking-tight text-foreground">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-headline tracking-tight text-foreground">
             {t.title}
           </h2>
-          <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="mt-4 text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
             {t.subtitle}
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {plans.map((plan, index) => (
+          {plans.map((plan) => (
             <div key={plan.name} className="pricing-card">
               <Card
                 className={cn(
@@ -108,11 +108,11 @@ export default function PricingSection() {
                       {t.mostPopular}
                     </div>
                   )}
-                  <CardTitle className="text-3xl font-bold">{plan.name}</CardTitle>
+                  <CardTitle className="text-2xl sm:text-3xl font-bold">{plan.name}</CardTitle>
                   <CardDescription>{plan.description}</CardDescription>
                 </CardHeader>
                 <CardContent className="flex-grow">
-                  <div className="text-4xl font-extrabold mb-6 text-foreground">{plan.price}</div>
+                  <div className="text-3xl sm:text-4xl font-extrabold mb-6 text-foreground">{plan.price}</div>
                   <ul className="space-y-3 text-muted-foreground">
                     {plan.features.map((feature) => (
                       <li key={feature} className="flex items-center gap-3">

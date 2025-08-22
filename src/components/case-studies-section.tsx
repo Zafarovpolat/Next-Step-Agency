@@ -115,10 +115,10 @@ export default function CaseStudiesSection() {
     <section id="case-studies" className="py-16 sm:py-24 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12 case-studies-title">
-          <h2 className="text-4xl md:text-5xl font-bold font-headline tracking-tight text-foreground">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-headline tracking-tight text-foreground">
             {t.title}
           </h2>
-          <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="mt-4 text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
             {t.subtitle}
           </p>
         </div>
@@ -139,7 +139,7 @@ export default function CaseStudiesSection() {
           >
             <CarouselContent>
               {caseStudies.map((study, index) => (
-                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 case-study-card">
+                <CarouselItem key={index} className="basis-full md:basis-1/2 lg:basis-1/3 case-study-card">
                   <div className="p-1 h-full">
                     <Card className="h-full flex flex-col bg-card/80 backdrop-blur-sm border-border hover:border-primary transition-all duration-300 shadow-lg hover:shadow-primary/20">
                       <CardHeader>
@@ -191,8 +191,8 @@ export default function CaseStudiesSection() {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="ml-12" />
-            <CarouselNext className="mr-12" />
+            <CarouselPrevious className="ml-12 hidden sm:flex" />
+            <CarouselNext className="mr-12 hidden sm:flex" />
           </Carousel>
         </div>
       </div>

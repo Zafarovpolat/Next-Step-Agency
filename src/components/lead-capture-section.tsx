@@ -56,8 +56,8 @@ export default function LeadCaptureSection() {
   }
 
   return (
-    <section id="contact" className="py-16 sm:py-24 bg-accent/30 relative overflow-hidden pb-32 sm:pb-40">
-      <div className="absolute inset-0 bg-grid-pattern-small opacity-10"></div>
+    <section id="contact" className="py-16 sm:py-24 bg-accent/30 relative overflow-hidden">
+       <div className="absolute inset-0 bg-grid-pattern-small opacity-10"></div>
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-2xl mx-auto">
             <div>
@@ -72,13 +72,13 @@ export default function LeadCaptureSection() {
                       <>
                           <CardHeader className="text-center">
                               <CardTitle className="text-3xl md:text-4xl font-bold font-headline">{t.title}</CardTitle>
-                              <CardDescription className="text-lg">
+                              <CardDescription className="text-base md:text-lg">
                               {t.subtitle}
                               </CardDescription>
                           </CardHeader>
                           <CardContent>
                               <form onSubmit={handleSubmit} className="space-y-4">
-                                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                       <Input name="name" placeholder={t.placeholders.name} required className="dark-glass" />
                                       <Input name="phone" type="tel" placeholder={t.placeholders.phone} required className="dark-glass"/>
                                   </div>

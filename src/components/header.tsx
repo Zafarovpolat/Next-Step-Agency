@@ -2,7 +2,7 @@
 "use client";
 
 import Link from 'next/link';
-import { Rocket, Moon, Sun, Languages } from 'lucide-react';
+import { Rocket, Moon, Sun, Languages, Menu } from 'lucide-react';
 import { Button } from './ui/button';
 import { useTheme } from 'next-themes';
 import {
@@ -11,6 +11,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/sheet';
 import { useLanguage } from '@/contexts/language-context';
 import { useScrollSmoother } from '@/contexts/gsap-provider';
 
@@ -40,6 +41,8 @@ export default function Header() {
           <Rocket className="h-6 w-6 text-primary" />
           <span className="font-bold text-lg">{t.agencyName}</span>
         </Link>
+        
+        {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-2">
           {navLinks.map((link) => (
             <a
@@ -53,7 +56,8 @@ export default function Header() {
             </a>
           ))}
         </nav>
-        <div className="flex items-center gap-2">
+
+        <div className="hidden md:flex items-center gap-2">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline" size="icon">
@@ -84,6 +88,73 @@ export default function Header() {
               <a href="#contact" onClick={(e) => handleScroll(e, "#contact")}>{t.getQuote}</a>
           </Button>
         </div>
+
+        {/* Mobile Navigation */}
+        <div className="md:hidden">
+            <Sheet>
+                <SheetTrigger asChild>
+                    <Button variant="outline" size="icon">
+                        <Menu className="h-6 w-6" />
+                        <span className="sr-only">Open menu</span>
+                    </Button>
+                </SheetTrigger>
+                <SheetContent side="right" className="w-[300px] sm:w-[340px]">
+                    <div className="flex flex-col h-full">
+                        <div className="flex items-center gap-2 p-4 border-b">
+                             <Rocket className="h-6 w-6 text-primary" />
+                             <span className="font-bold text-lg">{t.agencyName}</span>
+                        </div>
+                        <nav className="flex flex-col gap-4 p-4 flex-grow">
+                            {navLinks.map((link) => (
+                                <SheetClose asChild key={link.href}>
+                                    <a
+                                    href={link.href}
+                                    onClick={(e) => handleScroll(e, link.href)}
+                                    className="text-lg font-medium text-foreground"
+                                    >
+                                    {link.label}
+                                    </a>
+                                </SheetClose>
+                            ))}
+                        </nav>
+                        <div className="p-4 border-t space-y-4">
+                             <Button asChild className='w-full'>
+                                <SheetClose asChild>
+                                  <a href="#contact" onClick={(e) => handleScroll(e, "#contact")}>{t.getQuote}</a>
+                                </SheetClose>
+                              </Button>
+                            <div className="flex justify-around">
+                                <DropdownMenu>
+                                    <DropdownMenuTrigger asChild>
+                                    <Button variant="outline" size="icon">
+                                        <Languages className="h-[1.2rem] w-[1.2rem]" />
+                                        <span className="sr-only">Change language</span>
+                                    </Button>
+                                    </DropdownMenuTrigger>
+                                    <DropdownMenuContent align="end">
+                                    <DropdownMenuItem onClick={() => setLanguage('en')}>
+                                        English
+                                    </DropdownMenuItem>
+                                    <DropdownMenuItem onClick={() => setLanguage('ru')}>
+                                        Русский
+                                    </DropdownMenuItem>
+                                    <DropdownMenuItem onClick={() => setLanguage('uz')}>
+                                        O'zbek
+                                    </DropdownMenuItem>
+                                    </DropdownMenuContent>
+                                </DropdownMenu>
+                                <Button variant="outline" size="icon" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
+                                    <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                                    <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                                    <span className="sr-only">Toggle theme</span>
+                                </Button>
+                            </div>
+                        </div>
+                    </div>
+                </SheetContent>
+            </Sheet>
+        </div>
+
       </div>
     </header>
   );
