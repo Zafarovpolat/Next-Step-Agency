@@ -26,15 +26,14 @@ export default function Header() {
   const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, target: string) => {
     e.preventDefault();
     if (smoother) {
-        smoother.scrollTo(target, true, "top top");
-    }
-    // Close mobile menu after a short delay to allow scroll to start
-    if (isMobileMenuOpen) {
-      setTimeout(() => {
-        setIsMobileMenuOpen(false);
-      }, 300);
+        smoother.scrollTo(target, true);
     }
   }
+
+  const handleMobileLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, target: string) => {
+    handleScroll(e, target);
+    setIsMobileMenuOpen(false);
+  };
 
   const navLinks = [
     { href: '#pricing', label: t.nav.pricing },
@@ -116,7 +115,7 @@ export default function Header() {
                             <a
                               key={link.href}
                               href={link.href}
-                              onClick={(e) => handleScroll(e, link.href)}
+                              onClick={(e) => handleMobileLinkClick(e, link.href)}
                               className="text-lg font-medium text-foreground"
                             >
                               {link.label}
@@ -125,7 +124,7 @@ export default function Header() {
                     </nav>
                     <div className="p-4 border-t space-y-4">
                         <Button asChild className='w-full'>
-                            <a href="#contact" onClick={(e) => handleScroll(e, "#contact")}>{t.getQuote}</a>
+                            <a href="#contact" onClick={(e) => handleMobileLinkClick(e, "#contact")}>{t.getQuote}</a>
                         </Button>
                         <div className="flex justify-around">
                             <DropdownMenu>
@@ -154,7 +153,6 @@ export default function Header() {
                             </Button>
                         </div>
                     </div>
-                    <SheetClose className="hidden" />
                 </SheetContent>
             </Sheet>
         </div>
