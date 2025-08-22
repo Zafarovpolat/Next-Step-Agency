@@ -12,7 +12,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { useLanguage } from '@/contexts/language-context';
 import { useScrollSmoother } from '@/contexts/gsap-provider';
 
@@ -30,10 +30,17 @@ export default function Header() {
     }
   }
 
-  const handleMobileLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, target: string) => {
-    handleScroll(e, target);
+  const handleMobileLinkClick = (target: string) => {
     setIsMobileMenuOpen(false);
+    // Use a timeout to allow the sheet to start closing before the scroll begins.
+    // This prevents the conflict between the re-render and the scroll animation.
+    setTimeout(() => {
+      if (smoother) {
+        smoother.scrollTo(target, true);
+      }
+    }, 100); 
   };
+  
 
   const navLinks = [
     { href: '#pricing', label: t.nav.pricing },
@@ -100,7 +107,7 @@ export default function Header() {
         <div className="lg:hidden">
             <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
                 <SheetTrigger asChild>
-                    <Button variant="outline" size="icon">
+                    <Button variant="outline" size="icon" onClick={() => setIsMobileMenuOpen(true)}>
                         <Menu className="h-6 w-6" />
                         <span className="sr-only">Open menu</span>
                     </Button>
@@ -112,19 +119,18 @@ export default function Header() {
                     </div>
                     <nav className="flex flex-col gap-4 p-4 flex-grow">
                         {navLinks.map((link) => (
-                            <a
+                            <button
                               key={link.href}
-                              href={link.href}
-                              onClick={(e) => handleMobileLinkClick(e, link.href)}
-                              className="text-lg font-medium text-foreground"
+                              onClick={() => handleMobileLinkClick(link.href)}
+                              className="text-lg font-medium text-foreground text-left"
                             >
                               {link.label}
-                            </a>
+                            </button>
                         ))}
                     </nav>
                     <div className="p-4 border-t space-y-4">
-                        <Button asChild className='w-full'>
-                            <a href="#contact" onClick={(e) => handleMobileLinkClick(e, "#contact")}>{t.getQuote}</a>
+                        <Button className='w-full' onClick={() => handleMobileLinkClick("#contact")}>
+                           {t.getQuote}
                         </Button>
                         <div className="flex justify-around">
                             <DropdownMenu>
@@ -135,13 +141,13 @@ export default function Header() {
                                 </Button>
                                 </DropdownMenuTrigger>
                                 <DropdownMenuContent align="end">
-                                <DropdownMenuItem onClick={() => setLanguage('en')}>
+                                <DropdownMenuItem onClick={() => { setLanguage('en'); setIsMobileMenuOpen(false); }}>
                                     English
                                 </DropdownMenuItem>
-                                <DropdownMenuItem onClick={() => setLanguage('ru')}>
+                                <DropdownMenuItem onClick={() => { setLanguage('ru'); setIsMobileMenuOpen(false); }}>
                                     Русский
                                 </DropdownMenuItem>
-                                <DropdownMenuItem onClick={() => setLanguage('uz')}>
+                                <DropdownMenuItem onClick={() => { setLanguage('uz'); setIsMobileMenuOpen(false); }}>
                                     O'zbek
                                 </DropdownMenuItem>
                                 </DropdownMenuContent>
