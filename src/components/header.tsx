@@ -28,8 +28,7 @@ export default function Header() {
   const isMainPage = pathname === '/';
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [scrollToTarget, setScrollToTarget] = useState<string | null>(null);
-
+  
   const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, target: string) => {
     e.preventDefault();
     if (smoother) {
@@ -38,18 +37,11 @@ export default function Header() {
   }
 
   const handleMobileLinkClick = (target: string) => {
-    setScrollToTarget(target);
+    if (smoother) {
+        smoother.scrollTo(target, true);
+    }
     setIsMobileMenuOpen(false);
   };
-  
-  useEffect(() => {
-    if (!isMobileMenuOpen && scrollToTarget && smoother) {
-      setTimeout(() => {
-        smoother.scrollTo(scrollToTarget, true);
-        setScrollToTarget(null);
-      }, 350); 
-    }
-  }, [isMobileMenuOpen, scrollToTarget, smoother]);
 
   const navLinks = [
     { href: '#pricing', label: t.nav.pricing },
@@ -155,7 +147,7 @@ export default function Header() {
         <div className="lg:hidden">
             <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
                 <SheetTrigger asChild>
-                    <Button variant="outline" size="icon" onClick={() => setIsMobileMenuOpen(true)}>
+                    <Button variant="outline" size="icon">
                         <Menu className="h-6 w-6" />
                         <span className="sr-only">Open menu</span>
                     </Button>
