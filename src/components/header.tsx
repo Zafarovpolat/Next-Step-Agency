@@ -77,6 +77,26 @@ export default function Header() {
     )
   }
 
+  const MobileQuoteButton = () => {
+    if(isMainPage) {
+        return (
+            <Button className='w-full' onClick={() => handleMobileLinkClick("#contact")}>
+                {t.getQuote}
+            </Button>
+        )
+    }
+    return (
+        <Dialog>
+            <DialogTrigger asChild>
+                <Button className='w-full'>{t.getQuote}</Button>
+            </DialogTrigger>
+            <DialogContent className="p-0 border-none bg-transparent max-w-2xl">
+                <LeadCaptureCard showHeader={true}/>
+            </DialogContent>
+        </Dialog>
+    )
+  }
+
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 max-w-screen-2xl items-center justify-between mx-auto px-4">
@@ -150,7 +170,7 @@ export default function Header() {
                            <Link
                               key={link.href}
                               href={isMainPage ? link.href : `/${link.href}`}
-                              onClick={(e) => {
+                              onClick={() => {
                                 if (isMainPage) handleMobileLinkClick(link.href);
                                 else setIsMobileMenuOpen(false);
                               }}
@@ -161,22 +181,7 @@ export default function Header() {
                         ))}
                     </nav>
                     <div className="p-4 border-t space-y-4">
-                        <Button className='w-full' onClick={() => {
-                            if(isMainPage) handleMobileLinkClick("#contact")
-                            else {
-                                setIsMobileMenuOpen(false);
-                                // A hack to make the dialog triggerable from here
-                                setTimeout(() => {
-                                    const desktopButton = document.querySelector('[data-desktop-quote-button]');
-                                    if(desktopButton instanceof HTMLElement) desktopButton.click();
-                                }, 300)
-                            }
-                        }}>
-                           {t.getQuote}
-                        </Button>
-                         <div className="hidden lg:flex items-center gap-2">
-                           <QuoteButton />
-                         </div>
+                        <MobileQuoteButton />
                         <div className="flex justify-around">
                             <DropdownMenu>
                                 <DropdownMenuTrigger asChild>
