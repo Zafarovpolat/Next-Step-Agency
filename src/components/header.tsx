@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Rocket, Moon, Sun, Languages, Menu } from 'lucide-react';
@@ -15,9 +15,9 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { useLanguage } from '@/contexts/language-context';
-import { useScrollSmoother } from '@/contexts/gsap-provider';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import LeadCaptureCard from './lead-capture-card';
+import { useScrollSmoother } from '@/contexts/gsap-provider';
 
 export default function Header() {
   const { setTheme, theme } = useTheme();
@@ -30,27 +30,20 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
   const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, target: string) => {
-    // Only prevent default and scroll smoothly if on the main page.
+    // This is only for the main page Quote button.
+    // Nav links will use standard hrefs.
     if (isMainPage) {
         e.preventDefault();
         if (smoother) {
             smoother.scrollTo(target, true);
         }
     }
-    // If not on the main page, let the default Link behavior handle the navigation.
   }
 
-  const handleMobileLinkClick = (target: string) => {
-    if (isMainPage && smoother) {
-        smoother.scrollTo(target, true);
-    }
-    setIsMobileMenuOpen(false);
-  };
-
   const navLinks = [
-    { href: '#pricing', label: t.nav.pricing },
-    { href: '#case-studies', label: t.nav.caseStudies },
-    { href: '#contact', label: t.nav.contact },
+    { href: '/#pricing', label: t.nav.pricing },
+    { href: '/#case-studies', label: t.nav.caseStudies },
+    { href: '/#contact', label: t.nav.contact },
   ];
 
   const QuoteButton = () => {
@@ -76,13 +69,16 @@ export default function Header() {
   const MobileQuoteButton = () => {
     if(isMainPage) {
         return (
-            <Button className='w-full' onClick={() => handleMobileLinkClick("#contact")}>
+            <Button className='w-full' onClick={() => {
+                smoother?.scrollTo("#contact", true);
+                setIsMobileMenuOpen(false);
+            }}>
                 {t.getQuote}
             </Button>
         )
     }
     return (
-        <Dialog>
+        <Dialog onOpenChange={(open) => !open && setIsMobileMenuOpen(false)}>
             <DialogTrigger asChild>
                 <Button className='w-full'>{t.getQuote}</Button>
             </DialogTrigger>
@@ -106,8 +102,7 @@ export default function Header() {
           {navLinks.map((link) => (
              <Link
               key={link.href}
-              href={isMainPage ? link.href : `/${link.href}`}
-              onClick={(e) => handleScroll(e, link.href)}
+              href={link.href}
               className="px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-primary relative group"
             >
               {link.label}
@@ -163,8 +158,8 @@ export default function Header() {
                         {navLinks.map((link) => (
                            <Link
                               key={link.href}
-                              href={isMainPage ? link.href : `/${link.href}`}
-                              onClick={() => handleMobileLinkClick(link.href)}
+                              href={link.href}
+                              onClick={() => setIsMobileMenuOpen(false)}
                               className="text-lg font-medium text-foreground text-left"
                             >
                               {link.label}
