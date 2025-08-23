@@ -1,9 +1,10 @@
 
 "use client";
 
+import { useEffect } from 'react';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
-import { Check, Minus } from 'lucide-react';
+import { Check, Minus, ArrowLeft } from 'lucide-react';
 import { useLanguage } from '@/contexts/language-context';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
@@ -38,6 +39,10 @@ export default function PricingDetailsPage() {
     { feature: t.features.kpi, start: false, optimal: false, premium: true },
   ];
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   useGSAP(() => {
     gsap.from(".fade-in-element", {
       y: 30,
@@ -57,6 +62,12 @@ export default function PricingDetailsPage() {
       <Header />
       <main className="flex-1 py-16 sm:py-24">
         <div className="container mx-auto px-4">
+          <div className="mb-8 fade-in-element">
+            <Link href="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
+              <ArrowLeft className="h-4 w-4" />
+              {t.goBack}
+            </Link>
+          </div>
           <div className="text-center mb-12 fade-in-element">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold font-headline tracking-tight text-foreground">
               {t.title}

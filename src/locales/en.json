@@ -130,6 +130,7 @@
   "pricingDetailsPage": {
     "title": "Detailed Plan Comparison",
     "subtitle": "Find the perfect fit for your needs. Here's a detailed breakdown of what each plan includes.",
+    "goBack": "Go Back",
     "tableHeaders": {
       "features": "Features",
       "start": "Start",

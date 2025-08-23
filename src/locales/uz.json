@@ -130,6 +130,7 @@
   "pricingDetailsPage": {
     "title": "Rejalarni batafsil taqqoslash",
     "subtitle": "Ehtiyojlaringiz uchun mukammal yechimni toping. Har bir reja nimalarni o'z ichiga olganining batafsil tavsifi.",
+    "goBack": "Ortga",
     "tableHeaders": {
       "features": "Xususiyatlar",
       "start": "Boshlang'ich",
