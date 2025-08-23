@@ -14,10 +14,12 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import LeadCaptureCard from '@/components/lead-capture-card';
+import { useScrollSmoother } from '@/contexts/gsap-provider';
 
 export default function PricingDetailsPage() {
   const { translations } = useLanguage();
   const { pricingDetailsPage: t, header: headerT, leadCaptureSection: leadT } = translations;
+  const smoother = useScrollSmoother();
 
   const features = [
     { feature: t.features.consultation, start: true, optimal: true, premium: true },
@@ -42,8 +44,13 @@ export default function PricingDetailsPage() {
   ];
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+    // Use the smoother to scroll to top if it's available, otherwise use window.scrollTo
+    if (smoother) {
+      smoother.scrollTop(0);
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [smoother]);
 
   useGSAP(() => {
     gsap.from(".fade-in-element", {
