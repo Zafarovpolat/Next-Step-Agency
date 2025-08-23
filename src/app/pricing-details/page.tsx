@@ -12,10 +12,12 @@ import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
+import LeadCaptureCard from '@/components/lead-capture-card';
 
 export default function PricingDetailsPage() {
   const { translations } = useLanguage();
-  const { pricingDetailsPage: t, header: headerT } = translations;
+  const { pricingDetailsPage: t, header: headerT, leadCaptureSection: leadT } = translations;
 
   const features = [
     { feature: t.features.consultation, start: true, optimal: true, premium: true },
@@ -110,9 +112,14 @@ export default function PricingDetailsPage() {
             </CardContent>
           </Card>
            <div className="mt-12 text-center fade-in-element">
-             <Button asChild size="lg">
-                <Link href="/#contact">{headerT.getQuote}</Link>
-             </Button>
+             <Dialog>
+                <DialogTrigger asChild>
+                    <Button size="lg">{headerT.getQuote}</Button>
+                </DialogTrigger>
+                <DialogContent className="p-0 border-none bg-transparent max-w-2xl">
+                   <LeadCaptureCard showHeader={true}/>
+                </DialogContent>
+             </Dialog>
            </div>
         </div>
       </main>
