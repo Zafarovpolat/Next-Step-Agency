@@ -20,6 +20,7 @@
     "subtitle": "O'z ambitsiyalaringizga mos rejani tanlang. Yashirin to'lovlar yo'q, faqat shaffof hamkorlik.",
     "mostPopular": "Eng Ommabop",
     "getStarted": "Boshlash",
+    "moreInfo": "Barcha xususiyatlarni taqqoslash",
     "plans": {
       "starter": {
         "name": "Boshlang'ich",
@@ -125,5 +126,36 @@
     "copyright": "Next Step Agentligi. Barcha huquqlar himoyalangan.",
     "privacyPolicy": "Maxfiylik Siyosati",
     "termsOfService": "Xizmat Ko'rsatish Shartlari"
+  },
+  "pricingDetailsPage": {
+    "title": "Rejalarni batafsil taqqoslash",
+    "subtitle": "Ehtiyojlaringiz uchun mukammal yechimni toping. Har bir reja nimalarni o'z ichiga olganining batafsil tavsifi.",
+    "tableHeaders": {
+      "features": "Xususiyatlar",
+      "start": "Boshlang'ich",
+      "optimal": "Optimal",
+      "premium": "Premium"
+    },
+    "features": {
+      "consultation": "Bepul maslahat/audit",
+      "responsive": "Adaptiv dizayn",
+      "hosting": "Xosting/domen (1 yil)",
+      "basicSeo": "Asosiy SEO",
+      "payment": "To'lov integratsiyasi (Payme/Click)",
+      "training": "Mijozni o'qitish",
+      "landing": "Lending",
+      "forms": "So'rov/fikr-mulohaza shakllari",
+      "cms": "CMS",
+      "basicAnalytics": "Asosiy analitika",
+      "onlineStore": "Onlayn do'kon (katalog/savatcha/shaxsiy kabinet)",
+      "telegramBot": "Telegram bot (bildirishnomalar/buyurtmalar/asosiy yordam)",
+      "simpleCrm": "Oddiy CRM",
+      "customApp": "Maxsus veb-ilova",
+      "advancedBot": "Kengaytirilgan Telegram bot (to'lovlar/yuborishlar/segmentatsiya)",
+      "crmIntegration": "CRM integratsiyasi",
+      "smm": "SMM (3 oy: 15 post/oy, targeting, kontent-reja)",
+      "adminAnalytics": "Admin analitika paneli (Google Analytics/Yandex.Metrica)",
+      "kpi": "KPI kafolatlari (masalan, 50 lid/oy, qayta ishlash/qaytarib berish bilan)"
+    }
   }
 }

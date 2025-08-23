@@ -9,6 +9,7 @@ import { useLanguage } from '@/contexts/language-context';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Link from 'next/link';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -36,6 +37,17 @@ export default function PricingSection() {
       y: 30,
       opacity: 0,
       stagger: 0.15,
+      duration: 0.8,
+      ease: "power3.out",
+    });
+
+     gsap.from(".more-info-button", {
+      scrollTrigger: {
+        trigger: ".more-info-button",
+        start: "top 90%",
+      },
+      y: 20,
+      opacity: 0,
       duration: 0.8,
       ease: "power3.out",
     });
@@ -130,6 +142,11 @@ export default function PricingSection() {
               </Card>
             </div>
           ))}
+        </div>
+        <div className="mt-12 text-center more-info-button">
+            <Button variant="link" asChild>
+                <Link href="/pricing-details">{t.moreInfo}</Link>
+            </Button>
         </div>
       </div>
     </section>

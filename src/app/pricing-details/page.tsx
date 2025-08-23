@@ -1,0 +1,111 @@
+
+"use client";
+
+import Header from '@/components/header';
+import Footer from '@/components/footer';
+import { Check, Minus } from 'lucide-react';
+import { useLanguage } from '@/contexts/language-context';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { cn } from '@/lib/utils';
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
+
+export default function PricingDetailsPage() {
+  const { translations } = useLanguage();
+  const { pricingDetailsPage: t, header: headerT } = translations;
+
+  const features = [
+    { feature: t.features.consultation, start: true, optimal: true, premium: true },
+    { feature: t.features.responsive, start: true, optimal: true, premium: true },
+    { feature: t.features.hosting, start: true, optimal: true, premium: true },
+    { feature: t.features.basicSeo, start: true, optimal: true, premium: true },
+    { feature: t.features.payment, start: true, optimal: true, premium: true },
+    { feature: t.features.training, start: true, optimal: true, premium: true },
+    { feature: t.features.landing, start: true, optimal: true, premium: true },
+    { feature: t.features.forms, start: true, optimal: true, premium: true },
+    { feature: t.features.cms, start: true, optimal: true, premium: true },
+    { feature: t.features.basicAnalytics, start: true, optimal: true, premium: true },
+    { feature: t.features.onlineStore, start: false, optimal: true, premium: true },
+    { feature: t.features.telegramBot, start: false, optimal: true, premium: true },
+    { feature: t.features.simpleCrm, start: false, optimal: true, premium: true },
+    { feature: t.features.customApp, start: false, optimal: false, premium: true },
+    { feature: t.features.advancedBot, start: false, optimal: false, premium: true },
+    { feature: t.features.crmIntegration, start: false, optimal: false, premium: true },
+    { feature: t.features.smm, start: false, optimal: false, premium: true },
+    { feature: t.features.adminAnalytics, start: false, optimal: false, premium: true },
+    { feature: t.features.kpi, start: false, optimal: false, premium: true },
+  ];
+
+  useGSAP(() => {
+    gsap.from(".fade-in-element", {
+      y: 30,
+      opacity: 0,
+      stagger: 0.1,
+      duration: 0.8,
+      ease: "power3.out",
+    });
+  }, []);
+
+  return (
+    <div className="flex min-h-screen flex-col bg-background relative overflow-hidden">
+      <div
+        className="absolute top-0 right-0 -translate-x-1/3 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-primary/5 blur-3xl -z-0"
+        aria-hidden="true"
+      />
+      <Header />
+      <main className="flex-1 py-16 sm:py-24">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12 fade-in-element">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold font-headline tracking-tight text-foreground">
+              {t.title}
+            </h1>
+            <p className="mt-4 text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
+              {t.subtitle}
+            </p>
+          </div>
+
+          <Card className="bg-card/80 backdrop-blur-sm border-secondary shadow-xl fade-in-element">
+            <CardContent className="p-0">
+              <div className="overflow-x-auto">
+                <table className="min-w-full divide-y divide-border">
+                  <thead className="bg-muted/30">
+                    <tr>
+                      <th scope="col" className="py-3.5 px-4 sm:px-6 text-left text-sm font-semibold text-foreground">{t.tableHeaders.features}</th>
+                      <th scope="col" className="py-3.5 px-4 sm:px-6 text-center text-sm font-semibold text-foreground">{t.tableHeaders.start}</th>
+                      <th scope="col" className="py-3.5 px-4 sm:px-6 text-center text-sm font-semibold text-foreground">{t.tableHeaders.optimal}</th>
+                      <th scope="col" className="py-3.5 px-4 sm:px-6 text-center text-sm font-semibold text-foreground">{t.tableHeaders.premium}</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-border bg-card">
+                    {features.map((item, index) => (
+                      <tr key={index} className="hover:bg-muted/20 transition-colors">
+                        <td className="py-4 px-4 sm:px-6 text-sm font-medium text-foreground">{item.feature}</td>
+                        <td className="py-4 px-4 sm:px-6 text-center">
+                          {item.start ? <Check className="h-5 w-5 text-green-500 mx-auto" /> : <Minus className="h-5 w-5 text-muted-foreground mx-auto" />}
+                        </td>
+                        <td className="py-4 px-4 sm:px-6 text-center">
+                          {item.optimal ? <Check className="h-5 w-5 text-green-500 mx-auto" /> : <Minus className="h-5 w-5 text-muted-foreground mx-auto" />}
+                        </td>
+                        <td className="py-4 px-4 sm:px-6 text-center">
+                          {item.premium ? <Check className="h-5 w-5 text-green-500 mx-auto" /> : <Minus className="h-5 w-5 text-muted-foreground mx-auto" />}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </CardContent>
+          </Card>
+           <div className="mt-12 text-center fade-in-element">
+             <Button asChild size="lg">
+                <Link href="/#contact">{headerT.getQuote}</Link>
+             </Button>
+           </div>
+        </div>
+      </main>
+      <Footer />
+    </div>
+  );
+}

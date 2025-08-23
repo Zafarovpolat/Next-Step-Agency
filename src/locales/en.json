@@ -20,6 +20,7 @@
     "subtitle": "Choose the plan that fits your ambition. No hidden fees, just transparent partnership.",
     "mostPopular": "Most Popular",
     "getStarted": "Get Started",
+    "moreInfo": "Compare all features",
     "plans": {
       "starter": {
         "name": "Starter",
@@ -125,5 +126,36 @@
     "copyright": "Next Step Agency. All Rights Reserved.",
     "privacyPolicy": "Privacy Policy",
     "termsOfService": "Terms of Service"
+  },
+  "pricingDetailsPage": {
+    "title": "Detailed Plan Comparison",
+    "subtitle": "Find the perfect fit for your needs. Here's a detailed breakdown of what each plan includes.",
+    "tableHeaders": {
+      "features": "Features",
+      "start": "Start",
+      "optimal": "Optimal",
+      "premium": "Premium"
+    },
+    "features": {
+      "consultation": "Free consultation/audit",
+      "responsive": "Responsive design",
+      "hosting": "Hosting/domain (1 year)",
+      "basicSeo": "Basic SEO",
+      "payment": "Payment integration (Payme/Click)",
+      "training": "Client training",
+      "landing": "Landing",
+      "forms": "Request/feedback forms",
+      "cms": "CMS",
+      "basicAnalytics": "Basic analytics",
+      "onlineStore": "Online store (catalog/cart/personal account)",
+      "telegramBot": "Telegram bot (notifications/orders/basic support)",
+      "simpleCrm": "Simple CRM",
+      "customApp": "Custom web application",
+      "advancedBot": "Advanced Telegram bot (payments/mailings/segmentation)",
+      "crmIntegration": "CRM integration",
+      "smm": "SMM (3 months: 15 posts/mo, targeting, content plan)",
+      "adminAnalytics": "Admin analytics panel (Google Analytics/Yandex.Metrica)",
+      "kpi": "KPI guarantees (e.g., 50 leads/mo, with rework/refund)"
+    }
   }
 }
