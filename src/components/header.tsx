@@ -30,14 +30,18 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
   const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, target: string) => {
-    e.preventDefault();
-    if (smoother) {
-        smoother.scrollTo(target, true);
+    // Only prevent default and scroll smoothly if on the main page.
+    if (isMainPage) {
+        e.preventDefault();
+        if (smoother) {
+            smoother.scrollTo(target, true);
+        }
     }
+    // If not on the main page, let the default Link behavior handle the navigation.
   }
 
   const handleMobileLinkClick = (target: string) => {
-    if (smoother) {
+    if (isMainPage && smoother) {
         smoother.scrollTo(target, true);
     }
     setIsMobileMenuOpen(false);
@@ -103,9 +107,7 @@ export default function Header() {
              <Link
               key={link.href}
               href={isMainPage ? link.href : `/${link.href}`}
-              onClick={(e) => {
-                if(isMainPage) handleScroll(e, link.href);
-              }}
+              onClick={(e) => handleScroll(e, link.href)}
               className="px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-primary relative group"
             >
               {link.label}
@@ -162,10 +164,7 @@ export default function Header() {
                            <Link
                               key={link.href}
                               href={isMainPage ? link.href : `/${link.href}`}
-                              onClick={() => {
-                                if (isMainPage) handleMobileLinkClick(link.href);
-                                else setIsMobileMenuOpen(false);
-                              }}
+                              onClick={() => handleMobileLinkClick(link.href)}
                               className="text-lg font-medium text-foreground text-left"
                             >
                               {link.label}
