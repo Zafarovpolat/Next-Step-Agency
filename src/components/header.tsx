@@ -3,6 +3,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Rocket, Moon, Sun, Languages, Menu } from 'lucide-react';
 import { Button } from './ui/button';
 import { useTheme } from 'next-themes';
@@ -15,12 +16,17 @@ import {
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { useLanguage } from '@/contexts/language-context';
 import { useScrollSmoother } from '@/contexts/gsap-provider';
+import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
+import LeadCaptureCard from './lead-capture-card';
 
 export default function Header() {
   const { setTheme, theme } = useTheme();
   const { setLanguage, translations } = useLanguage();
   const { header: t } = translations;
   const smoother = useScrollSmoother();
+  const pathname = usePathname();
+  const isMainPage = pathname === '/';
+
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrollToTarget, setScrollToTarget] = useState<string | null>(null);
 
@@ -32,9 +38,7 @@ export default function Header() {
   }
 
   const handleMobileLinkClick = (target: string) => {
-    // First, set the target we want to scroll to.
     setScrollToTarget(target);
-    // Then, close the menu. This will trigger the useEffect.
     setIsMobileMenuOpen(false);
   };
   
@@ -43,7 +47,7 @@ export default function Header() {
       setTimeout(() => {
         smoother.scrollTo(scrollToTarget, true);
         setScrollToTarget(null);
-      }, 350); // Slightly longer than the 300ms close duration to account for any lag
+      }, 350); 
     }
   }, [isMobileMenuOpen, scrollToTarget, smoother]);
 
@@ -52,6 +56,26 @@ export default function Header() {
     { href: '#case-studies', label: t.nav.caseStudies },
     { href: '#contact', label: t.nav.contact },
   ];
+
+  const QuoteButton = () => {
+    if (isMainPage) {
+        return (
+             <Button asChild>
+                <a href="#contact" onClick={(e) => handleScroll(e, "#contact")}>{t.getQuote}</a>
+            </Button>
+        )
+    }
+    return (
+         <Dialog>
+            <DialogTrigger asChild>
+                <Button>{t.getQuote}</Button>
+            </DialogTrigger>
+            <DialogContent className="p-0 border-none bg-transparent max-w-2xl">
+                <LeadCaptureCard showHeader={true}/>
+            </DialogContent>
+        </Dialog>
+    )
+  }
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -64,15 +88,17 @@ export default function Header() {
         {/* Desktop Navigation */}
         <nav className="hidden lg:flex items-center gap-2">
           {navLinks.map((link) => (
-            <a
+             <Link
               key={link.href}
-              href={link.href}
-              onClick={(e) => handleScroll(e, link.href)}
+              href={isMainPage ? link.href : `/${link.href}`}
+              onClick={(e) => {
+                if(isMainPage) handleScroll(e, link.href);
+              }}
               className="px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-primary relative group"
             >
               {link.label}
               <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300 ease-out"></span>
-            </a>
+            </Link>
           ))}
         </nav>
 
@@ -102,10 +128,7 @@ export default function Header() {
             <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
             <span className="sr-only">Toggle theme</span>
           </Button>
-
-          <Button asChild>
-              <a href="#contact" onClick={(e) => handleScroll(e, "#contact")}>{t.getQuote}</a>
-          </Button>
+          <QuoteButton />
         </div>
 
         {/* Mobile Navigation */}
@@ -124,19 +147,36 @@ export default function Header() {
                     </div>
                     <nav className="flex flex-col gap-4 p-4 flex-grow">
                         {navLinks.map((link) => (
-                            <button
+                           <Link
                               key={link.href}
-                              onClick={() => handleMobileLinkClick(link.href)}
+                              href={isMainPage ? link.href : `/${link.href}`}
+                              onClick={(e) => {
+                                if (isMainPage) handleMobileLinkClick(link.href);
+                                else setIsMobileMenuOpen(false);
+                              }}
                               className="text-lg font-medium text-foreground text-left"
                             >
                               {link.label}
-                            </button>
+                            </Link>
                         ))}
                     </nav>
                     <div className="p-4 border-t space-y-4">
-                        <Button className='w-full' onClick={() => handleMobileLinkClick("#contact")}>
+                        <Button className='w-full' onClick={() => {
+                            if(isMainPage) handleMobileLinkClick("#contact")
+                            else {
+                                setIsMobileMenuOpen(false);
+                                // A hack to make the dialog triggerable from here
+                                setTimeout(() => {
+                                    const desktopButton = document.querySelector('[data-desktop-quote-button]');
+                                    if(desktopButton instanceof HTMLElement) desktopButton.click();
+                                }, 300)
+                            }
+                        }}>
                            {t.getQuote}
                         </Button>
+                         <div className="hidden lg:flex items-center gap-2">
+                           <QuoteButton />
+                         </div>
                         <div className="flex justify-around">
                             <DropdownMenu>
                                 <DropdownMenuTrigger asChild>
