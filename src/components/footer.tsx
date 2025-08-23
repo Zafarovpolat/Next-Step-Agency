@@ -29,7 +29,7 @@ export default function Footer() {
 
   const socialLinks = [
     { icon: Send, href: '#', name: 'Telegram' },
-    { icon: Instagram, href: '#', name: 'Instagram' },
+    { icon: Instagram, href: 'https://www.instagram.com/nextstep__agency?igsh=Yjc5NTAzc3l5Y2c1&utm_source=qr', name: 'Instagram' },
   ];
 
   return (
