@@ -24,6 +24,7 @@
     "plans": {
       "starter": {
         "name": "Boshlang'ich",
+        "priceDetails": "bir martalik to'lov",
         "description": "O'z izini qoldirishga tayyor yangi biznes va startaplar uchun.",
         "features": {
           "landingPage": "Maxsus Lending Sahifa",
@@ -34,6 +35,7 @@
       },
       "business": {
         "name": "Biznes",
+        "priceDetails": "bir martalik to'lov<br>+ botni qo'llab-quvvatlash uchun $99/oy",
         "description": "Kengayish va optimallashtirishni maqsad qilgan o'sayotgan bizneslar uchun.",
         "features": {
           "multiPage": "Ko'p sahifali veb-sayt (10 sahifagacha)",
@@ -45,7 +47,7 @@
       },
       "premium": {
         "name": "Premium",
-        "price": "Biz bilan bog'laning",
+        "priceDetails": "bir martalik to'lov<br>+ botni qo'llab-quvvatlash uchun $239/oy<br>+ SMM uchun $399/oy",
         "description": "To'liq xizmat yechimini talab qiladigan yirik korxonalar uchun.",
         "features": {
           "customApp": "Maxsus Veb-Ilova",

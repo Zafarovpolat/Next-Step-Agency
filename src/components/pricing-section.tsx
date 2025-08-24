@@ -56,7 +56,8 @@ export default function PricingSection() {
   const plans = [
     {
       name: t.plans.starter.name,
-      price: '$999',
+      price: '$520',
+      priceDetails: t.plans.starter.priceDetails,
       description: t.plans.starter.description,
       features: [
         t.plans.starter.features.landingPage,
@@ -68,7 +69,8 @@ export default function PricingSection() {
     },
     {
       name: t.plans.business.name,
-      price: '$2,499',
+      price: '$1040',
+      priceDetails: t.plans.business.priceDetails,
       description: t.plans.business.description,
       features: [
         t.plans.business.features.multiPage,
@@ -81,7 +83,8 @@ export default function PricingSection() {
     },
     {
       name: t.plans.premium.name,
-      price: t.plans.premium.price,
+      price: '$1900',
+      priceDetails: t.plans.premium.priceDetails,
       description: t.plans.premium.description,
       features: [
         t.plans.premium.features.customApp,
@@ -124,7 +127,12 @@ export default function PricingSection() {
                   <CardDescription>{plan.description}</CardDescription>
                 </CardHeader>
                 <CardContent className="flex-grow">
-                  <div className="text-3xl sm:text-4xl font-extrabold mb-6 text-foreground">{plan.price}</div>
+                  <div className="mb-6">
+                    <span className="text-3xl sm:text-4xl font-extrabold text-foreground">{plan.price}</span>
+                    {plan.priceDetails && (
+                      <p className="text-sm text-muted-foreground mt-1" dangerouslySetInnerHTML={{ __html: plan.priceDetails }}/>
+                    )}
+                  </div>
                   <ul className="space-y-3 text-muted-foreground">
                     {plan.features.map((feature) => (
                       <li key={feature} className="flex items-center gap-3">
