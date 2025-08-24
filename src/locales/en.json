@@ -24,7 +24,7 @@
     "plans": {
       "starter": {
         "name": "Starter",
-        "priceDetails": "one-time charge",
+        "priceDetails": "",
         "description": "For new businesses and startups ready to make their mark.",
         "features": {
           "landingPage": "Custom Landing Page",
@@ -35,7 +35,7 @@
       },
       "business": {
         "name": "Business",
-        "priceDetails": "one-time charge<br>+ $99/mo for bot support",
+        "priceDetails": "+ $99/mo for bot support",
         "description": "For growing businesses aiming to scale and optimize.",
         "features": {
           "multiPage": "Multi-page Website (up to 10 pages)",
@@ -47,7 +47,7 @@
       },
       "premium": {
         "name": "Premium",
-        "priceDetails": "one-time charge<br>+ $239/mo for bot support<br>+ $399/mo for SMM",
+        "priceDetails": "+ $239/mo for bot support<br>+ $399/mo for SMM",
         "description": "For established enterprises requiring a full-service solution.",
         "features": {
           "customApp": "Custom Web Application",
