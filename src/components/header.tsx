@@ -33,22 +33,27 @@ export default function Header() {
   
   const handleScroll = (e: React.MouseEvent, target: string) => {
     e.preventDefault();
-    
-    if (isMainPage) {
-      if (smoother) {
-        smoother.scrollTo(target, true);
-      } else {
-        const element = document.querySelector(target);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
-      }
-    } else {
-      router.push(`/${target}`);
-    }
 
+    const scrollAction = () => {
+      if (isMainPage) {
+        if (smoother) {
+          smoother.scrollTo(target, true);
+        } else {
+          const element = document.querySelector(target);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+      } else {
+        router.push(`/${target}`);
+      }
+    };
+    
     if (isMobileMenuOpen) {
         setIsMobileMenuOpen(false);
+        setTimeout(scrollAction, 300); // Delay to allow menu to close
+    } else {
+        scrollAction();
     }
   };
 
