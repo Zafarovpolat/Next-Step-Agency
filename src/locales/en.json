@@ -50,7 +50,7 @@
       "premium": {
         "name": "Premium",
         "price": "$1900",
-        "priceDetails": "+ $239/mo for bot support<br>+ $399/mo for SMM",
+        "priceDetails": "+ $239/mo for bot support<br>+ $399/mo for SMM (from 4th month)",
         "description": "For established enterprises requiring a full-service solution.",
         "features": {
           "customApp": "Custom Web Application",
