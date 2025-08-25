@@ -66,42 +66,18 @@ export default function Header() {
   const linkClassName = "px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-primary relative group no-underline";
 
   const QuoteButton = () => {
-    if (isMainPage) {
-        return (
-            <Button onClick={(e) => handleScroll(e, "#contact")}>
-                {t.getQuote}
-            </Button>
-        )
-    }
     return (
-        <Dialog>
-            <DialogTrigger asChild>
-                <Button>{t.getQuote}</Button>
-            </DialogTrigger>
-            <DialogContent className="p-0 border-none bg-transparent max-w-2xl">
-                <LeadCaptureCard showHeader={true}/>
-            </DialogContent>
-        </Dialog>
+      <Button asChild>
+        <Link href="/#contact" onClick={(e) => handleScroll(e, '#contact')}>{t.getQuote}</Link>
+      </Button>
     )
   }
 
   const MobileQuoteButton = () => {
-     if (isMainPage) {
-        return (
-            <Button className='w-full' onClick={(e) => handleScroll(e, "#contact")}>
-                {t.getQuote}
-            </Button>
-        )
-    }
     return (
-        <Dialog onOpenChange={(open) => !open && setIsMobileMenuOpen(false)}>
-            <DialogTrigger asChild>
-                <Button className='w-full'>{t.getQuote}</Button>
-            </DialogTrigger>
-            <DialogContent className="p-0 border-none bg-transparent max-w-2xl">
-                <LeadCaptureCard showHeader={true}/>
-            </DialogContent>
-        </Dialog>
+        <Button className='w-full' asChild>
+            <Link href="/#contact" onClick={(e) => handleScroll(e, '#contact')}>{t.getQuote}</Link>
+        </Button>
     )
   }
 
@@ -167,45 +143,47 @@ export default function Header() {
                          <Rocket className="h-6 w-6 text-primary" />
                          <span className="font-bold text-lg">{t.agencyName}</span>
                     </div>
-                    <nav className="flex flex-col gap-4 p-4 flex-grow">
-                        {navLinks.map((link) => (
-                           <Button
-                              key={link.target}
-                              variant="ghost"
-                              className="text-lg font-medium text-foreground text-left justify-start"
-                              onClick={(e) => handleScroll(e, link.target)}
-                            >
-                               {link.label}
-                            </Button>
-                        ))}
-                    </nav>
-                    <div className="p-4 border-t space-y-4">
-                        <MobileQuoteButton />
-                        <div className="flex justify-around">
-                            <DropdownMenu>
-                                <DropdownMenuTrigger asChild>
-                                <Button variant="outline" size="icon">
-                                    <Languages className="h-[1.2rem] w-[1.2rem]" />
-                                    <span className="sr-only">Change language</span>
+                    <div className='flex flex-col gap-4 p-4'>
+                        <nav className="flex flex-col gap-2">
+                            {navLinks.map((link) => (
+                               <a
+                                  key={link.target}
+                                  href={link.target}
+                                  className="text-lg font-medium text-foreground text-left justify-start p-2 rounded-md hover:bg-accent"
+                                  onClick={(e) => handleScroll(e, link.target)}
+                                >
+                                   {link.label}
+                                </a>
+                            ))}
+                        </nav>
+                        <div className="mt-6 pt-6 border-t space-y-4">
+                            <MobileQuoteButton />
+                            <div className="flex justify-around">
+                                <DropdownMenu>
+                                    <DropdownMenuTrigger asChild>
+                                    <Button variant="outline" size="icon">
+                                        <Languages className="h-[1.2rem] w-[1.2rem]" />
+                                        <span className="sr-only">Change language</span>
+                                    </Button>
+                                    </DropdownMenuTrigger>
+                                    <DropdownMenuContent align="end">
+                                    <DropdownMenuItem onClick={() => { setLanguage('en'); setIsMobileMenuOpen(false); }}>
+                                        English
+                                    </DropdownMenuItem>
+                                    <DropdownMenuItem onClick={() => { setLanguage('ru'); setIsMobileMenuOpen(false); }}>
+                                        Русский
+                                    </DropdownMenuItem>
+                                    <DropdownMenuItem onClick={() => { setLanguage('uz'); setIsMobileMenuOpen(false); }}>
+                                        O'zbek
+                                    </DropdownMenuItem>
+                                    </DropdownMenuContent>
+                                </DropdownMenu>
+                                <Button variant="outline" size="icon" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
+                                    <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                                    <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                                    <span className="sr-only">Toggle theme</span>
                                 </Button>
-                                </DropdownMenuTrigger>
-                                <DropdownMenuContent align="end">
-                                <DropdownMenuItem onClick={() => { setLanguage('en'); setIsMobileMenuOpen(false); }}>
-                                    English
-                                </DropdownMenuItem>
-                                <DropdownMenuItem onClick={() => { setLanguage('ru'); setIsMobileMenuOpen(false); }}>
-                                    Русский
-                                </DropdownMenuItem>
-                                <DropdownMenuItem onClick={() => { setLanguage('uz'); setIsMobileMenuOpen(false); }}>
-                                    O'zbek
-                                </DropdownMenuItem>
-                                </DropdownMenuContent>
-                            </DropdownMenu>
-                            <Button variant="outline" size="icon" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
-                                <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                                <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-                                <span className="sr-only">Toggle theme</span>
-                            </Button>
+                            </div>
                         </div>
                     </div>
                 </SheetContent>
