@@ -18,6 +18,7 @@ import { useLanguage } from '@/contexts/language-context';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import LeadCaptureCard from './lead-capture-card';
 import { useScrollSmoother } from '@/contexts/gsap-provider';
+import { cn } from '@/lib/utils';
 
 export default function Header() {
   const { setTheme, theme } = useTheme();
@@ -25,21 +26,29 @@ export default function Header() {
   const { header: t } = translations;
   const smoother = useScrollSmoother();
   const pathname = usePathname();
+  const router = useRouter();
   const isMainPage = pathname === '/';
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
   const handleScroll = (e: React.MouseEvent, target: string) => {
-    // Prevent default anchor link behavior
     e.preventDefault();
-    if (smoother) {
+    
+    if (isMainPage) {
+      if (smoother) {
         smoother.scrollTo(target, true);
-    } else {
-        // Fallback for when smoother is not available
+      } else {
         const element = document.querySelector(target);
         if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
+          element.scrollIntoView({ behavior: 'smooth' });
         }
+      }
+    } else {
+      router.push(`/${target}`);
+    }
+
+    if (isMobileMenuOpen) {
+        setIsMobileMenuOpen(false);
     }
   };
 
@@ -48,6 +57,8 @@ export default function Header() {
     { target: '#case-studies', label: t.nav.caseStudies },
     { target: '#contact', label: t.nav.contact },
   ];
+
+  const linkClassName = "px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-primary relative group no-underline";
 
   const QuoteButton = () => {
     if (isMainPage) {
@@ -72,10 +83,7 @@ export default function Header() {
   const MobileQuoteButton = () => {
      if (isMainPage) {
         return (
-            <Button className='w-full' onClick={(e) => {
-                handleScroll(e, "#contact");
-                setIsMobileMenuOpen(false);
-            }}>
+            <Button className='w-full' onClick={(e) => handleScroll(e, "#contact")}>
                 {t.getQuote}
             </Button>
         )
@@ -104,24 +112,10 @@ export default function Header() {
         {/* Desktop Navigation */}
         <nav className="hidden lg:flex items-center gap-2">
           {navLinks.map((link) => (
-             <Button
-                key={link.target}
-                variant="link"
-                className="px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-primary relative group no-underline"
-                asChild
-              >
-              {isMainPage ? (
-                 <a href={link.target} onClick={(e) => handleScroll(e, link.target)}>
-                    {link.label}
-                    <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300 ease-out"></span>
-                 </a>
-              ) : (
-                <Link href={`/${link.target}`}>
-                    {link.label}
-                    <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300 ease-out"></span>
-                </Link>
-              )}
-             </Button>
+             <a key={link.target} href={link.target} onClick={(e) => handleScroll(e, link.target)} className={cn(linkClassName, 'inline-block')}>
+                {link.label}
+                <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300 ease-out"></span>
+             </a>
           ))}
         </nav>
 
@@ -174,20 +168,9 @@ export default function Header() {
                               key={link.target}
                               variant="ghost"
                               className="text-lg font-medium text-foreground text-left justify-start"
-                              asChild
+                              onClick={(e) => handleScroll(e, link.target)}
                             >
-                            {isMainPage ? (
-                                <a href={link.target} onClick={(e) => {
-                                    handleScroll(e, link.target);
-                                    setIsMobileMenuOpen(false);
-                                }}>
-                                    {link.label}
-                                </a>
-                            ) : (
-                                <Link href={`/${link.target}`} onClick={() => setIsMobileMenuOpen(false)}>
-                                    {link.label}
-                                </Link>
-                            )}
+                               {link.label}
                             </Button>
                         ))}
                     </nav>
