@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { Moon, Sun, Languages, Menu } from 'lucide-react';
@@ -20,20 +20,25 @@ import { cn } from '@/lib/utils';
 import Image from 'next/image';
 
 export default function Header() {
-  const { setTheme, theme } = useTheme();
+  const { setTheme, theme, resolvedTheme } = useTheme();
   const { setLanguage, translations } = useLanguage();
   const { header: t } = translations;
   const smoother = useScrollSmoother();
   const pathname = usePathname();
   const router = useRouter();
-  const isMainPage = pathname === '/';
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  
-  const handleScroll = (e: React.MouseEvent, target: string) => {
-    e.preventDefault();
+  const [logoSrc, setLogoSrc] = useState('/logo.png');
 
+  useEffect(() => {
+    setLogoSrc(resolvedTheme === 'dark' ? '/logo2.png' : '/logo.png');
+  }, [resolvedTheme]);
+  
+  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, target: string) => {
+    e.preventDefault();
+    
     const scrollAction = () => {
+      const isMainPage = pathname === '/';
       if (isMainPage) {
         if (smoother) {
           smoother.scrollTo(target, true);
@@ -67,7 +72,7 @@ export default function Header() {
   const QuoteButton = () => {
     return (
       <Button asChild>
-        <a href="/#contact" onClick={(e) => handleScroll(e, '#contact')}>{t.getQuote}</a>
+        <a href="#contact" onClick={(e) => handleScroll(e, "#contact")}>{t.getQuote}</a>
       </Button>
     )
   }
@@ -75,7 +80,7 @@ export default function Header() {
   const MobileQuoteButton = () => {
     return (
         <Button className='w-full' asChild>
-            <a href="/#contact" onClick={(e) => handleScroll(e, '#contact')}>{t.getQuote}</a>
+            <a href="#contact" onClick={(e) => handleScroll(e, "#contact")}>{t.getQuote}</a>
         </Button>
     )
   }
@@ -85,7 +90,7 @@ export default function Header() {
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 max-w-screen-2xl items-center justify-between mx-auto px-4">
         <Link href="/" className="flex items-center gap-2">
-          <Image src="/logo.png" alt="Next Step Agency Logo" width={120} height={30} />
+          <Image src={logoSrc} alt="Next Step Agency Logo" width={120} height={30} key={logoSrc} />
         </Link>
         
         {/* Desktop Navigation */}
@@ -139,7 +144,7 @@ export default function Header() {
                 <SheetContent side="right" className="w-[300px] sm:w-[340px] flex flex-col p-0">
                     <div className="flex items-center gap-2 p-4 border-b">
                          <Link href="/" className="flex items-center gap-2">
-                            <Image src="/logo.png" alt="Next Step Agency Logo" width={120} height={30} />
+                            <Image src={logoSrc} alt="Next Step Agency Logo" width={120} height={30} key={logoSrc + 'mobile'} />
                          </Link>
                     </div>
                     <div className='flex flex-col gap-4 p-4'>
