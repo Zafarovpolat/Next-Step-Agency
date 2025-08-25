@@ -4,7 +4,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { Rocket, Moon, Sun, Languages, Menu } from 'lucide-react';
+import { Moon, Sun, Languages, Menu } from 'lucide-react';
 import { Button } from './ui/button';
 import { useTheme } from 'next-themes';
 import {
@@ -15,10 +15,9 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { useLanguage } from '@/contexts/language-context';
-import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
-import LeadCaptureCard from './lead-capture-card';
 import { useScrollSmoother } from '@/contexts/gsap-provider';
 import { cn } from '@/lib/utils';
+import Image from 'next/image';
 
 export default function Header() {
   const { setTheme, theme } = useTheme();
@@ -68,7 +67,7 @@ export default function Header() {
   const QuoteButton = () => {
     return (
       <Button asChild>
-        <Link href="/#contact" onClick={(e) => handleScroll(e, '#contact')}>{t.getQuote}</Link>
+        <a href="/#contact" onClick={(e) => handleScroll(e, '#contact')}>{t.getQuote}</a>
       </Button>
     )
   }
@@ -76,7 +75,7 @@ export default function Header() {
   const MobileQuoteButton = () => {
     return (
         <Button className='w-full' asChild>
-            <Link href="/#contact" onClick={(e) => handleScroll(e, '#contact')}>{t.getQuote}</Link>
+            <a href="/#contact" onClick={(e) => handleScroll(e, '#contact')}>{t.getQuote}</a>
         </Button>
     )
   }
@@ -86,8 +85,7 @@ export default function Header() {
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 max-w-screen-2xl items-center justify-between mx-auto px-4">
         <Link href="/" className="flex items-center gap-2">
-          <Rocket className="h-6 w-6 text-primary" />
-          <span className="font-bold text-lg">{t.agencyName}</span>
+          <Image src="/logo.png" alt="Next Step Agency Logo" width={120} height={30} />
         </Link>
         
         {/* Desktop Navigation */}
@@ -140,8 +138,9 @@ export default function Header() {
                 </SheetTrigger>
                 <SheetContent side="right" className="w-[300px] sm:w-[340px] flex flex-col p-0">
                     <div className="flex items-center gap-2 p-4 border-b">
-                         <Rocket className="h-6 w-6 text-primary" />
-                         <span className="font-bold text-lg">{t.agencyName}</span>
+                         <Link href="/" className="flex items-center gap-2">
+                            <Image src="/logo.png" alt="Next Step Agency Logo" width={120} height={30} />
+                         </Link>
                     </div>
                     <div className='flex flex-col gap-4 p-4'>
                         <nav className="flex flex-col gap-2">
@@ -156,9 +155,9 @@ export default function Header() {
                                 </a>
                             ))}
                         </nav>
-                        <div className="mt-6 pt-6 border-t space-y-4">
+                        <div className="mt-6 space-y-4">
                             <MobileQuoteButton />
-                            <div className="flex justify-around">
+                            <div className="flex justify-around pt-6 border-t">
                                 <DropdownMenu>
                                     <DropdownMenuTrigger asChild>
                                     <Button variant="outline" size="icon">

@@ -1,12 +1,13 @@
 
 "use client";
 
-import { Rocket, Send, Instagram } from 'lucide-react';
+import { Send, Instagram } from 'lucide-react';
 import Link from 'next/link';
 import { useLanguage } from '@/contexts/language-context';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Image from 'next/image';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -37,8 +38,7 @@ export default function Footer() {
       <div className="container mx-auto px-4 footer-content">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6 md:gap-8">
           <div className="flex items-center gap-2">
-            <Rocket className="h-8 w-8 text-primary" />
-            <span className="text-xl sm:text-2xl font-bold text-card-foreground">{t.agencyName}</span>
+            <Image src="/logo.png" alt="Next Step Agency Logo" width={150} height={38} />
           </div>
           <div className="text-center text-muted-foreground">
             <p>{t.phone}</p>
