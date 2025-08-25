@@ -22,25 +22,25 @@ export default function PricingDetailsPage() {
   const smoother = useScrollSmoother();
 
   const features = [
-    { feature: t.features.consultation, start: true, optimal: true, premium: true },
-    { feature: t.features.responsive, start: true, optimal: true, premium: true },
-    { feature: t.features.hosting, start: true, optimal: true, premium: true },
-    { feature: t.features.basicSeo, start: true, optimal: true, premium: true },
-    { feature: t.features.payment, start: true, optimal: true, premium: true },
-    { feature: t.features.training, start: true, optimal: true, premium: true },
-    { feature: t.features.landing, start: true, optimal: true, premium: true },
-    { feature: t.features.forms, start: true, optimal: true, premium: true },
-    { feature: t.features.cms, start: true, optimal: true, premium: true },
-    { feature: t.features.basicAnalytics, start: true, optimal: true, premium: true },
-    { feature: t.features.onlineStore, start: false, optimal: true, premium: true },
-    { feature: t.features.telegramBot, start: false, optimal: true, premium: true },
-    { feature: t.features.simpleCrm, start: false, optimal: true, premium: true },
-    { feature: t.features.customApp, start: false, optimal: false, premium: true },
-    { feature: t.features.advancedBot, start: false, optimal: false, premium: true },
-    { feature: t.features.crmIntegration, start: false, optimal: false, premium: true },
-    { feature: t.features.smm, start: false, optimal: false, premium: true },
-    { feature: t.features.adminAnalytics, start: false, optimal: false, premium: true },
-    { feature: t.features.kpi, start: false, optimal: false, premium: true },
+    { feature: t.features.consultation, start: true, business: true, premium: true },
+    { feature: t.features.responsive, start: true, business: true, premium: true },
+    { feature: t.features.hosting, start: true, business: true, premium: true },
+    { feature: t.features.basicSeo, start: true, business: true, premium: true },
+    { feature: t.features.payment, start: true, business: true, premium: true },
+    { feature: t.features.training, start: true, business: true, premium: true },
+    { feature: t.features.landing, start: true, business: true, premium: true },
+    { feature: t.features.forms, start: true, business: true, premium: true },
+    { feature: t.features.cms, start: true, business: true, premium: true },
+    { feature: t.features.basicAnalytics, start: true, business: true, premium: true },
+    { feature: t.features.onlineStore, start: false, business: true, premium: true },
+    { feature: t.features.telegramBot, start: false, business: true, premium: true },
+    { feature: t.features.simpleCrm, start: false, business: true, premium: true },
+    { feature: t.features.customApp, start: false, business: false, premium: true },
+    { feature: t.features.advancedBot, start: false, business: false, premium: true },
+    { feature: t.features.crmIntegration, start: false, business: false, premium: true },
+    { feature: t.features.smm, start: false, business: false, premium: true },
+    { feature: t.features.adminAnalytics, start: false, business: false, premium: true },
+    { feature: t.features.kpi, start: false, business: false, premium: true },
   ];
 
   useEffect(() => {
@@ -92,10 +92,10 @@ export default function PricingDetailsPage() {
                 <table className="min-w-full divide-y divide-border">
                   <thead className="bg-muted/30">
                     <tr>
-                      <th scope="col" className="py-3.5 px-4 sm:px-6 text-left text-sm font-semibold text-foreground">{t.tableHeaders.features}</th>
-                      <th scope="col" className="py-3.5 px-4 sm:px-6 text-center text-sm font-semibold text-foreground">{t.tableHeaders.start}</th>
-                      <th scope="col" className="py-3.5 px-4 sm:px-6 text-center text-sm font-semibold text-foreground">{t.tableHeaders.optimal}</th>
-                      <th scope="col" className="py-3.5 px-4 sm:px-6 text-center text-sm font-semibold text-foreground">{t.tableHeaders.premium}</th>
+                      <th scope="col" className="py-3.5 px-4 sm:px-6 text-left text-sm font-semibold text-foreground w-2/5">{t.tableHeaders.features}</th>
+                      <th scope="col" className="py-3.5 px-4 sm:px-6 text-center text-sm font-semibold text-foreground w-1/5">{t.tableHeaders.start}</th>
+                      <th scope="col" className="py-3.5 px-4 sm:px-6 text-center text-sm font-semibold text-foreground w-1/5">{t.tableHeaders.business}</th>
+                      <th scope="col" className="py-3.5 px-4 sm:px-6 text-center text-sm font-semibold text-foreground w-1/5">{t.tableHeaders.premium}</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-border bg-card">
@@ -106,7 +106,7 @@ export default function PricingDetailsPage() {
                           {item.start ? <Check className="h-5 w-5 text-green-500 mx-auto" /> : <Minus className="h-5 w-5 text-muted-foreground mx-auto" />}
                         </td>
                         <td className="py-4 px-4 sm:px-6 text-center">
-                          {item.optimal ? <Check className="h-5 w-5 text-green-500 mx-auto" /> : <Minus className="h-5 w-5 text-muted-foreground mx-auto" />}
+                          {item.business ? <Check className="h-5 w-5 text-green-500 mx-auto" /> : <Minus className="h-5 w-5 text-muted-foreground mx-auto" />}
                         </td>
                         <td className="py-4 px-4 sm:px-6 text-center">
                           {item.premium ? <Check className="h-5 w-5 text-green-500 mx-auto" /> : <Minus className="h-5 w-5 text-muted-foreground mx-auto" />}
