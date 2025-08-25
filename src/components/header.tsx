@@ -25,64 +25,73 @@ export default function Header() {
   const { header: t } = translations;
   const smoother = useScrollSmoother();
   const pathname = usePathname();
-  const router = useRouter();
   const isMainPage = pathname === '/';
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
-  const handleScroll = (target: string) => {
-    if (isMainPage) {
-      smoother?.scrollTo(target, true);
+  const handleScroll = (e: React.MouseEvent, target: string) => {
+    // Prevent default anchor link behavior
+    e.preventDefault();
+    if (smoother) {
+        smoother.scrollTo(target, true);
     } else {
-      router.push(target); // Next.js will navigate to home and scroll
+        // Fallback for when smoother is not available
+        const element = document.querySelector(target);
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+        }
     }
   };
 
-  const handleMobileScroll = (target: string) => {
-    setIsMobileMenuOpen(false);
-    // Use a short delay to allow the menu to start closing before scroll/navigation
-    setTimeout(() => {
-      handleScroll(target);
-    }, 150);
-  }
-
   const navLinks = [
-    { href: '/#pricing', label: t.nav.pricing },
-    { href: '/#case-studies', label: t.nav.caseStudies },
-    { href: '/#contact', label: t.nav.contact },
+    { target: '#pricing', label: t.nav.pricing },
+    { target: '#case-studies', label: t.nav.caseStudies },
+    { target: '#contact', label: t.nav.contact },
   ];
 
   const QuoteButton = () => {
+    if (isMainPage) {
+        return (
+            <Button onClick={(e) => handleScroll(e, "#contact")}>
+                {t.getQuote}
+            </Button>
+        )
+    }
     return (
-      <Button onClick={() => handleScroll('/#contact')}>
-        {t.getQuote}
-      </Button>
-    );
-  }
-
-  const MobileQuoteButton = () => {
-    return (
-        <Dialog onOpenChange={(open) => !open && setIsMobileMenuOpen(false)}>
+        <Dialog>
             <DialogTrigger asChild>
-                <Button className='w-full' onClick={() => {
-                  if (isMainPage) {
-                    setIsMobileMenuOpen(false);
-                    smoother?.scrollTo("#contact", true);
-                  }
-                  // For non-main page, DialogTrigger handles opening the modal.
-                  // No need to explicitly close menu, onOpenChange does it.
-                }}>
-                    {t.getQuote}
-                </Button>
+                <Button>{t.getQuote}</Button>
             </DialogTrigger>
-            {!isMainPage && (
-              <DialogContent className="p-0 border-none bg-transparent max-w-2xl">
-                  <LeadCaptureCard showHeader={true}/>
-              </DialogContent>
-            )}
+            <DialogContent className="p-0 border-none bg-transparent max-w-2xl">
+                <LeadCaptureCard showHeader={true}/>
+            </DialogContent>
         </Dialog>
     )
   }
+
+  const MobileQuoteButton = () => {
+     if (isMainPage) {
+        return (
+            <Button className='w-full' onClick={(e) => {
+                handleScroll(e, "#contact");
+                setIsMobileMenuOpen(false);
+            }}>
+                {t.getQuote}
+            </Button>
+        )
+    }
+    return (
+        <Dialog onOpenChange={(open) => !open && setIsMobileMenuOpen(false)}>
+            <DialogTrigger asChild>
+                <Button className='w-full'>{t.getQuote}</Button>
+            </DialogTrigger>
+            <DialogContent className="p-0 border-none bg-transparent max-w-2xl">
+                <LeadCaptureCard showHeader={true}/>
+            </DialogContent>
+        </Dialog>
+    )
+  }
+
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -95,14 +104,24 @@ export default function Header() {
         {/* Desktop Navigation */}
         <nav className="hidden lg:flex items-center gap-2">
           {navLinks.map((link) => (
-             <button
-              key={link.href}
-              onClick={() => handleScroll(link.href)}
-              className="px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-primary relative group"
-            >
-              {link.label}
-              <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300 ease-out"></span>
-            </button>
+             <Button
+                key={link.target}
+                variant="link"
+                className="px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-primary relative group no-underline"
+                asChild
+              >
+              {isMainPage ? (
+                 <a href={link.target} onClick={(e) => handleScroll(e, link.target)}>
+                    {link.label}
+                    <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300 ease-out"></span>
+                 </a>
+              ) : (
+                <Link href={`/${link.target}`}>
+                    {link.label}
+                    <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300 ease-out"></span>
+                </Link>
+              )}
+             </Button>
           ))}
         </nav>
 
@@ -151,13 +170,25 @@ export default function Header() {
                     </div>
                     <nav className="flex flex-col gap-4 p-4 flex-grow">
                         {navLinks.map((link) => (
-                           <button
-                              key={link.href}
-                              onClick={() => handleMobileScroll(link.href)}
-                              className="text-lg font-medium text-foreground text-left"
+                           <Button
+                              key={link.target}
+                              variant="ghost"
+                              className="text-lg font-medium text-foreground text-left justify-start"
+                              asChild
                             >
-                              {link.label}
-                            </button>
+                            {isMainPage ? (
+                                <a href={link.target} onClick={(e) => {
+                                    handleScroll(e, link.target);
+                                    setIsMobileMenuOpen(false);
+                                }}>
+                                    {link.label}
+                                </a>
+                            ) : (
+                                <Link href={`/${link.target}`} onClick={() => setIsMobileMenuOpen(false)}>
+                                    {link.label}
+                                </Link>
+                            )}
+                            </Button>
                         ))}
                     </nav>
                     <div className="p-4 border-t space-y-4">
