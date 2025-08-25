@@ -3,7 +3,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { Rocket, Moon, Sun, Languages, Menu } from 'lucide-react';
 import { Button } from './ui/button';
 import { useTheme } from 'next-themes';
@@ -25,19 +25,25 @@ export default function Header() {
   const { header: t } = translations;
   const smoother = useScrollSmoother();
   const pathname = usePathname();
+  const router = useRouter();
   const isMainPage = pathname === '/';
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
-  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, target: string) => {
-    // This is only for the main page Quote button.
-    // Nav links will use standard hrefs.
+  const handleScroll = (target: string) => {
     if (isMainPage) {
-        e.preventDefault();
-        if (smoother) {
-            smoother.scrollTo(target, true);
-        }
+      smoother?.scrollTo(target, true);
+    } else {
+      router.push(target); // Next.js will navigate to home and scroll
     }
+  };
+
+  const handleMobileScroll = (target: string) => {
+    setIsMobileMenuOpen(false);
+    // Use a short delay to allow the menu to start closing before scroll/navigation
+    setTimeout(() => {
+      handleScroll(target);
+    }, 150);
   }
 
   const navLinks = [
@@ -47,44 +53,33 @@ export default function Header() {
   ];
 
   const QuoteButton = () => {
-    if (isMainPage) {
-        return (
-             <Button asChild>
-                <a href="#contact" onClick={(e) => handleScroll(e, "#contact")}>{t.getQuote}</a>
-            </Button>
-        )
-    }
     return (
-         <Dialog>
-            <DialogTrigger asChild>
-                <Button>{t.getQuote}</Button>
-            </DialogTrigger>
-            <DialogContent className="p-0 border-none bg-transparent max-w-2xl">
-                <LeadCaptureCard showHeader={true}/>
-            </DialogContent>
-        </Dialog>
-    )
+      <Button onClick={() => handleScroll('/#contact')}>
+        {t.getQuote}
+      </Button>
+    );
   }
 
   const MobileQuoteButton = () => {
-    if(isMainPage) {
-        return (
-            <Button className='w-full' onClick={() => {
-                smoother?.scrollTo("#contact", true);
-                setIsMobileMenuOpen(false);
-            }}>
-                {t.getQuote}
-            </Button>
-        )
-    }
     return (
         <Dialog onOpenChange={(open) => !open && setIsMobileMenuOpen(false)}>
             <DialogTrigger asChild>
-                <Button className='w-full'>{t.getQuote}</Button>
+                <Button className='w-full' onClick={() => {
+                  if (isMainPage) {
+                    setIsMobileMenuOpen(false);
+                    smoother?.scrollTo("#contact", true);
+                  }
+                  // For non-main page, DialogTrigger handles opening the modal.
+                  // No need to explicitly close menu, onOpenChange does it.
+                }}>
+                    {t.getQuote}
+                </Button>
             </DialogTrigger>
-            <DialogContent className="p-0 border-none bg-transparent max-w-2xl">
-                <LeadCaptureCard showHeader={true}/>
-            </DialogContent>
+            {!isMainPage && (
+              <DialogContent className="p-0 border-none bg-transparent max-w-2xl">
+                  <LeadCaptureCard showHeader={true}/>
+              </DialogContent>
+            )}
         </Dialog>
     )
   }
@@ -100,14 +95,14 @@ export default function Header() {
         {/* Desktop Navigation */}
         <nav className="hidden lg:flex items-center gap-2">
           {navLinks.map((link) => (
-             <Link
+             <button
               key={link.href}
-              href={link.href}
+              onClick={() => handleScroll(link.href)}
               className="px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-primary relative group"
             >
               {link.label}
               <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300 ease-out"></span>
-            </Link>
+            </button>
           ))}
         </nav>
 
@@ -156,14 +151,13 @@ export default function Header() {
                     </div>
                     <nav className="flex flex-col gap-4 p-4 flex-grow">
                         {navLinks.map((link) => (
-                           <Link
+                           <button
                               key={link.href}
-                              href={link.href}
-                              onClick={() => setIsMobileMenuOpen(false)}
+                              onClick={() => handleMobileScroll(link.href)}
                               className="text-lg font-medium text-foreground text-left"
                             >
                               {link.label}
-                            </Link>
+                            </button>
                         ))}
                     </nav>
                     <div className="p-4 border-t space-y-4">
