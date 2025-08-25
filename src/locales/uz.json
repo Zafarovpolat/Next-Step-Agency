@@ -24,6 +24,7 @@
     "plans": {
       "starter": {
         "name": "Boshlang'ich",
+        "price": "$520",
         "priceDetails": "",
         "description": "O'z izini qoldirishga tayyor yangi biznes va startaplar uchun.",
         "features": {
@@ -35,6 +36,7 @@
       },
       "business": {
         "name": "Biznes",
+        "price": "$1040",
         "priceDetails": "+ botni qo'llab-quvvatlash uchun $99/oy",
         "description": "Kengayish va optimallashtirishni maqsad qilgan o'sayotgan bizneslar uchun.",
         "features": {
@@ -47,6 +49,7 @@
       },
       "premium": {
         "name": "Premium",
+        "price": "$1900",
         "priceDetails": "+ botni qo'llab-quvvatlash uchun $239/oy<br>+ SMM uchun $399/oy",
         "description": "To'liq xizmat yechimini talab qiladigan yirik korxonalar uchun.",
         "features": {
@@ -140,25 +143,25 @@
       "premium": "Premium"
     },
     "features": {
-      "consultation": "Bepul maslahat/audit",
-      "responsive": "Adaptiv dizayn",
-      "hosting": "Xosting/domen (1 yil)",
-      "basicSeo": "Asosiy SEO",
-      "payment": "To'lov integratsiyasi (Payme/Click)",
-      "training": "Mijozni o'qitish",
-      "landing": "Lending",
-      "forms": "So'rov/fikr-mulohaza shakllari",
-      "cms": "CMS",
-      "basicAnalytics": "Asosiy analitika",
-      "onlineStore": "Onlayn do'kon (katalog/savatcha/shaxsiy kabinet)",
-      "telegramBot": "Telegram bot (bildirishnomalar/buyurtmalar/asosiy yordam)",
-      "simpleCrm": "Oddiy CRM",
-      "customApp": "Maxsus veb-ilova",
-      "advancedBot": "Kengaytirilgan Telegram bot (to'lovlar/yuborishlar/segmentatsiya)",
-      "crmIntegration": "CRM integratsiyasi",
-      "smm": "SMM (3 oy: 15 post/oy, targeting, kontent-reja)",
-      "adminAnalytics": "Admin analitika paneli (Google Analytics/Yandex.Metrica)",
-      "kpi": "KPI kafolatlari (masalan, 50 lid/oy, qayta ishlash/qaytarib berish bilan)"
+      "consultation": "Biznesni bepul tekshirish",
+      "responsive": "Mobilga moslashgan dizayn",
+      "hosting": "Veb-sayt xostingi va domeni",
+      "basicSeo": "Asosiy qidiruv optimallashtirish",
+      "payment": "Oson to'lovni sozlash",
+      "training": "Mijozlarni qo'llab-quvvatlash bo'yicha trening",
+      "landing": "Lending sahifa",
+      "forms": "Aloqa va fikr-mulohaza shakllari",
+      "cms": "Veb-saytni boshqarish tizimi",
+      "basicAnalytics": "Oddiy ishlashni kuzatish",
+      "onlineStore": "Onlayn do'konni sozlash",
+      "telegramBot": "Telegram yordamchisi",
+      "simpleCrm": "Asosiy mijozlarni boshqarish",
+      "customApp": "Moslashtirilgan veb-yechim",
+      "advancedBot": "Ilg'or Telegram menejeri",
+      "crmIntegration": "Mijozlarni boshqarish tizimi integratsiyasi",
+      "smm": "Ijtimoiy media boshqaruvi (3 oy)",
+      "adminAnalytics": "Kengaytirilgan tahlil paneli",
+      "kpi": "Ishlash kafolatlari"
     }
   }
 }
