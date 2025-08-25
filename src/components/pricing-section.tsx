@@ -152,7 +152,7 @@ export default function PricingSection() {
           ))}
         </div>
         <div className="mt-12 text-center more-info-button">
-            <Button variant="link" asChild>
+            <Button variant="secondary" size="lg" asChild>
                 <Link href="/pricing-details">{t.moreInfo}</Link>
             </Button>
         </div>
