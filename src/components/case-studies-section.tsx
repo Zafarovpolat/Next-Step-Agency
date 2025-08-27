@@ -46,10 +46,8 @@ export default function CaseStudiesSection() {
   const caseStudies = [
     {
       client: "TechCorp",
-      beforeImage: "https://placehold.co/600x400.png",
-      beforeHint: "old dashboard",
-      afterImage: "https://placehold.co/600x400.png",
-      afterHint: "new dashboard",
+      image: "https://placehold.co/600x400.png",
+      imageHint: "new dashboard",
       kpis: [
         { metric: t.kpis.revenue, value: "+300%", change: "increase" },
         { metric: t.kpis.conversion, value: "+75%", change: "increase" },
@@ -59,10 +57,8 @@ export default function CaseStudiesSection() {
     },
     {
       client: "Innovate LLC",
-      beforeImage: "https://placehold.co/600x400.png",
-      beforeHint: "outdated website",
-      afterImage: "https://placehold.co/600x400.png",
-      afterHint: "modern website",
+      image: "https://placehold.co/600x400/333/fff.png",
+      imageHint: "modern website",
       kpis: [
         { metric: t.kpis.userEngagement, value: "+250%", change: "increase" },
         { metric: t.kpis.leadGen, value: "+120%", change: "increase" },
@@ -72,10 +68,8 @@ export default function CaseStudiesSection() {
     },
     {
       client: "MarketPro",
-      beforeImage: "https://placehold.co/600x400.png",
-      beforeHint: "low traffic",
-      afterImage: "https://placehold.co/600x400.png",
-      afterHint: "high traffic",
+      image: "https://placehold.co/600x400/555/fff.png",
+      imageHint: "high traffic",
       kpis: [
         { metric: t.kpis.organicTraffic, value: "+500%", change: "increase" },
         { metric: t.kpis.keywordRankings, value: "+80%", change: "increase" },
@@ -85,10 +79,8 @@ export default function CaseStudiesSection() {
     },
      {
       client: "DataDriven Inc.",
-      beforeImage: "https://placehold.co/600x400.png",
-      beforeHint: "complex data",
-      afterImage: "https://placehold.co/600x400.png",
-      afterHint: "clear visualization",
+      image: "https://placehold.co/600x400/777/fff.png",
+      imageHint: "clear visualization",
       kpis: [
         { metric: t.kpis.dataAccuracy, value: "+99%", change: "increase" },
         { metric: t.kpis.reportingTime, value: "-80%", change: "decrease" },
@@ -98,10 +90,8 @@ export default function CaseStudiesSection() {
     },
     {
       client: "Global Connect",
-      beforeImage: "https://placehold.co/600x400.png",
-      beforeHint: "local platform",
-      afterImage: "https://placehold.co/600x400.png",
-      afterHint: "global platform",
+      image: "https://placehold.co/600x400/999/fff.png",
+      imageHint: "global platform",
       kpis: [
         { metric: t.kpis.marketExpansion, value: "+200%", change: "increase" },
         { metric: t.kpis.uptime, value: "99.99%", change: "increase" },
@@ -147,28 +137,14 @@ export default function CaseStudiesSection() {
                       </CardHeader>
                       <CardContent className="flex-grow">
                         <div className="relative mb-4">
-                          <div className="flex justify-between items-center mb-2 text-sm font-semibold">
-                            <span>{t.before}</span>
-                            <span>{t.after}</span>
-                          </div>
-                          <div className="grid grid-cols-2 gap-2">
                             <Image
-                              src={study.beforeImage}
-                              alt={`Before shot for ${study.client}`}
-                              data-ai-hint={study.beforeHint}
-                              width={300}
-                              height={200}
-                              className="rounded-md object-cover"
+                              src={study.image}
+                              alt={`Showcase for ${study.client}`}
+                              data-ai-hint={study.imageHint}
+                              width={600}
+                              height={400}
+                              className="rounded-md object-cover w-full"
                             />
-                            <Image
-                              src={study.afterImage}
-                              alt={`After shot for ${study.client}`}
-                              data-ai-hint={study.afterHint}
-                              width={300}
-                              height={200}
-                              className="rounded-md object-cover"
-                            />
-                          </div>
                         </div>
                         <div className="my-4">
                           <h4 className="font-semibold mb-2 text-card-foreground">{t.kpiHighlights}:</h4>
