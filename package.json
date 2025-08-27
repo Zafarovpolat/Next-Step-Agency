@@ -45,6 +45,7 @@
     "embla-carousel-autoplay": "^8.1.5",
     "embla-carousel-react": "^8.6.0",
     "firebase": "^11.9.1",
+    "firebase-admin": "^12.2.0",
     "genkit": "^1.14.1",
     "gsap": "^3.12.5",
     "@gsap/react": "^2.1.1",

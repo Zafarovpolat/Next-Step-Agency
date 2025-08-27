@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { CheckCircle2, Loader2 } from "lucide-react";
 import { useLanguage } from "@/contexts/language-context";
 import { cn } from "@/lib/utils";
+import { submitLead } from "@/app/actions";
 
 export default function LeadCaptureCard({ className, showHeader = false }: { className?: string; showHeader?: boolean; }) {
   const { translations } = useLanguage();
@@ -21,21 +22,20 @@ export default function LeadCaptureCard({ className, showHeader = false }: { cla
     setError(null);
 
     const formData = new FormData(event.currentTarget);
-    const data = Object.fromEntries(formData.entries());
+    
+    try {
+      const result = await submitLead(formData);
 
-    // Basic validation
-    if (!data.name || !data.email || !data.phone) {
-        setError(t.error.allFields);
+      if (result.success) {
+        setStatus("success");
+      } else {
+        setError(result.error || "An unknown error occurred.");
         setStatus("idle");
-        return;
+      }
+    } catch (e) {
+      setError(t.error.allFields);
+      setStatus("idle");
     }
-
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
-
-    // Simulate success
-    console.log("Form submitted:", data);
-    setStatus("success");
   }
 
   return (
