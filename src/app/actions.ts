@@ -73,7 +73,7 @@ export async function submitLead(formData: FormData) {
         <b>Email:</b> ${email}
         <b>Company:</b> ${company}
         -------------------------
-        <sub>${new Date().toLocaleString()}</sub>
+        ${new Date().toLocaleString()}
       `;
       
       const telegramApiUrl = `https://api.telegram.org/bot${telegramToken}/sendMessage`;
