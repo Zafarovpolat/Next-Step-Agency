@@ -78,7 +78,15 @@
   "caseStudiesSection": {
     "title": "Proven Results, Tangible Growth",
     "subtitle": "We don't just promise results; we deliver them. Explore our case studies to see how we've helped businesses like yours achieve their goals.",
-    "kpiHighlights": "Stack"
+    "kpiHighlights": "Stack",
+    "testimonials": {
+      "futura": "Developed an elegant site for an architectural bureau that highlights their modern approach and high status in the industry.",
+      "idfood": "Created a vibrant and functional site for a culinary goods producer with a user-friendly mobile version for wide reach.",
+      "testana": "Developed a secure marketplace for selling scripts, where authors can easily publish their work and buyers can find the tools they need.",
+      "treq": "Created a corporate website for a major logistics company that emphasizes their reliability and provides information about services.",
+      "sfru": "Created a site for an automation company that explains complex services in simple terms and serves as a powerful lead generation tool.",
+      "gofrostal": "Developed the official website for an industrial holding enterprise, reflecting their industrial power and extensive engineering experience."
+    }
   },
   "leadCaptureSection": {
     "title": "Ready for the Next Step?",

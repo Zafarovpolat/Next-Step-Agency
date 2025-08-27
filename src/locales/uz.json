@@ -78,7 +78,15 @@
   "caseStudiesSection": {
     "title": "Isbotlangan Natijalar, Sezilarli O'sish",
     "subtitle": "Biz nafaqat natijalarni va'da qilamiz, balki ularni amalga oshiramiz. Siz kabi bizneslarga o'z maqsadlariga erishishda qanday yordam berganimizni ko'rish uchun keyslarimizni o'rganing.",
-    "kpiHighlights": "Texnologiyalar"
+    "kpiHighlights": "Texnologiyalar",
+    "testimonials": {
+      "futura": "Arxitektura byurosi uchun ularning zamonaviy yondashuvi va sohadagi yuqori mavqeini ta'kidlaydigan oqlangan veb-sayt ishlab chiqildi.",
+      "idfood": "Pazandachilik mahsulotlari ishlab chiqaruvchisi uchun keng qamrovli, qulay mobil versiyasiga ega yorqin va funktsional sayt yaratildi.",
+      "testana": "Mualliflar o'z ishlarini osonlikcha e'lon qilishi va xaridorlar kerakli vositalarni topishi mumkin bo'lgan skriptlarni sotish uchun xavfsiz marketpleys ishlab chiqildi.",
+      "treq": "Yirik logistika kompaniyasi uchun ishonchliligini ta'kidlaydigan va xizmatlar to'g'risida ma'lumot beruvchi korporativ veb-sayt yaratildi.",
+      "sfru": "Avtomatlashtirish kompaniyasi uchun murakkab xizmatlarni oddiy tilda tushuntiruvchi va kuchli lid-generatsiya vositasi bo'lib xizmat qiluvchi sayt yaratildi.",
+      "gofrostal": "Sanoat xoldingi korxonasining sanoat qudrati va keng muhandislik tajribasini aks ettiruvchi rasmiy veb-sayti ishlab chiqildi."
+    }
   },
   "leadCaptureSection": {
     "title": "Keyingi Qadamga Tayyormisiz?",

@@ -49,42 +49,42 @@ export default function CaseStudiesSection() {
       image: "/project1.png",
       imageHint: "architecture website",
       stack: ["HTML", "CSS", "jQuery", "GSAP"],
-      testimonial: "Разработали элегантный сайт для архитектурного бюро, который подчеркивает их современный подход и высокий статус в индустрии.",
+      testimonialKey: "futura",
     },
     {
       client: "Idfood",
       image: "/project2.png",
       imageHint: "food production",
       stack: ["Next.js", "CSS", "Framer Motion"],
-      testimonial: "Создали яркий и функциональный сайт для производителя кулинарных изделий с удобной мобильной версией для широкого охвата.",
+      testimonialKey: "idfood",
     },
     {
       client: "Testana",
       image: "/project3.png",
       imageHint: "script marketplace",
       stack: ["React", "Node.js", "CSS"],
-      testimonial: "Разработали безопасный маркетплейс для продажи скриптов, где авторы могут легко публиковать работы, а покупатели — находить нужные им инструменты.",
+      testimonialKey: "testana",
     },
     {
       client: "TREQ Logistics",
       image: "/project4.png",
       imageHint: "logistics company",
       stack: ["HTML", "SCSS", "JS"],
-      testimonial: "Создали корпоративный сайт для крупной логистической компании, который подчеркивает их надежность и предоставляет информацию об услугах.",
+      testimonialKey: "treq",
     },
     {
       client: "SF.RU",
       image: "/project5.png",
       imageHint: "business automation",
       stack: ["HTML", "CSS", "JS"],
-      testimonial: "Создали сайт для компании по автоматизации, который информирует о сложных услугах простым языком и служит мощным инструментом для лидогенерации.",
+      testimonialKey: "sfru",
     },
     {
       client: "Gofrostal",
       image: "/project6.png",
       imageHint: "industrial holding",
       stack: ["HTML", "CSS", "JS"],
-      testimonial: "Разработали официальный сайт для предприятия промышленного холдинга, отражающий их индустриальную мощь и большой инженерный опыт.",
+      testimonialKey: "gofrostal",
     },
   ];
 
@@ -146,7 +146,7 @@ export default function CaseStudiesSection() {
                       </CardContent>
                       <CardFooter>
                         <blockquote className="text-sm italic text-muted-foreground border-l-2 border-primary pl-4">
-                          "{study.testimonial}"
+                          "{t.testimonials[study.testimonialKey as keyof typeof t.testimonials]}"
                         </blockquote>
                       </CardFooter>
                     </Card>
