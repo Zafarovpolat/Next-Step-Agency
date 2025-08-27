@@ -5,6 +5,7 @@ import * as admin from 'firebase-admin';
 
 // --- Firebase Admin Initialization ---
 // This ensures we only initialize the app once.
+/*
 if (!admin.apps.length) {
   const privateKey = process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n');
   const clientEmail = process.env.FIREBASE_CLIENT_EMAIL;
@@ -33,6 +34,7 @@ if (!admin.apps.length) {
     }
   }
 }
+*/
 
 // --- Lead Submission Logic ---
 export async function submitLead(formData: FormData) {
@@ -56,7 +58,7 @@ export async function submitLead(formData: FormData) {
   };
 
   let telegramSuccess = false;
-  let firebaseSuccess = false;
+  // let firebaseSuccess = false;
   let submissionError: string | null = null;
 
   // 1. Send data to Telegram
@@ -103,7 +105,8 @@ export async function submitLead(formData: FormData) {
     submissionError = error instanceof Error ? error.message : 'Failed to send to Telegram.';
   }
 
-  // 2. Save data to Firebase Realtime Database
+  // 2. Save data to Firebase Realtime Database (Temporarily disabled)
+  /*
   try {
     if (admin.apps.length > 0) {
       const db = admin.database();
@@ -123,8 +126,9 @@ export async function submitLead(formData: FormData) {
       submissionError = error instanceof Error ? error.message : 'Failed to save to database.';
     }
   }
+  */
 
-  if (telegramSuccess || firebaseSuccess) {
+  if (telegramSuccess) { // || firebaseSuccess) {
     return { success: true };
   } else {
     return { success: false, error: submissionError || 'An unexpected error occurred.' };
