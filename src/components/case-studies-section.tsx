@@ -52,7 +52,7 @@ export default function CaseStudiesSection() {
       testimonial: "Разработали элегантный сайт для архитектурного бюро, который подчеркивает их современный подход и высокий статус в индустрии.",
     },
     {
-      client: "Ideologiyayedi",
+      client: "Idfood",
       image: "/project2.png",
       imageHint: "food production",
       stack: ["nextjs", "css", "framer motion"],
@@ -73,7 +73,7 @@ export default function CaseStudiesSection() {
       testimonial: "Создали корпоративный сайт для крупной логистической компании, который подчеркивает их надежность и предоставляет информацию об услугах.",
     },
     {
-      client: "Sferadannykh",
+      client: "SF.RU",
       image: "/project5.png",
       imageHint: "business automation",
       stack: ["html", "css", "js"],
