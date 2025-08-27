@@ -62,7 +62,7 @@ export default function CaseStudiesSection() {
       client: "Testana",
       image: "/project3.png",
       imageHint: "script marketplace",
-      stack: ["React", "Node.js", "CSS", "Supabase"],
+      stack: ["React", "Node.js", "CSS"],
       testimonial: "Разработали безопасный маркетплейс для продажи скриптов, где авторы могут легко публиковать работы, а покупатели — находить нужные им инструменты.",
     },
     {
