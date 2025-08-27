@@ -78,33 +78,7 @@
   "caseStudiesSection": {
     "title": "Isbotlangan Natijalar, Sezilarli O'sish",
     "subtitle": "Biz nafaqat natijalarni va'da qilamiz, balki ularni amalga oshiramiz. Siz kabi bizneslarga o'z maqsadlariga erishishda qanday yordam berganimizni ko'rish uchun keyslarimizni o'rganing.",
-    "before": "Oldin",
-    "after": "Keyin",
-    "kpiHighlights": "KPI Muhim Jihatlari",
-    "kpis": {
-      "revenue": "Daromad",
-      "conversion": "Konversiya",
-      "aov": "O'rtacha Buyurtma Qiymati",
-      "userEngagement": "Foydalanuvchi Faolligi",
-      "leadGen": "Lid Generatsiyasi",
-      "bounceRate": "Chiqib Ketish Darajasi",
-      "organicTraffic": "Organik Trafik",
-      "keywordRankings": "Kalit So'zlar Reytingi",
-      "adSpendROI": "Reklama Xarajatlari ROI",
-      "dataAccuracy": "Ma'lumotlar aniqligi",
-      "reportingTime": "Hisobot vaqti",
-      "decisionMaking": "Qaror qabul qilish",
-      "marketExpansion": "Bozorni kengaytirish",
-      "uptime": "Ish vaqti",
-      "userBase": "Foydalanuvchilar bazasi"
-    },
-    "testimonials": {
-      "techCorp": "Next Step Agentligi bizning biznesimizni o'zgartirdi. Natijalar o'zi uchun gapiradi. Biz hech qachon bunchalik daromadli bo'lmaganmiz.",
-      "innovate": "Jamoaning UI/UX va ishlab chiqish bo'yicha tajribasi beqiyos. Bizning yangi platformamizdan foydalanish juda yoqimli va faollikni sezilarli darajada oshirdi.",
-      "marketPro": "Ular bilan hamkorlik qilganimizdan beri ko'rinishimiz osmonga ko'tarildi. Ularning marketing strategiyalari ma'lumotlarga asoslangan va juda samarali.",
-      "dataDriven": "Ularning ma'lumotlarni vizualizatsiya qilish yechimining aniqligi va tezligi bizning operatsiyalarimiz uchun o'yinni o'zgartiruvchi bo'ldi.",
-      "globalConnect": "Ular global platforma uchun bizning qarashlarimizni benuqson bajardilar va belgilangan muddatdan oldin kengaytiriladigan va ishonchli tizimni taqdim etdilar."
-    }
+    "kpiHighlights": "Texnologiyalar"
   },
   "leadCaptureSection": {
     "title": "Keyingi Qadamga Tayyormisiz?",

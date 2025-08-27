@@ -45,59 +45,46 @@ export default function CaseStudiesSection() {
 
   const caseStudies = [
     {
-      client: "TechCorp",
-      image: "https://placehold.co/600x400.png",
-      imageHint: "new dashboard",
-      kpis: [
-        { metric: t.kpis.revenue, value: "+300%", change: "increase" },
-        { metric: t.kpis.conversion, value: "+75%", change: "increase" },
-        { metric: t.kpis.aov, value: "+50%", change: "increase" },
-      ],
-      testimonial: t.testimonials.techCorp,
+      client: "FUTURA Architects",
+      image: "/project1.png",
+      imageHint: "architecture website",
+      stack: ["html", "css", "jquery", "gsap"],
+      testimonial: "Сайт влиятельного архитектурного бюро России",
     },
     {
-      client: "Innovate LLC",
-      image: "https://placehold.co/600x400/333/fff.png",
-      imageHint: "modern website",
-      kpis: [
-        { metric: t.kpis.userEngagement, value: "+250%", change: "increase" },
-        { metric: t.kpis.leadGen, value: "+120%", change: "increase" },
-        { metric: t.kpis.bounceRate, value: "-40%", change: "decrease" },
-      ],
-      testimonial: t.testimonials.innovate,
+      client: "Ideologiyayedi",
+      image: "/project2.png",
+      imageHint: "food production",
+      stack: ["nextjs", "css", "framer motion"],
+      testimonial: "Производство кулинарных, кондитерских и хлебобулочных изделий",
     },
     {
-      client: "MarketPro",
-      image: "https://placehold.co/600x400/555/fff.png",
-      imageHint: "high traffic",
-      kpis: [
-        { metric: t.kpis.organicTraffic, value: "+500%", change: "increase" },
-        { metric: t.kpis.keywordRankings, value: "+80%", change: "increase" },
-        { metric: t.kpis.adSpendROI, value: "+150%", change: "increase" },
-      ],
-      testimonial: t.testimonials.marketPro,
-    },
-     {
-      client: "DataDriven Inc.",
-      image: "https://placehold.co/600x400/777/fff.png",
-      imageHint: "clear visualization",
-      kpis: [
-        { metric: t.kpis.dataAccuracy, value: "+99%", change: "increase" },
-        { metric: t.kpis.reportingTime, value: "-80%", change: "decrease" },
-        { metric: t.kpis.decisionMaking, value: "+60%", change: "increase" },
-      ],
-      testimonial: t.testimonials.dataDriven,
+      client: "Testana",
+      image: "/project3.png",
+      imageHint: "script marketplace",
+      stack: ["react", "css", "supabase"],
+      testimonial: "Продажа специальных скриптов",
     },
     {
-      client: "Global Connect",
-      image: "https://placehold.co/600x400/999/fff.png",
-      imageHint: "global platform",
-      kpis: [
-        { metric: t.kpis.marketExpansion, value: "+200%", change: "increase" },
-        { metric: t.kpis.uptime, value: "99.99%", change: "increase" },
-        { metric: t.kpis.userBase, value: "+300%", change: "increase" },
-      ],
-      testimonial: t.testimonials.globalConnect,
+      client: "TREQ Logistics",
+      image: "/project4.png",
+      imageHint: "logistics company",
+      stack: ["html", "scss", "js"],
+      testimonial: "Сайт крупной логистической компании в России",
+    },
+    {
+      client: "Sferafannykh",
+      image: "/project5.png",
+      imageHint: "business automation",
+      stack: ["html", "css", "js"],
+      testimonial: "Сайт компании по автоматизации и продвижению бизнеса",
+    },
+    {
+      client: "Gofrostal",
+      image: "/project6.png",
+      imageHint: "industrial holding",
+      stack: ["html", "css", "js"],
+      testimonial: "Сайт ЗАО «ГОФРОСТАЛЬ». ПРЕДПРИЯТИЕ ПРОМЫШЛЕННОГО ХОЛДИНГА «ОПЫТНЫЙ ЗАВОД» ГИДРОМОНТАЖ»",
     },
   ];
 
@@ -149,9 +136,9 @@ export default function CaseStudiesSection() {
                         <div className="my-4">
                           <h4 className="font-semibold mb-2 text-card-foreground">{t.kpiHighlights}:</h4>
                           <div className="flex flex-wrap gap-2">
-                            {study.kpis.map((kpi, kpiIndex) => (
-                              <Badge key={kpiIndex} variant={kpi.change === 'increase' ? 'secondary' : 'destructive'}>
-                                {kpi.metric}: <span className="font-bold ml-1">{kpi.value}</span>
+                            {study.stack.map((tech, kpiIndex) => (
+                              <Badge key={kpiIndex} variant='secondary'>
+                                {tech}
                               </Badge>
                             ))}
                           </div>
