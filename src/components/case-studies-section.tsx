@@ -131,21 +131,19 @@ export default function CaseStudiesSection() {
                         <CardTitle className="text-2xl font-bold text-card-foreground">{study.client}</CardTitle>
                       </CardHeader>
                       <CardContent className="flex-grow">
-                        <div className="relative mb-4 group">
-                          <Link href={study.link} target="_blank" rel="noopener noreferrer" aria-label={`Visit ${study.client} website`}>
-                            <Image
-                              src={study.image}
-                              alt={`Showcase for ${study.client}`}
-                              data-ai-hint={study.imageHint}
-                              width={600}
-                              height={400}
-                              className="rounded-md object-cover w-full transition-transform duration-300 group-hover:scale-105"
-                            />
-                            <div className="absolute inset-0 bg-black/50 flex items-center justify-center rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                <LinkIcon className="h-10 w-10 text-white" />
-                            </div>
-                          </Link>
-                        </div>
+                        <Link href={study.link} target="_blank" rel="noopener noreferrer" aria-label={`Visit ${study.client} website`} className="relative mb-4 group block rounded-md overflow-hidden">
+                          <Image
+                            src={study.image}
+                            alt={`Showcase for ${study.client}`}
+                            data-ai-hint={study.imageHint}
+                            width={600}
+                            height={400}
+                            className="object-cover w-full transition-transform duration-300 group-hover:scale-102"
+                          />
+                          <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                              <LinkIcon className="h-10 w-10 text-white" />
+                          </div>
+                        </Link>
                         <div className="my-4">
                           <h4 className="font-semibold mb-2 text-card-foreground">{t.kpiHighlights}:</h4>
                           <div className="flex flex-wrap gap-2">
