@@ -10,6 +10,8 @@ import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Autoplay from "embla-carousel-autoplay"
+import { Link as LinkIcon } from "lucide-react";
+import Link from "next/link";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -50,6 +52,7 @@ export default function CaseStudiesSection() {
       imageHint: "architecture website",
       stack: ["HTML", "CSS", "jQuery", "GSAP"],
       testimonialKey: "futura",
+      link: "https://futura-architects.com/"
     },
     {
       client: "Idfood",
@@ -57,6 +60,7 @@ export default function CaseStudiesSection() {
       imageHint: "food production",
       stack: ["Next.js", "CSS", "Framer Motion"],
       testimonialKey: "idfood",
+      link: "https://idfood.ru/"
     },
     {
       client: "Testana",
@@ -64,6 +68,7 @@ export default function CaseStudiesSection() {
       imageHint: "script marketplace",
       stack: ["React", "Node.js", "CSS"],
       testimonialKey: "testana",
+      link: "https://tstn.onrender.com/"
     },
     {
       client: "TREQ Logistics",
@@ -71,6 +76,7 @@ export default function CaseStudiesSection() {
       imageHint: "logistics company",
       stack: ["HTML", "SCSS", "JS"],
       testimonialKey: "treq",
+      link: "https://treq.ru/"
     },
     {
       client: "SF.RU",
@@ -78,6 +84,7 @@ export default function CaseStudiesSection() {
       imageHint: "business automation",
       stack: ["HTML", "CSS", "JS"],
       testimonialKey: "sfru",
+      link: "https://sferadannykh.ru/"
     },
     {
       client: "Gofrostal",
@@ -85,6 +92,7 @@ export default function CaseStudiesSection() {
       imageHint: "industrial holding",
       stack: ["HTML", "CSS", "JS"],
       testimonialKey: "gofrostal",
+      link: "https://www.gofrostal.ru/"
     },
   ];
 
@@ -109,7 +117,7 @@ export default function CaseStudiesSection() {
             plugins={[
               Autoplay({
                 delay: 3000,
-                stopOnInteraction: false,
+                stopOnInteraction: true,
               }),
             ]}
             className="w-full"
@@ -123,15 +131,20 @@ export default function CaseStudiesSection() {
                         <CardTitle className="text-2xl font-bold text-card-foreground">{study.client}</CardTitle>
                       </CardHeader>
                       <CardContent className="flex-grow">
-                        <div className="relative mb-4">
+                        <div className="relative mb-4 group">
+                          <Link href={study.link} target="_blank" rel="noopener noreferrer" aria-label={`Visit ${study.client} website`}>
                             <Image
                               src={study.image}
                               alt={`Showcase for ${study.client}`}
                               data-ai-hint={study.imageHint}
                               width={600}
                               height={400}
-                              className="rounded-md object-cover w-full"
+                              className="rounded-md object-cover w-full transition-transform duration-300 group-hover:scale-105"
                             />
+                            <div className="absolute inset-0 bg-black/50 flex items-center justify-center rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <LinkIcon className="h-10 w-10 text-white" />
+                            </div>
+                          </Link>
                         </div>
                         <div className="my-4">
                           <h4 className="font-semibold mb-2 text-card-foreground">{t.kpiHighlights}:</h4>
