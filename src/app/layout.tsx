@@ -19,11 +19,7 @@ export default function RootLayout({
 
   useEffect(() => {
     // This effect ensures we only trigger the loading sequence once on the client
-    const timer = setTimeout(() => {
-      // The onComplete callback in the Preloader will set this
-    }, 0); 
-    
-    return () => clearTimeout(timer);
+    // The onComplete callback in the Preloader will set the isLoaded state.
   }, []);
 
 

@@ -3,7 +3,7 @@
 
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import Image from 'next/image';
 
 export default function Preloader({ onComplete }: { onComplete: () => void }) {
@@ -16,6 +16,7 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
         const tl = gsap.timeline({
             onComplete: () => {
                 if (container.current) {
+                    // Directly hide the preloader container after animation completes
                     gsap.set(container.current, { display: 'none' });
                 }
                 onComplete();
