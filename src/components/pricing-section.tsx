@@ -10,48 +10,44 @@ import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Link from 'next/link';
+import { useRef } from 'react';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function PricingSection() {
   const { translations } = useLanguage();
   const { pricingSection: t } = translations;
+  const container = useRef(null);
 
   useGSAP(() => {
-    gsap.from(".pricing-title", {
+    const tl = gsap.timeline({
       scrollTrigger: {
-        trigger: ".pricing-title",
+        trigger: container.current,
         start: "top 80%",
-      },
+      }
+    });
+
+    tl.from(".pricing-title", {
       y: 30,
       opacity: 0,
       duration: 0.8,
       ease: "power3.out",
-    });
-
-    gsap.from(".pricing-card", {
-      scrollTrigger: {
-        trigger: ".pricing-card",
-        start: "top 85%",
-      },
+    })
+    .from(".pricing-card", {
       y: 30,
       opacity: 0,
       stagger: 0.15,
       duration: 0.8,
       ease: "power3.out",
-    });
-
-     gsap.from(".more-info-button", {
-      scrollTrigger: {
-        trigger: ".more-info-button",
-        start: "top 90%",
-      },
+    }, "-=0.5")
+    .from(".more-info-button", {
       y: 20,
       opacity: 0,
       duration: 0.8,
       ease: "power3.out",
-    });
-  }, []);
+    }, "-=0.5");
+
+  }, { scope: container });
 
   const plans = [
     {
@@ -98,7 +94,7 @@ export default function PricingSection() {
   ];
 
   return (
-    <section id="pricing" className="py-16 sm:py-24 bg-accent/20">
+    <section id="pricing" className="py-16 sm:py-24 bg-accent/20" ref={container}>
       <div className="container mx-auto px-4">
         <div className="text-center mb-12 pricing-title">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-headline tracking-tight text-foreground">

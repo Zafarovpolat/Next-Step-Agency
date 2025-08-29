@@ -4,26 +4,28 @@ import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import LeadCaptureCard from './lead-capture-card';
+import { useRef } from 'react';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function LeadCaptureSection() {
-  
+  const container = useRef(null);
+
   useGSAP(() => {
     gsap.from(".lead-capture-card", {
       scrollTrigger: {
-        trigger: ".lead-capture-card",
+        trigger: container.current,
         start: "top 80%",
       },
-      y: 30,
+      y: 50,
       opacity: 0,
       duration: 0.8,
       ease: "power3.out",
     });
-  }, []);
+  }, { scope: container });
 
   return (
-    <section id="contact" className="py-16 sm:py-24 bg-accent/30 relative overflow-hidden">
+    <section id="contact" className="py-16 sm:py-24 bg-accent/30 relative overflow-hidden" ref={container}>
        <div className="absolute inset-0 bg-grid-pattern-small opacity-10"></div>
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-2xl mx-auto">

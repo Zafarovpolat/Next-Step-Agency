@@ -1,6 +1,6 @@
 
 "use client";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -14,6 +14,7 @@ gsap.registerPlugin(ScrollTrigger);
 export default function RoiCalculator() {
   const { translations } = useLanguage();
   const { roiCalculator: t } = translations;
+  const container = useRef(null);
 
   const [avgCheck, setAvgCheck] = useState(50);
   const [monthlyOrders, setMonthlyOrders] = useState(100);
@@ -22,28 +23,27 @@ export default function RoiCalculator() {
   const [projectedGrowth] = useState(0.25); // 25% growth assumption
 
   useGSAP(() => {
-    gsap.from(".roi-title", {
+    const tl = gsap.timeline({
       scrollTrigger: {
-        trigger: ".roi-title",
+        trigger: container.current,
         start: "top 80%",
-      },
-      y: 30,
-      opacity: 0,
-      duration: 0.8,
-      ease: "power3.out",
+      }
     });
 
-    gsap.from(".roi-card", {
-      scrollTrigger: {
-        trigger: ".roi-card",
-        start: "top 85%",
-      },
+    tl.from(".roi-title", {
       y: 30,
       opacity: 0,
       duration: 0.8,
       ease: "power3.out",
-    });
-  }, []);
+    })
+    .from(".roi-card", {
+      y: 30,
+      opacity: 0,
+      duration: 0.8,
+      ease: "power3.out",
+    }, "-=0.5");
+
+  }, { scope: container });
 
   useEffect(() => {
     const calculateRoi = () => {
@@ -66,7 +66,7 @@ export default function RoiCalculator() {
   }
 
   return (
-    <section id="roi-calculator" className="py-16 sm:py-24 bg-background">
+    <section id="roi-calculator" className="py-16 sm:py-24 bg-background" ref={container}>
       <div className="container mx-auto px-4">
         <div className="text-center mb-12 roi-title">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-headline tracking-tight text-foreground">

@@ -11,6 +11,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Link as LinkIcon } from "lucide-react";
 import Link from "next/link";
+import { useRef } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -18,36 +19,36 @@ gsap.registerPlugin(ScrollTrigger);
 export default function CaseStudiesSection() {
   const { translations } = useLanguage();
   const { caseStudiesSection: t } = translations;
+  const container = useRef(null);
 
   useGSAP(() => {
-    gsap.from(".case-studies-title", {
+    const tl = gsap.timeline({
       scrollTrigger: {
-        trigger: ".case-studies-title",
+        trigger: container.current,
         start: "top 80%",
-      },
+      }
+    });
+
+    tl.from(".case-studies-title", {
       y: 30,
       opacity: 0,
       duration: 0.8,
       ease: "power3.out",
-    });
-
-    gsap.from(".case-study-card", {
-      scrollTrigger: {
-        trigger: ".case-study-card",
-        start: "top 85%",
-      },
+    })
+    .from(".case-study-card", {
       y: 30,
       opacity: 0,
       stagger: 0.15,
       duration: 0.8,
       ease: "power3.out",
-    });
-  }, []);
+    }, "-=0.5");
+
+  }, { scope: container });
 
   const caseStudies = [
     {
       client: "FUTURA Architects",
-      image: "/project1.webp",
+      image: "https://picsum.photos/600/400?random=1",
       imageHint: "architecture website",
       stack: ["HTML", "CSS", "jQuery", "GSAP"],
       testimonialKey: "futura",
@@ -55,7 +56,7 @@ export default function CaseStudiesSection() {
     },
     {
       client: "Idfood",
-      image: "/project2.webp",
+      image: "https://picsum.photos/600/400?random=2",
       imageHint: "food production",
       stack: ["Next.js", "CSS", "Framer Motion"],
       testimonialKey: "idfood",
@@ -63,7 +64,7 @@ export default function CaseStudiesSection() {
     },
     {
       client: "Testana",
-      image: "/project3.webp",
+      image: "https://picsum.photos/600/400?random=3",
       imageHint: "script marketplace",
       stack: ["React", "Node.js", "CSS"],
       testimonialKey: "testana",
@@ -71,7 +72,7 @@ export default function CaseStudiesSection() {
     },
     {
       client: "TREQ Logistics",
-      image: "/project4.webp",
+      image: "https://picsum.photos/600/400?random=4",
       imageHint: "logistics company",
       stack: ["HTML", "SCSS", "JS"],
       testimonialKey: "treq",
@@ -79,7 +80,7 @@ export default function CaseStudiesSection() {
     },
     {
       client: "SF.RU",
-      image: "/project5.webp",
+      image: "https://picsum.photos/600/400?random=5",
       imageHint: "business automation",
       stack: ["HTML", "CSS", "JS"],
       testimonialKey: "sfru",
@@ -87,7 +88,7 @@ export default function CaseStudiesSection() {
     },
     {
       client: "Gofrostal",
-      image: "/project6.webp",
+      image: "https://picsum.photos/600/400?random=6",
       imageHint: "industrial holding",
       stack: ["HTML", "CSS", "JS"],
       testimonialKey: "gofrostal",
@@ -96,7 +97,7 @@ export default function CaseStudiesSection() {
   ];
 
   return (
-    <section id="case-studies" className="py-16 sm:py-24 bg-background">
+    <section id="case-studies" className="py-16 sm:py-24 bg-background" ref={container}>
       <div className="container mx-auto px-4">
         <div className="text-center mb-12 case-studies-title">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-headline tracking-tight text-foreground">
@@ -119,7 +120,7 @@ export default function CaseStudiesSection() {
               {caseStudies.map((study, index) => (
                 <CarouselItem key={index} className="basis-full md:basis-1/2 lg:basis-1/3 case-study-card">
                   <div className="p-1 h-full">
-                    <Card className="h-full flex flex-col bg-card/80 backdrop-blur-sm border-border hover:border-primary transition-all duration-300 shadow-lg hover:shadow-primary/20">
+                    <Card className="h-full flex flex-col bg-card/80 border-border hover:border-primary transition-all duration-300 shadow-lg hover:shadow-primary/20">
                       <CardHeader>
                         <CardTitle className="text-2xl font-bold text-card-foreground">{study.client}</CardTitle>
                       </CardHeader>
