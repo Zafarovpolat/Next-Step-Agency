@@ -36,10 +36,23 @@ export default function Header() {
   
   const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     e.preventDefault();
-    
-    const scrollAction = () => {
+
+    const scrollToAction = () => {
+      // If we are not on the main page, navigate first
       if (pathname !== '/') {
-        router.push(`/${targetId}`);
+        router.push('/');
+        // After navigation, we need to wait for the page to render and then scroll.
+        // A timeout is a simple way to achieve this.
+        setTimeout(() => {
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+             if (smoother) {
+                smoother.scrollTo(targetElement, true);
+             } else {
+                targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+             }
+          }
+        }, 500); // Delay may need adjustment
         return;
       }
       
@@ -49,7 +62,6 @@ export default function Header() {
       if (smoother) {
         smoother.scrollTo(targetElement, true);
       } else {
-        // Fallback for mobile or when smoother is not available
         targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     };
@@ -57,9 +69,9 @@ export default function Header() {
     if (isMobileMenuOpen) {
       setIsMobileMenuOpen(false);
       // Wait for the sheet to close before scrolling
-      setTimeout(scrollAction, 300); 
+      setTimeout(scrollToAction, 300); 
     } else {
-      scrollAction();
+      scrollToAction();
     }
   };
 
