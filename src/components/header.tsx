@@ -36,42 +36,41 @@ export default function Header() {
   
   const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     e.preventDefault();
-
+  
     const scrollToAction = () => {
-      // If we are not on the main page, navigate first
-      if (pathname !== '/') {
-        router.push('/');
-        // After navigation, we need to wait for the page to render and then scroll.
-        // A timeout is a simple way to achieve this.
-        setTimeout(() => {
-          const targetElement = document.querySelector(targetId);
-          if (targetElement) {
-             if (smoother) {
-                smoother.scrollTo(targetElement, true);
-             } else {
-                targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-             }
-          }
-        }, 500); // Delay may need adjustment
+      const targetElement = document.querySelector(targetId);
+      if (!targetElement) {
+        console.warn(`Element with ID ${targetId} not found`);
         return;
       }
-      
-      const targetElement = document.querySelector(targetId);
-      if (!targetElement) return;
-
+  
       if (smoother) {
-        smoother.scrollTo(targetElement, true);
+        smoother.scrollTo(targetElement, true, 'top top');
       } else {
         targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     };
-
+  
+    // Если меню открыто, закрываем его и ждем завершения анимации
     if (isMobileMenuOpen) {
       setIsMobileMenuOpen(false);
-      // Wait for the sheet to close before scrolling
-      setTimeout(scrollToAction, 300); 
+      setTimeout(() => {
+        // Если не на главной странице, выполняем навигацию и скролл
+        if (pathname !== '/') {
+          router.push('/');
+          setTimeout(scrollToAction, 500); // Задержка для завершения навигации
+        } else {
+          scrollToAction(); // Прямой скролл, если уже на главной
+        }
+      }, 400); // Увеличенная задержка для завершения анимации Sheet
     } else {
-      scrollToAction();
+      // Если меню закрыто, обрабатываем навигацию и скролл
+      if (pathname !== '/') {
+        router.push('/');
+        setTimeout(scrollToAction, 500); // Задержка для завершения навигации
+      } else {
+        scrollToAction(); // Прямой скролл, если уже на главной
+      }
     }
   };
 
