@@ -25,15 +25,25 @@ export const GSAPProvider = ({ children }: { children: ReactNode }) => {
   }, []);
   
   useGSAP(() => {
-    const smootherInstance = ScrollSmoother.create({
-      smooth: 1.2,
-      effects: true,
-      smoothTouch: 0.1,
+    const mm = gsap.matchMedia();
+
+    mm.add("(min-width: 1000px)", () => {
+      const smootherInstance = ScrollSmoother.create({
+        smooth: 1.2,
+        effects: true,
+        smoothTouch: 0.1,
+      });
+      setSmoother(smootherInstance);
+
+      return () => {
+        if (smootherInstance) {
+          smootherInstance.kill();
+        }
+      };
     });
-    setSmoother(smootherInstance);
 
     return () => {
-      smootherInstance.kill();
+      mm.revert();
     }
   }, []);
 
