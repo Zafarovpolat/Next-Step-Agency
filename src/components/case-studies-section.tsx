@@ -48,7 +48,7 @@ export default function CaseStudiesSection() {
   const caseStudies = [
     {
       client: "FUTURA Architects",
-      image: "https://picsum.photos/600/400?random=1",
+      image: "/project1.png",
       imageHint: "architecture website",
       stack: ["HTML", "CSS", "jQuery", "GSAP"],
       testimonialKey: "futura",
@@ -56,7 +56,7 @@ export default function CaseStudiesSection() {
     },
     {
       client: "Idfood",
-      image: "https://picsum.photos/600/400?random=2",
+      image: "/project2.png",
       imageHint: "food production",
       stack: ["Next.js", "CSS", "Framer Motion"],
       testimonialKey: "idfood",
@@ -64,7 +64,7 @@ export default function CaseStudiesSection() {
     },
     {
       client: "Testana",
-      image: "https://picsum.photos/600/400?random=3",
+      image: "/project3.png",
       imageHint: "script marketplace",
       stack: ["React", "Node.js", "CSS"],
       testimonialKey: "testana",
@@ -72,7 +72,7 @@ export default function CaseStudiesSection() {
     },
     {
       client: "TREQ Logistics",
-      image: "https://picsum.photos/600/400?random=4",
+      image: "/project4.png",
       imageHint: "logistics company",
       stack: ["HTML", "SCSS", "JS"],
       testimonialKey: "treq",
@@ -80,7 +80,7 @@ export default function CaseStudiesSection() {
     },
     {
       client: "SF.RU",
-      image: "https://picsum.photos/600/400?random=5",
+      image: "/project5.png",
       imageHint: "business automation",
       stack: ["HTML", "CSS", "JS"],
       testimonialKey: "sfru",
@@ -88,7 +88,7 @@ export default function CaseStudiesSection() {
     },
     {
       client: "Gofrostal",
-      image: "https://picsum.photos/600/400?random=6",
+      image: "/project6.png",
       imageHint: "industrial holding",
       stack: ["HTML", "CSS", "JS"],
       testimonialKey: "gofrostal",
