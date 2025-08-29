@@ -13,7 +13,7 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
     const leftCurtainRef = useRef(null);
     const rightCurtainRef = useRef(null);
     const { resolvedTheme } = useTheme();
-    const [logoSrc, setLogoSrc] = useState('/logo2.png'); // Default to dark logo
+    const [logoSrc, setLogoSrc] = useState('/logo.png'); // Default to light theme logo
 
     useEffect(() => {
         // Set the correct logo based on the theme
@@ -23,13 +23,13 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
     useGSAP(() => {
         const tl = gsap.timeline({
             onComplete: () => {
-                onComplete();
                 if (container.current) {
                     gsap.to(container.current, { 
                         display: 'none',
                         duration: 0.1
                     });
                 }
+                onComplete();
             }
         });
         
@@ -56,12 +56,12 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
             stagger: 0.1
         });
 
-    }, { scope: container, dependencies: [onComplete] });
+    }, { scope: container, dependencies: [onComplete, logoSrc] });
 
     return (
         <div ref={container} className="fixed inset-0 z-[100] flex items-center justify-center bg-background overflow-hidden">
             <div ref={logoRef} className="absolute z-20 opacity-0 scale-90">
-                 <Image src={logoSrc} alt="Next Step Agency Logo" width={150} height={38} key={logoSrc} />
+                 {logoSrc && <Image src={logoSrc} alt="Next Step Agency Logo" width={150} height={38} key={logoSrc} priority />}
             </div>
             <div ref={leftCurtainRef} className="absolute left-0 top-0 h-full w-1/2 bg-background origin-left"></div>
             <div ref={rightCurtainRef} className="absolute right-0 top-0 h-full w-1/2 bg-background origin-right"></div>
