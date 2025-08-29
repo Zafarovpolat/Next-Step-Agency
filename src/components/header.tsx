@@ -18,6 +18,8 @@ import { useLanguage } from '@/contexts/language-context';
 import { useScrollSmoother } from '@/contexts/gsap-provider';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
+import { useIsMobile } from '@/hooks/use-mobile';
+
 
 export default function Header() {
   const { setTheme, theme, resolvedTheme } = useTheme();
@@ -26,6 +28,7 @@ export default function Header() {
   const smoother = useScrollSmoother();
   const pathname = usePathname();
   const router = useRouter();
+  const isMobile = useIsMobile();
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [logoSrc, setLogoSrc] = useState('/logo.png');
@@ -34,30 +37,33 @@ export default function Header() {
     setLogoSrc(resolvedTheme === 'dark' ? '/logo2.png' : '/logo.png');
   }, [resolvedTheme]);
   
-  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, target: string) => {
+  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     e.preventDefault();
     
     const scrollAction = () => {
-      const isMainPage = pathname === '/';
-      if (isMainPage) {
-        if (smoother) {
-          smoother.scrollTo(target, true);
-        } else {
-          const element = document.querySelector(target);
-          if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
-          }
-        }
+      if (pathname !== '/') {
+        router.push(`/${targetId}`);
+        return;
+      }
+      
+      const targetElement = document.querySelector(targetId);
+      if (!targetElement) return;
+
+      if (smoother && !isMobile) {
+        smoother.scrollTo(targetElement, true);
       } else {
-        router.push(`/${target}`);
+        const yOffset = -80; // height of the sticky header
+        const y = targetElement.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: 'smooth' });
       }
     };
-    
+
     if (isMobileMenuOpen) {
-        setIsMobileMenuOpen(false);
-        setTimeout(scrollAction, 300);
+      setIsMobileMenuOpen(false);
+      // Wait for the sheet to close before scrolling
+      setTimeout(scrollAction, 300); 
     } else {
-        scrollAction();
+      scrollAction();
     }
   };
 
@@ -69,22 +75,17 @@ export default function Header() {
 
   const linkClassName = "px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-primary relative group no-underline";
 
-  const QuoteButton = () => {
-    return (
-      <Button asChild>
-        <a href="#contact" onClick={(e) => handleScroll(e, "#contact")}>{t.getQuote}</a>
-      </Button>
-    )
-  }
+  const QuoteButton = () => (
+    <Button asChild>
+      <a href="#contact" onClick={(e) => handleScroll(e, "#contact")}>{t.getQuote}</a>
+    </Button>
+  );
 
-  const MobileQuoteButton = () => {
-    return (
-        <Button className='w-full' asChild>
-            <a href="#contact" onClick={(e) => handleScroll(e, "#contact")}>{t.getQuote}</a>
-        </Button>
-    )
-  }
-
+  const MobileQuoteButton = () => (
+    <Button className='w-full' asChild>
+      <a href="#contact" onClick={(e) => handleScroll(e, "#contact")}>{t.getQuote}</a>
+    </Button>
+  );
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/90 backdrop-blur-sm">
@@ -149,7 +150,7 @@ export default function Header() {
                     }}
                 >
                     <div className="flex items-center gap-2 p-4 border-b">
-                         <Link href="/" className="flex items-center gap-2">
+                         <Link href="/" className="flex items-center gap-2" onClick={() => setIsMobileMenuOpen(false)}>
                             <Image src={logoSrc} alt="Next Step Agency Logo" width={120} height={30} key={logoSrc + 'mobile'} priority />
                          </Link>
                     </div>

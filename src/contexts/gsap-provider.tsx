@@ -22,6 +22,18 @@ export const GSAPProvider = ({ children }: { children: ReactNode }) => {
     // Workaround for enterprise license missing.
     // @ts-ignore
     window.gsap = gsap;
+    
+    // Refresh ScrollTrigger on component mount and on window resize
+    const refreshTriggers = () => ScrollTrigger.refresh();
+    
+    window.addEventListener('resize', refreshTriggers);
+    
+    // Initial refresh after a short delay to ensure all content is loaded
+    setTimeout(refreshTriggers, 100);
+
+    return () => {
+      window.removeEventListener('resize', refreshTriggers);
+    };
   }, []);
   
   useGSAP(() => {
@@ -38,6 +50,7 @@ export const GSAPProvider = ({ children }: { children: ReactNode }) => {
       return () => {
         if (smootherInstance) {
           smootherInstance.kill();
+          setSmoother(null);
         }
       };
     });
