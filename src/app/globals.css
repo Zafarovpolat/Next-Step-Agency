@@ -127,3 +127,59 @@
     to { transform: translateY(0); opacity: 1; }
   }
 }
+
+/* Оптимизация для Safari - предотвращение дергания анимаций */
+@supports (-webkit-appearance: none) {
+  /* Улучшение производительности анимаций в Safari */
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Оптимизация Sheet компонента для Safari */
+  [data-radix-dialog-content] {
+    -webkit-transform: translate3d(0, 0, 0) !important;
+    transform: translate3d(0, 0, 0) !important;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    will-change: transform, opacity;
+  }
+  
+  /* Оптимизация для мобильного Safari */
+  @media (max-width: 1024px) {
+    body {
+      -webkit-overflow-scrolling: touch;
+    }
+    
+    /* Предотвращение дергания при открытии/закрытии меню */
+    body.menu-open {
+      position: fixed;
+      width: 100%;
+      overflow: hidden;
+    }
+  }
+  
+  /* Специфичные стили для компонентов Radix UI в Safari */
+  [data-radix-dialog-overlay] {
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+  
+  /* Оптимизация кнопки меню */
+  .safari-menu-button {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  
+  /* Плавные переходы для всех интерактивных элементов */
+  button, a, [role="button"] {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+}

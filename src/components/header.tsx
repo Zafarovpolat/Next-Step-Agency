@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState, useEffect } from 'react';
@@ -33,6 +32,22 @@ export default function Header() {
   useEffect(() => {
     setLogoSrc(resolvedTheme === 'dark' ? '/logo2.png' : '/logo.png');
   }, [resolvedTheme]);
+
+  // Оптимизация для Safari - предотвращение дергания
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      // Добавляем класс для предотвращения скролла body
+      document.body.style.overflow = 'hidden';
+      // Принудительный repaint для Safari
+      document.body.offsetHeight;
+    } else {
+      document.body.style.overflow = '';
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMobileMenuOpen]);
   
   const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     e.preventDefault();
@@ -142,38 +157,61 @@ export default function Header() {
         <div className="lg:hidden">
             <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
                 <SheetTrigger asChild>
-                    <Button variant="outline" size="icon">
+                    <Button 
+                        variant="outline" 
+                        size="icon"
+                        className="safari-menu-button" // Добавляем специальный класс для Safari
+                    >
                         <Menu className="h-6 w-6" />
                         <span className="sr-only">Open menu</span>
                     </Button>
                 </SheetTrigger>
                 <SheetContent 
                     side="right" 
-                    className="w-[300px] sm:w-[340px] flex flex-col p-0"
+                    className="w-[300px] sm:w-[340px] flex flex-col p-0 safari-sheet"
                     style={{ 
-                      willChange: 'transform',
-                      transform: 'translate3d(0, 0, 0)' // Принудительное включение аппаратного ускорения
+                      // Улучшенные стили для Safari
+                      willChange: 'transform, opacity',
+                      transform: 'translate3d(0, 0, 0)',
+                      backfaceVisibility: 'hidden',
+                      perspective: '1000px',
+                      WebkitTransform: 'translate3d(0, 0, 0)', // Webkit префикс для Safari
+                      WebkitBackfaceVisibility: 'hidden',
+                      WebkitPerspective: '1000px'
                     }}
                 >
                     <div className="flex items-center gap-2 p-4 border-b">
-                         <Link href="/" className="flex items-center gap-2" onClick={() => setIsMobileMenuOpen(false)}>
-                            <Image src={logoSrc} alt="Next Step Agency Logo" width={120} height={30} key={logoSrc + 'mobile'} priority />
+                         <Link 
+                            href="/" 
+                            className="flex items-center gap-2" 
+                            onClick={() => setIsMobileMenuOpen(false)}
+                         >
+                            <Image 
+                                src={logoSrc} 
+                                alt="Next Step Agency Logo" 
+                                width={120} 
+                                height={30} 
+                                key={logoSrc + 'mobile'} 
+                                priority 
+                                style={{ transform: 'translate3d(0, 0, 0)' }} // Принудительное GPU ускорение
+                            />
                          </Link>
                     </div>
-                    <div className='flex flex-col gap-4 p-4'>
+                    <div className='flex flex-col gap-4 p-4' style={{ transform: 'translate3d(0, 0, 0)' }}>
                         <nav className="flex flex-col gap-2">
                             {navLinks.map((link) => (
                                <a
                                   key={link.target}
                                   href={link.target}
-                                  className="text-lg font-medium text-foreground text-left justify-start p-2 rounded-md hover:bg-accent"
+                                  className="text-lg font-medium text-foreground text-left justify-start p-2 rounded-md hover:bg-accent transition-colors duration-200"
                                   onClick={(e) => handleScroll(e, link.target)}
+                                  style={{ transform: 'translate3d(0, 0, 0)' }}
                                 >
                                    {link.label}
                                 </a>
                             ))}
                         </nav>
-                        <div className="mt-6 space-y-4">
+                        <div className="mt-6 space-y-4" style={{ transform: 'translate3d(0, 0, 0)' }}>
                             <MobileQuoteButton />
                             <div className="flex justify-around pt-6 border-t">
                                 <DropdownMenu>
@@ -208,6 +246,28 @@ export default function Header() {
         </div>
 
       </div>
+
+      {/* Добавляем CSS стили для Safari */}
+      <style jsx>{`
+        @media screen and (-webkit-min-device-pixel-ratio: 0) {
+          .safari-menu-button {
+            -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+          }
+          
+          .safari-sheet {
+            -webkit-overflow-scrolling: touch;
+          }
+          
+          /* Оптимизация анимаций для Safari */
+          .safari-sheet * {
+            -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+          }
+        }
+      `}</style>
     </header>
   );
 }
