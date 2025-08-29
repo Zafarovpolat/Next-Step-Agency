@@ -49,12 +49,14 @@ export default function Header() {
       if (smoother) {
         smoother.scrollTo(targetElement, true);
       } else {
+        // Fallback for mobile or when smoother is not available
         targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     };
 
     if (isMobileMenuOpen) {
       setIsMobileMenuOpen(false);
+      // Wait for the sheet to close before scrolling
       setTimeout(scrollAction, 300); 
     } else {
       scrollAction();
