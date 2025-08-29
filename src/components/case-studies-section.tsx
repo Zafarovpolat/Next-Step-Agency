@@ -26,6 +26,8 @@ export default function CaseStudiesSection() {
       scrollTrigger: {
         trigger: container.current,
         start: "top 80%",
+        end: "bottom 20%",
+        toggleActions: "play none none none"
       }
     });
 
@@ -48,7 +50,7 @@ export default function CaseStudiesSection() {
   const caseStudies = [
     {
       client: "FUTURA Architects",
-      image: "/project1.png",
+      image: "/project1.webp",
       imageHint: "architecture website",
       stack: ["HTML", "CSS", "jQuery", "GSAP"],
       testimonialKey: "futura",
@@ -56,7 +58,7 @@ export default function CaseStudiesSection() {
     },
     {
       client: "Idfood",
-      image: "/project2.png",
+      image: "/project2.webp",
       imageHint: "food production",
       stack: ["Next.js", "CSS", "Framer Motion"],
       testimonialKey: "idfood",
@@ -64,7 +66,7 @@ export default function CaseStudiesSection() {
     },
     {
       client: "Testana",
-      image: "/project3.png",
+      image: "/project3.webp",
       imageHint: "script marketplace",
       stack: ["React", "Node.js", "CSS"],
       testimonialKey: "testana",
@@ -72,7 +74,7 @@ export default function CaseStudiesSection() {
     },
     {
       client: "TREQ Logistics",
-      image: "/project4.png",
+      image: "/project4.webp",
       imageHint: "logistics company",
       stack: ["HTML", "SCSS", "JS"],
       testimonialKey: "treq",
@@ -80,7 +82,7 @@ export default function CaseStudiesSection() {
     },
     {
       client: "SF.RU",
-      image: "/project5.png",
+      image: "/project5.webp",
       imageHint: "business automation",
       stack: ["HTML", "CSS", "JS"],
       testimonialKey: "sfru",
@@ -88,7 +90,7 @@ export default function CaseStudiesSection() {
     },
     {
       client: "Gofrostal",
-      image: "/project6.png",
+      image: "/project6.webp",
       imageHint: "industrial holding",
       stack: ["HTML", "CSS", "JS"],
       testimonialKey: "gofrostal",
@@ -132,6 +134,7 @@ export default function CaseStudiesSection() {
                             data-ai-hint={study.imageHint}
                             width={600}
                             height={400}
+                            loading="lazy"
                             className="object-cover w-full transition-transform duration-300 group-hover:scale-102"
                           />
                           <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">

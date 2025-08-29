@@ -41,7 +41,7 @@ export default function HeroSection() {
         </div>
       <div className="container mx-auto px-4 z-20">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl sm:text-5xl md:text-7xl font-black font-headline tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-foreground to-muted-foreground hero-element pb-2">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-black font-headline tracking-tighter text-foreground hero-element pb-2">
             {t.title}
           </h1>
           <p className="mt-6 text-md md:text-xl text-muted-foreground max-w-2xl mx-auto hero-element">

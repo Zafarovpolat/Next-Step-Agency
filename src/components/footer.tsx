@@ -28,6 +28,7 @@ export default function Footer() {
       scrollTrigger: {
         trigger: ".footer-content",
         start: "top 95%",
+        toggleActions: "play none none none"
       },
       y: 30,
       opacity: 0,
@@ -46,7 +47,7 @@ export default function Footer() {
       <div className="container mx-auto px-4 footer-content">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6 md:gap-8">
           <div className="flex items-center gap-2">
-            <Image src={logoSrc} alt="Next Step Agency Logo" width={150} height={38} key={logoSrc} />
+            <Image src={logoSrc} alt="Next Step Agency Logo" width={150} height={38} key={logoSrc} loading="lazy" />
           </div>
           <div className="text-center text-muted-foreground">
             <p>{t.phone}</p>

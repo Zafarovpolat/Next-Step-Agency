@@ -31,6 +31,7 @@ export default function Header() {
   const [logoSrc, setLogoSrc] = useState('/logo.png');
 
   useEffect(() => {
+    // Use resolvedTheme to handle system theme preference
     setLogoSrc(resolvedTheme === 'dark' ? '/logo2.png' : '/logo.png');
   }, [resolvedTheme]);
   
@@ -90,7 +91,7 @@ export default function Header() {
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 max-w-screen-2xl items-center justify-between mx-auto px-4">
         <Link href="/" className="flex items-center gap-2">
-          <Image src={logoSrc} alt="Next Step Agency Logo" width={120} height={30} key={logoSrc} />
+          <Image src={logoSrc} alt="Next Step Agency Logo" width={120} height={30} key={logoSrc} priority />
         </Link>
         
         {/* Desktop Navigation */}
@@ -144,7 +145,7 @@ export default function Header() {
                 <SheetContent side="right" className="w-[300px] sm:w-[340px] flex flex-col p-0">
                     <div className="flex items-center gap-2 p-4 border-b">
                          <Link href="/" className="flex items-center gap-2">
-                            <Image src={logoSrc} alt="Next Step Agency Logo" width={120} height={30} key={logoSrc + 'mobile'} />
+                            <Image src={logoSrc} alt="Next Step Agency Logo" width={120} height={30} key={logoSrc + 'mobile'} priority />
                          </Link>
                     </div>
                     <div className='flex flex-col gap-4 p-4'>

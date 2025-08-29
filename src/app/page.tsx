@@ -1,10 +1,41 @@
+
+import dynamic from 'next/dynamic';
 import Header from '@/components/header';
 import HeroSection from '@/components/hero-section';
-import PricingSection from '@/components/pricing-section';
-import RoiCalculator from '@/components/roi-calculator';
-import CaseStudiesSection from '@/components/case-studies-section';
-import LeadCaptureSection from '@/components/lead-capture-section';
 import Footer from '@/components/footer';
+import { Skeleton } from '@/components/ui/skeleton';
+
+const LoadingSkeleton = () => (
+  <div className="container mx-auto px-4 py-16 sm:py-24">
+    <div className="text-center mb-12">
+      <Skeleton className="h-12 w-1/2 mx-auto" />
+      <Skeleton className="h-6 w-3/4 mx-auto mt-4" />
+    </div>
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <Skeleton className="h-96 w-full" />
+      <Skeleton className="h-96 w-full" />
+      <Skeleton className="h-96 w-full" />
+    </div>
+  </div>
+);
+
+const PricingSection = dynamic(() => import('@/components/pricing-section'), { 
+  ssr: false,
+  loading: () => <LoadingSkeleton />,
+});
+const RoiCalculator = dynamic(() => import('@/components/roi-calculator'), { 
+  ssr: false,
+  loading: () => <LoadingSkeleton />,
+});
+const CaseStudiesSection = dynamic(() => import('@/components/case-studies-section'), { 
+  ssr: false,
+  loading: () => <LoadingSkeleton />,
+});
+const LeadCaptureSection = dynamic(() => import('@/components/lead-capture-section'), { 
+  ssr: false,
+  loading: () => <LoadingSkeleton />,
+});
+
 
 export default function Home() {
   return (
