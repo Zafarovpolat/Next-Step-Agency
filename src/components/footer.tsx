@@ -5,13 +5,8 @@ import { useState, useEffect } from 'react';
 import { Send, Instagram } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { useLanguage } from '@/contexts/language-context';
-import { useGSAP } from '@gsap/react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Image from 'next/image';
 import Link from 'next/link';
-
-gsap.registerPlugin(ScrollTrigger);
 
 export default function Footer() {
   const { translations } = useLanguage();
@@ -22,20 +17,6 @@ export default function Footer() {
   useEffect(() => {
     setLogoSrc(resolvedTheme === 'dark' ? '/logo2.png' : '/logo.png');
   }, [resolvedTheme]);
-
-  useGSAP(() => {
-    gsap.from(".footer-content", {
-      scrollTrigger: {
-        trigger: ".footer-content",
-        start: "top 95%",
-        toggleActions: "play none none none"
-      },
-      y: 30,
-      opacity: 0,
-      duration: 0.8,
-      ease: "power3.out",
-    });
-  }, []);
 
   const socialLinks = [
     { icon: Send, href: '#', name: 'Telegram' },

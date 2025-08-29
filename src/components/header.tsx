@@ -31,7 +31,6 @@ export default function Header() {
   const [logoSrc, setLogoSrc] = useState('/logo.png');
 
   useEffect(() => {
-    // Use resolvedTheme to handle system theme preference
     setLogoSrc(resolvedTheme === 'dark' ? '/logo2.png' : '/logo.png');
   }, [resolvedTheme]);
   
@@ -56,7 +55,7 @@ export default function Header() {
     
     if (isMobileMenuOpen) {
         setIsMobileMenuOpen(false);
-        setTimeout(scrollAction, 300); // Delay to allow menu to close
+        setTimeout(scrollAction, 300);
     } else {
         scrollAction();
     }
@@ -88,13 +87,12 @@ export default function Header() {
 
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/90">
       <div className="container flex h-16 max-w-screen-2xl items-center justify-between mx-auto px-4">
         <Link href="/" className="flex items-center gap-2">
           <Image src={logoSrc} alt="Next Step Agency Logo" width={120} height={30} key={logoSrc} priority />
         </Link>
         
-        {/* Desktop Navigation */}
         <nav className="hidden lg:flex items-center gap-2">
           {navLinks.map((link) => (
              <a key={link.target} href={link.target} onClick={(e) => handleScroll(e, link.target)} className={cn(linkClassName, 'inline-block')}>
@@ -133,7 +131,6 @@ export default function Header() {
           <QuoteButton />
         </div>
 
-        {/* Mobile Navigation */}
         <div className="lg:hidden">
             <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
                 <SheetTrigger asChild>
