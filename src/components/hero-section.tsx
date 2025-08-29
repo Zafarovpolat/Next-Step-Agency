@@ -16,8 +16,13 @@ export default function HeroSection() {
 
   const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, target: string) => {
     e.preventDefault();
+    const targetElement = document.querySelector(target);
+    if (!targetElement) return;
+
     if (smoother) {
         smoother.scrollTo(target, true, "top top");
+    } else {
+        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   }
 
