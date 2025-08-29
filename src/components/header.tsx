@@ -142,7 +142,11 @@ export default function Header() {
                 <SheetContent 
                     side="right" 
                     className="w-[300px] sm:w-[340px] flex flex-col p-0"
-                    style={{ willChange: 'transform' }}
+                    style={{ 
+                      willChange: 'transform', 
+                      backfaceVisibility: 'hidden', 
+                      perspective: '1000px' 
+                    }}
                 >
                     <div className="flex items-center gap-2 p-4 border-b">
                          <Link href="/" className="flex items-center gap-2">
