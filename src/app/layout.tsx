@@ -1,7 +1,6 @@
 
 "use client";
 
-import { useState, useEffect } from 'react';
 import type {Metadata} from 'next';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
@@ -9,6 +8,7 @@ import { ThemeProvider } from '@/components/theme-provider';
 import { LanguageProvider } from '@/contexts/language-context';
 import { GSAPProvider } from '@/contexts/gsap-provider';
 import Preloader from '@/components/preloader';
+import { useState } from 'react';
 
 export default function RootLayout({
   children,
@@ -16,12 +16,6 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const [isLoaded, setIsLoaded] = useState(false);
-
-  useEffect(() => {
-    // This effect ensures we only trigger the loading sequence once on the client
-    // The onComplete callback in the Preloader will set the isLoaded state.
-  }, []);
-
 
   return (
     <html lang="en" suppressHydrationWarning>
@@ -34,7 +28,7 @@ export default function RootLayout({
       </head>
       <body className="font-body antialiased">
         <Preloader onComplete={() => setIsLoaded(true)} />
-        <div style={{ visibility: isLoaded ? 'visible' : 'hidden' }}>
+        <div style={{ opacity: isLoaded ? 1 : 0, transition: 'opacity 0.5s ease-in' }}>
             <LanguageProvider>
               <ThemeProvider
                 attribute="class"

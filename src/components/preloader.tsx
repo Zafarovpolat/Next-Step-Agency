@@ -15,11 +15,11 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
     useGSAP(() => {
         const tl = gsap.timeline({
             onComplete: () => {
-                if (container.current) {
-                    // Directly hide the preloader container after animation completes
-                    gsap.set(container.current, { display: 'none' });
-                }
                 onComplete();
+                gsap.to(container.current, {
+                    display: 'none',
+                    duration: 0.1 // A small delay to ensure it happens after state update
+                });
             }
         });
         
