@@ -151,9 +151,8 @@ export default function Header() {
                     side="right" 
                     className="w-[300px] sm:w-[340px] flex flex-col p-0"
                     style={{ 
-                      willChange: 'transform', 
-                      backfaceVisibility: 'hidden', 
-                      perspective: '1000px' 
+                      willChange: 'transform',
+                      transform: 'translate3d(0, 0, 0)' // Принудительное включение аппаратного ускорения
                     }}
                 >
                     <div className="flex items-center gap-2 p-4 border-b">
