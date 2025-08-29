@@ -18,8 +18,6 @@ import { useLanguage } from '@/contexts/language-context';
 import { useScrollSmoother } from '@/contexts/gsap-provider';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
-import { useIsMobile } from '@/hooks/use-mobile';
-
 
 export default function Header() {
   const { setTheme, theme, resolvedTheme } = useTheme();
@@ -28,7 +26,6 @@ export default function Header() {
   const smoother = useScrollSmoother();
   const pathname = usePathname();
   const router = useRouter();
-  const isMobile = useIsMobile();
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [logoSrc, setLogoSrc] = useState('/logo.png');
@@ -49,18 +46,15 @@ export default function Header() {
       const targetElement = document.querySelector(targetId);
       if (!targetElement) return;
 
-      if (smoother && !isMobile) {
+      if (smoother) {
         smoother.scrollTo(targetElement, true);
       } else {
-        const yOffset = -80; // height of the sticky header
-        const y = targetElement.getBoundingClientRect().top + window.pageYOffset + yOffset;
-        window.scrollTo({ top: y, behavior: 'smooth' });
+        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     };
 
     if (isMobileMenuOpen) {
       setIsMobileMenuOpen(false);
-      // Wait for the sheet to close before scrolling
       setTimeout(scrollAction, 300); 
     } else {
       scrollAction();
