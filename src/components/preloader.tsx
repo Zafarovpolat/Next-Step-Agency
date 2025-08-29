@@ -13,14 +13,17 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
     const leftCurtainRef = useRef(null);
     const rightCurtainRef = useRef(null);
     const { resolvedTheme } = useTheme();
-    const [logoSrc, setLogoSrc] = useState('/logo.png'); // Default to light theme logo
+    const [logoSrc, setLogoSrc] = useState(''); // Initialize with empty string
 
     useEffect(() => {
-        // Set the correct logo based on the theme
+        // Set the correct logo based on the theme as soon as it's resolved
         setLogoSrc(resolvedTheme === 'dark' ? '/logo2.png' : '/logo.png');
     }, [resolvedTheme]);
 
     useGSAP(() => {
+        // Don't run animation until the theme is resolved and logoSrc is set
+        if (!logoSrc) return;
+
         const tl = gsap.timeline({
             onComplete: () => {
                 if (container.current) {
@@ -56,7 +59,7 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
             stagger: 0.1
         });
 
-    }, { scope: container, dependencies: [onComplete, logoSrc] });
+    }, { scope: container, dependencies: [onComplete, logoSrc] }); // Add logoSrc as a dependency
 
     return (
         <div ref={container} className="fixed inset-0 z-[100] flex items-center justify-center bg-background overflow-hidden">
