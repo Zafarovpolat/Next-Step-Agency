@@ -9,7 +9,6 @@ import { cn } from "@/lib/utils";
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Autoplay from "embla-carousel-autoplay"
 import { Link as LinkIcon } from "lucide-react";
 import Link from "next/link";
 
@@ -114,12 +113,6 @@ export default function CaseStudiesSection() {
               align: "start",
               loop: true,
             }}
-            plugins={[
-              Autoplay({
-                delay: 3000,
-                stopOnInteraction: true,
-              }),
-            ]}
             className="w-full"
           >
             <CarouselContent>
