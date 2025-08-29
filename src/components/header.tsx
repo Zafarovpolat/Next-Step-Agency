@@ -87,7 +87,7 @@ export default function Header() {
 
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/90">
+    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/90 backdrop-blur-sm">
       <div className="container flex h-16 max-w-screen-2xl items-center justify-between mx-auto px-4">
         <Link href="/" className="flex items-center gap-2">
           <Image src={logoSrc} alt="Next Step Agency Logo" width={120} height={30} key={logoSrc} priority />
@@ -139,7 +139,11 @@ export default function Header() {
                         <span className="sr-only">Open menu</span>
                     </Button>
                 </SheetTrigger>
-                <SheetContent side="right" className="w-[300px] sm:w-[340px] flex flex-col p-0">
+                <SheetContent 
+                    side="right" 
+                    className="w-[300px] sm:w-[340px] flex flex-col p-0"
+                    style={{ willChange: 'transform' }}
+                >
                     <div className="flex items-center gap-2 p-4 border-b">
                          <Link href="/" className="flex items-center gap-2">
                             <Image src={logoSrc} alt="Next Step Agency Logo" width={120} height={30} key={logoSrc + 'mobile'} priority />
