@@ -21,7 +21,7 @@ export default function RootLayout({
     // Simulate page loading
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 1500); // Adjust time as needed or use more sophisticated loading detection
+    }, 2800); // Adjust time to match preloader animation
 
     return () => clearTimeout(timer);
   }, []);
@@ -37,10 +37,8 @@ export default function RootLayout({
         <meta name="description" content="Driving Growth Through Technology" />
       </head>
       <body className="font-body antialiased">
-        <div className={isLoading ? 'block' : 'hidden'}>
-            <Preloader />
-        </div>
-        {!isLoading && (
+        {isLoading && <Preloader />}
+        <div style={{ visibility: isLoading ? 'hidden' : 'visible' }}>
             <LanguageProvider>
               <ThemeProvider
                 attribute="class"
@@ -54,7 +52,7 @@ export default function RootLayout({
                 <Toaster />
               </ThemeProvider>
             </LanguageProvider>
-        )}
+        </div>
       </body>
     </html>
   );

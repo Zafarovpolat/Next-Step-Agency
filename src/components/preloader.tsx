@@ -4,90 +4,49 @@
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { useRef } from 'react';
+import Image from 'next/image';
 
 export default function Preloader() {
     const container = useRef(null);
     const logoRef = useRef(null);
+    const leftCurtainRef = useRef(null);
+    const rightCurtainRef = useRef(null);
 
     useGSAP(() => {
         const tl = gsap.timeline();
+        
+        // Initial state
+        gsap.set([leftCurtainRef.current, rightCurtainRef.current], { scaleX: 1 });
+        gsap.set(logoRef.current, { opacity: 0, scale: 0.9 });
+
+        // Animation sequence
         tl.to(logoRef.current, {
             opacity: 1,
             scale: 1,
-            duration: 1,
+            duration: 0.8,
             ease: 'power3.inOut'
         })
+        .to(logoRef.current, {
+            opacity: 0,
+            duration: 0.5,
+            ease: 'power3.in'
+        }, "+=0.5")
+        .to([leftCurtainRef.current, rightCurtainRef.current], {
+            scaleX: 0,
+            duration: 1.2,
+            ease: 'power3.inOut',
+            stagger: 0.1
+        });
+
     }, { scope: container });
 
     return (
-        <div ref={container} className="fixed inset-0 z-[100] flex items-center justify-center bg-background">
-            <div ref={logoRef} className="opacity-0 scale-90">
-                 <svg
-                    width="80"
-                    height="80"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="animate-spin"
-                    >
-                    <path
-                        d="M12 2V6"
-                        stroke="hsl(var(--primary))"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                    />
-                    <path
-                        d="M12 18V22"
-                        stroke="hsl(var(--primary))"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                    />
-                    <path
-                        d="M4.93 4.93L7.76 7.76"
-                        stroke="hsl(var(--primary))"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                    />
-                    <path
-                        d="M16.24 16.24L19.07 19.07"
-                        stroke="hsl(var(--primary))"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                    />
-                    <path
-                        d="M2 12H6"
-                        stroke="hsl(var(--primary))"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                    />
-                    <path
-                        d="M18 12H22"
-                        stroke="hsl(var(--primary))"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                    />
-                    <path
-                        d="M4.93 19.07L7.76 16.24"
-                        stroke="hsl(var(--primary))"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                    />
-                    <path
-                        d="M16.24 7.76L19.07 4.93"
-                        stroke="hsl(var(--primary))"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                    />
-                </svg>
+        <div ref={container} className="fixed inset-0 z-[100] flex items-center justify-center bg-background overflow-hidden">
+            <div ref={logoRef} className="absolute z-20 opacity-0 scale-90">
+                 <Image src="/logo2.png" alt="Next Step Agency Logo" width={150} height={38} />
             </div>
+            <div ref={leftCurtainRef} className="absolute left-0 top-0 h-full w-1/2 bg-background origin-left"></div>
+            <div ref={rightCurtainRef} className="absolute right-0 top-0 h-full w-1/2 bg-background origin-right"></div>
         </div>
     )
 }
