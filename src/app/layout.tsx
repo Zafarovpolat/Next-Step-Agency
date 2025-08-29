@@ -15,14 +15,14 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    // Simulate page loading
+    // This effect ensures we only trigger the loading sequence once on the client
     const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2800); // Adjust time to match preloader animation
-
+      // The onComplete callback in the Preloader will set this
+    }, 0); 
+    
     return () => clearTimeout(timer);
   }, []);
 
@@ -37,8 +37,8 @@ export default function RootLayout({
         <meta name="description" content="Driving Growth Through Technology" />
       </head>
       <body className="font-body antialiased">
-        {isLoading && <Preloader />}
-        <div style={{ visibility: isLoading ? 'hidden' : 'visible' }}>
+        <Preloader onComplete={() => setIsLoaded(true)} />
+        <div style={{ visibility: isLoaded ? 'visible' : 'hidden' }}>
             <LanguageProvider>
               <ThemeProvider
                 attribute="class"

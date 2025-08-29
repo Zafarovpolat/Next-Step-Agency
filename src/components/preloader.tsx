@@ -3,17 +3,24 @@
 
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import Image from 'next/image';
 
-export default function Preloader() {
+export default function Preloader({ onComplete }: { onComplete: () => void }) {
     const container = useRef(null);
     const logoRef = useRef(null);
     const leftCurtainRef = useRef(null);
     const rightCurtainRef = useRef(null);
 
     useGSAP(() => {
-        const tl = gsap.timeline();
+        const tl = gsap.timeline({
+            onComplete: () => {
+                if (container.current) {
+                    gsap.set(container.current, { display: 'none' });
+                }
+                onComplete();
+            }
+        });
         
         // Initial state
         gsap.set([leftCurtainRef.current, rightCurtainRef.current], { scaleX: 1 });
