@@ -52,43 +52,26 @@ export default function PricingSection() {
   const plans = [
     {
       name: t.plans.starter.name,
-      price: '$520',
+      price: t.plans.starter.price,
       priceDetails: t.plans.starter.priceDetails,
       description: t.plans.starter.description,
-      features: [
-        t.plans.starter.features.landingPage,
-        t.plans.starter.features.seo,
-        t.plans.starter.features.responsive,
-        t.plans.starter.features.analytics,
-      ],
+      features: Object.values(t.plans.starter.features),
       isPopular: false,
     },
     {
       name: t.plans.business.name,
-      price: '$1040',
+      price: t.plans.business.price,
       priceDetails: t.plans.business.priceDetails,
       description: t.plans.business.description,
-      features: [
-        t.plans.business.features.multiPage,
-        t.plans.business.features.advancedSeo,
-        t.plans.business.features.cms,
-        t.plans.business.features.leadCapture,
-        t.plans.business.features.reports,
-      ],
+      features: Object.values(t.plans.business.features),
       isPopular: true,
     },
     {
       name: t.plans.premium.name,
-      price: '$1900',
+      price: t.plans.premium.price,
       priceDetails: t.plans.premium.priceDetails,
       description: t.plans.premium.description,
-      features: [
-        t.plans.premium.features.customApp,
-        t.plans.premium.features.ecommerce,
-        t.plans.premium.features.api,
-        t.plans.premium.features.accountManager,
-        t.plans.premium.features.support,
-      ],
+      features: Object.values(t.plans.premium.features),
       isPopular: false,
     },
   ];
@@ -131,8 +114,8 @@ export default function PricingSection() {
                   </div>
                   <ul className="space-y-3 text-muted-foreground">
                     {plan.features.map((feature) => (
-                      <li key={feature} className="flex items-center gap-3">
-                        <Check className="h-5 w-5 text-primary" />
+                      <li key={feature} className="flex items-start gap-3">
+                        <Check className="h-5 w-5 text-primary mt-1 shrink-0" />
                         <span>{feature}</span>
                       </li>
                     ))}

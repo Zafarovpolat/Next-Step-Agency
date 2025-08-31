@@ -16,48 +16,50 @@
     "seeOurWork": "See Our Work"
   },
   "pricingSection": {
-    "title": "Clear Pricing, Powerful Results",
+    "title": "Pricing Plans for Your Business",
     "subtitle": "Choose the plan that fits your ambition. No hidden fees, just transparent partnership.",
     "mostPopular": "Most Popular",
     "getStarted": "Get Started",
-    "moreInfo": "Compare all features",
+    "moreInfo": "Detailed Plan Comparison",
     "plans": {
       "starter": {
         "name": "Starter",
-        "price": "$520",
+        "price": "$399",
         "priceDetails": "",
-        "description": "For new businesses and startups ready to make their mark.",
+        "description": "Perfect for new businesses ready to launch online.",
         "features": {
-          "landingPage": "Custom Landing Page",
-          "seo": "SEO Basics",
-          "responsive": "Mobile-Responsive Design",
-          "analytics": "Basic Analytics"
+          "f1": "Custom Landing Page: A professional single-page website to showcase your business.",
+          "f2": "Mobile-Friendly Design: Looks great on phones, tablets, and desktops.",
+          "f3": "Basic SEO: Get found on Google with simple search optimization.",
+          "f4": "Basic Analytics: Track visitors and see how your site performs."
         }
       },
       "business": {
         "name": "Business",
-        "price": "$1040",
-        "priceDetails": "+ $99/mo for bot support",
-        "description": "For growing businesses aiming to scale and optimize.",
+        "price": "$699",
+        "priceDetails": "+ $49/mo for bot support",
+        "description": "Ideal for growing businesses wanting to scale.",
         "features": {
-          "multiPage": "Multi-page Website (up to 10 pages)",
-          "advancedSeo": "Advanced SEO & Content Strategy",
-          "cms": "CMS Integration",
-          "leadCapture": "Lead Capture Forms",
-          "reports": "Monthly Performance Reports"
+          "f1": "Multi-Page Website (up to 8 pages): A full website with pages for services, about, contact, and more.",
+          "f2": "Advanced SEO: Improved search rankings with keyword strategy.",
+          "f3": "Content Management System (CMS): Easily update your site yourself.",
+          "f4": "Lead Capture Forms: Collect customer info for follow-ups.",
+          "f5": "Online Store Setup: Sell products online with secure payments.",
+          "f6": "Monthly Reports: Insights on your website’s performance."
         }
       },
       "premium": {
         "name": "Premium",
-        "price": "$1900",
-        "priceDetails": "+ $239/mo for bot support<br>+ $399/mo for SMM (from 4th month)",
-        "description": "For established enterprises requiring a full-service solution.",
+        "price": "$999",
+        "priceDetails": "+ $99/mo for bot support + $149/mo for social media (from month 4)",
+        "description": "For established businesses needing a complete solution.",
         "features": {
-          "customApp": "Custom Web Application",
-          "ecommerce": "E-commerce Functionality",
-          "api": "API Integrations",
-          "accountManager": "Dedicated Account Manager",
-          "support": "24/7 Priority Support"
+          "f1": "Custom Web Application: A tailored website or app for your unique needs.",
+          "f2": "E-commerce Store: Sell products online with secure payments and advanced features.",
+          "f3": "AI Automation: Smart tools to automate customer support, inventory, or marketing tasks.",
+          "f4": "API Integrations: Connect your site to other tools (e.g., CRM, payment systems).",
+          "f5": "Dedicated Support: A personal manager and 24/7 priority help.",
+          "f6": "Advanced Analytics: Detailed reports to track and grow your business."
         }
       }
     }
@@ -116,34 +118,35 @@
   },
   "pricingDetailsPage": {
     "title": "Detailed Plan Comparison",
-    "subtitle": "Find the perfect fit for your needs. Here's a detailed breakdown of what each plan includes.",
+    "subtitle": "Find the plan that fits your business. Here’s what you get with each one:",
     "goBack": "Go Back",
     "tableHeaders": {
       "features": "Features",
-      "start": "Start",
+      "start": "Starter",
       "business": "Business",
       "premium": "Premium"
     },
     "features": {
-      "consultation": "Free Business Checkup",
-      "responsive": "Mobile-Friendly Design",
-      "hosting": "Website Hosting & Domain",
-      "basicSeo": "Basic Search Optimization",
-      "payment": "Easy Payment Setup",
-      "training": "Client Support Training",
-      "landing": "Landing Page",
-      "forms": "Contact & Feedback Forms",
-      "cms": "Website Management System",
-      "basicAnalytics": "Simple Performance Tracking",
-      "onlineStore": "Online Shop Setup",
-      "telegramBot": "Telegram Assistant",
-      "simpleCrm": "Basic Customer Management",
-      "customApp": "Tailored Web Solution",
-      "advancedBot": "Advanced Telegram Manager",
-      "crmIntegration": "Customer Management Integration",
-      "smm": "Social Media Management (3 Months)",
-      "adminAnalytics": "Advanced Analytics Dashboard",
-      "kpi": "Performance Guarantees"
+      "f1": "Free Business Checkup",
+      "f2": "Mobile-Friendly Website",
+      "f3": "Website Hosting & Domain",
+      "f4": "Basic SEO",
+      "f5": "Easy Payment Setup",
+      "f6": "Client Support Training",
+      "f7": "Custom Landing Page",
+      "f8": "Contact & Feedback Forms",
+      "f9": "Content Management System",
+      "f10": "Simple Performance Tracking",
+      "f11": "Online Store Setup",
+      "f12": "Telegram Chatbot",
+      "f13": "Basic Customer Management",
+      "f14": "Custom Web Solution",
+      "f15": "Advanced Telegram Bot",
+      "f16": "AI Automation",
+      "f17": "Customer Management Integration",
+      "f18": "Social Media Management (3 Months)",
+      "f19": "Advanced Analytics Dashboard",
+      "f20": "Performance Guarantees"
     }
   }
 }

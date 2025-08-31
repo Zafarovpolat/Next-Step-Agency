@@ -18,33 +18,33 @@ import { useScrollSmoother } from '@/contexts/gsap-provider';
 
 export default function PricingDetailsPage() {
   const { translations } = useLanguage();
-  const { pricingDetailsPage: t, header: headerT, leadCaptureSection: leadT } = translations;
+  const { pricingDetailsPage: t, header: headerT } = translations;
   const smoother = useScrollSmoother();
 
   const features = [
-    { feature: t.features.consultation, start: true, business: true, premium: true },
-    { feature: t.features.responsive, start: true, business: true, premium: true },
-    { feature: t.features.hosting, start: true, business: true, premium: true },
-    { feature: t.features.basicSeo, start: true, business: true, premium: true },
-    { feature: t.features.payment, start: true, business: true, premium: true },
-    { feature: t.features.training, start: true, business: true, premium: true },
-    { feature: t.features.landing, start: true, business: true, premium: true },
-    { feature: t.features.forms, start: true, business: true, premium: true },
-    { feature: t.features.cms, start: true, business: true, premium: true },
-    { feature: t.features.basicAnalytics, start: true, business: true, premium: true },
-    { feature: t.features.onlineStore, start: false, business: true, premium: true },
-    { feature: t.features.telegramBot, start: false, business: true, premium: true },
-    { feature: t.features.simpleCrm, start: false, business: true, premium: true },
-    { feature: t.features.customApp, start: false, business: false, premium: true },
-    { feature: t.features.advancedBot, start: false, business: false, premium: true },
-    { feature: t.features.crmIntegration, start: false, business: false, premium: true },
-    { feature: t.features.smm, start: false, business: false, premium: true },
-    { feature: t.features.adminAnalytics, start: false, business: false, premium: true },
-    { feature: t.features.kpi, start: false, business: false, premium: true },
+    { feature: t.features.f1, start: true, business: true, premium: true },
+    { feature: t.features.f2, start: true, business: true, premium: true },
+    { feature: t.features.f3, start: true, business: true, premium: true },
+    { feature: t.features.f4, start: true, business: true, premium: true },
+    { feature: t.features.f5, start: true, business: true, premium: true },
+    { feature: t.features.f6, start: true, business: true, premium: true },
+    { feature: t.features.f7, start: true, business: true, premium: true },
+    { feature: t.features.f8, start: false, business: true, premium: true },
+    { feature: t.features.f9, start: false, business: true, premium: true },
+    { feature: t.features.f10, start: true, business: true, premium: true },
+    { feature: t.features.f11, start: false, business: true, premium: true },
+    { feature: t.features.f12, start: false, business: true, premium: true },
+    { feature: t.features.f13, start: false, business: true, premium: true },
+    { feature: t.features.f14, start: false, business: false, premium: true },
+    { feature: t.features.f15, start: false, business: false, premium: true },
+    { feature: t.features.f16, start: false, business: false, premium: true },
+    { feature: t.features.f17, start: false, business: false, premium: true },
+    { feature: t.features.f18, start: false, business: false, premium: true },
+    { feature: t.features.f19, start: false, business: false, premium: true },
+    { feature: t.features.f20, start: false, business: false, premium: true },
   ];
 
   useEffect(() => {
-    // Use the smoother to scroll to top if it's available, otherwise use window.scrollTo
     if (smoother) {
       smoother.scrollTop(0);
     } else {
