@@ -28,10 +28,10 @@
         "priceDetails": "",
         "description": "Perfect for new businesses ready to launch online.",
         "features": {
-          "f1": "Custom Landing Page: A professional single-page website to showcase your business.",
-          "f2": "Mobile-Friendly Design: Looks great on phones, tablets, and desktops.",
-          "f3": "Basic SEO: Get found on Google with simple search optimization.",
-          "f4": "Basic Analytics: Track visitors and see how your site performs."
+          "f1": "Custom Landing Page",
+          "f2": "Mobile-Friendly Design",
+          "f3": "Basic SEO",
+          "f4": "Basic Analytics"
         }
       },
       "business": {
@@ -40,12 +40,12 @@
         "priceDetails": "+ $49/mo for bot support",
         "description": "Ideal for growing businesses wanting to scale.",
         "features": {
-          "f1": "Multi-Page Website (up to 8 pages): A full website with pages for services, about, contact, and more.",
-          "f2": "Advanced SEO: Improved search rankings with keyword strategy.",
-          "f3": "Content Management System (CMS): Easily update your site yourself.",
-          "f4": "Lead Capture Forms: Collect customer info for follow-ups.",
-          "f5": "Online Store Setup: Sell products online with secure payments.",
-          "f6": "Monthly Reports: Insights on your website’s performance."
+          "f1": "Multi-Page Website (up to 8 pages)",
+          "f2": "Advanced SEO",
+          "f3": "Content Management System (CMS)",
+          "f4": "Lead Capture Forms",
+          "f5": "Online Store Setup",
+          "f6": "Monthly Reports"
         }
       },
       "premium": {
@@ -54,12 +54,12 @@
         "priceDetails": "+ $99/mo for bot support + $149/mo for social media (from month 4)",
         "description": "For established businesses needing a complete solution.",
         "features": {
-          "f1": "Custom Web Application: A tailored website or app for your unique needs.",
-          "f2": "E-commerce Store: Sell products online with secure payments and advanced features.",
-          "f3": "AI Automation: Smart tools to automate customer support, inventory, or marketing tasks.",
-          "f4": "API Integrations: Connect your site to other tools (e.g., CRM, payment systems).",
-          "f5": "Dedicated Support: A personal manager and 24/7 priority help.",
-          "f6": "Advanced Analytics: Detailed reports to track and grow your business."
+          "f1": "Custom Web Application",
+          "f2": "E-commerce Store",
+          "f3": "AI Automation",
+          "f4": "API Integrations",
+          "f5": "Dedicated Support",
+          "f6": "Advanced Analytics"
         }
       }
     }
