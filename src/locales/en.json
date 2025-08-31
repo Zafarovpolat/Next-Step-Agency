@@ -31,7 +31,8 @@
           "f1": "Custom Landing Page",
           "f2": "Mobile-Friendly Design",
           "f3": "Basic SEO",
-          "f4": "Basic Analytics"
+          "f4": "Basic Analytics",
+          "f5": "Lead Capture Forms"
         }
       },
       "business": {
@@ -43,9 +44,7 @@
           "f1": "Multi-Page Website (up to 8 pages)",
           "f2": "Advanced SEO",
           "f3": "Content Management System (CMS)",
-          "f4": "Lead Capture Forms",
-          "f5": "Online Store Setup",
-          "f6": "Monthly Reports"
+          "f4": "Online Store Setup"
         }
       },
       "premium": {
@@ -58,8 +57,7 @@
           "f2": "E-commerce Store",
           "f3": "AI Automation",
           "f4": "API Integrations",
-          "f5": "Dedicated Support",
-          "f6": "Advanced Analytics"
+          "f5": "Advanced Analytics"
         }
       }
     }
