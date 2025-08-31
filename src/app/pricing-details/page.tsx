@@ -29,8 +29,8 @@ export default function PricingDetailsPage() {
     { feature: t.features.f5, start: true, business: true, premium: true },
     { feature: t.features.f6, start: true, business: true, premium: true },
     { feature: t.features.f7, start: true, business: true, premium: true },
-    { feature: t.features.f8, start: false, business: true, premium: true },
-    { feature: t.features.f9, start: false, business: true, premium: true },
+    { feature: t.features.f8, start: true, business: true, premium: true },
+    { feature: t.features.f9, start: true, business: true, premium: true },
     { feature: t.features.f10, start: true, business: true, premium: true },
     { feature: t.features.f11, start: false, business: true, premium: true },
     { feature: t.features.f12, start: false, business: true, premium: true },
@@ -108,7 +108,7 @@ export default function PricingDetailsPage() {
                         <td className="py-4 px-4 sm:px-6 text-center">
                           {item.business ? <Check className="h-5 w-5 text-green-500 mx-auto" /> : <Minus className="h-5 w-5 text-muted-foreground mx-auto" />}
                         </td>
-                        <td className="py-4 px-4 sm:px-6 text-center">
+                        <td className="py-4 px-4 sm-px-6 text-center">
                           {item.premium ? <Check className="h-5 w-5 text-green-500 mx-auto" /> : <Minus className="h-5 w-5 text-muted-foreground mx-auto" />}
                         </td>
                       </tr>
