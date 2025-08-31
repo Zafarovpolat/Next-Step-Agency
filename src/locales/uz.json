@@ -16,7 +16,7 @@
     "seeOurWork": "Ishlarimizni Ko'rish"
   },
   "pricingSection": {
-    "title": "Aniq Narxlar, Kuchli Natijalar",
+    "title": "Biznesingiz uchun tarif rejalari",
     "subtitle": "O'z ambitsiyalaringizga mos rejani tanlang. Yashirin to'lovlar yo'q, faqat shaffof hamkorlik.",
     "mostPopular": "Eng Ommabop",
     "getStarted": "Boshlash",
@@ -24,40 +24,41 @@
     "plans": {
       "starter": {
         "name": "Boshlang'ich",
-        "price": "$520",
+        "price": "$399",
         "priceDetails": "",
-        "description": "O'z izini qoldirishga tayyor yangi biznes va startaplar uchun.",
+        "description": "Onlayn faoliyatini boshlashga tayyor yangi bizneslar uchun juda mos.",
         "features": {
-          "landingPage": "Maxsus Lending Sahifa",
-          "seo": "SEO Asoslari",
-          "responsive": "Mobil-moslashuvchan Dizayn",
-          "analytics": "Asosiy Analitika"
+          "f1": "Maxsus Lending Sahifa",
+          "f2": "Mobil qurilmalarga mos dizayn",
+          "f3": "Asosiy SEO",
+          "f4": "Asosiy analitika",
+          "f5": "Lid yig'ish formalari",
+          "f6": "Kontentni boshqarish tizimi"
         }
       },
       "business": {
         "name": "Biznes",
-        "price": "$1040",
-        "priceDetails": "+ botni qo'llab-quvvatlash uchun $99/oy",
-        "description": "Kengayish va optimallashtirishni maqsad qilgan o'sayotgan bizneslar uchun.",
+        "price": "$699",
+        "priceDetails": "+ botni qo'llab-quvvatlash uchun oyiga $49",
+        "description": "Kengayishni xohlaydigan o'sib borayotgan bizneslar uchun ideal.",
         "features": {
-          "multiPage": "Ko'p sahifali veb-sayt (10 sahifagacha)",
-          "advancedSeo": "Ilg'or SEO va Kontent Strategiyasi",
-          "cms": "CMS Integratsiyasi",
-          "leadCapture": "Lidlarni Qamrab Olish Formalari",
-          "reports": "Oylik Samaradorlik Hisobotlari"
+          "f1": "Ko'p sahifali veb-sayt (8 sahifagacha)",
+          "f2": "Ilg'or SEO",
+          "f3": "Kontentni boshqarish tizimi (CMS)",
+          "f4": "Onlayn-do'kon sozlamalari"
         }
       },
       "premium": {
         "name": "Premium",
-        "price": "$1900",
-        "priceDetails": "+ botni qo'llab-quvvatlash uchun $239/oy<br>+ SMM uchun $399/oy (4-oydan boshlab)",
-        "description": "To'liq xizmat yechimini talab qiladigan yirik korxonalar uchun.",
+        "price": "$999",
+        "priceDetails": "+ botni qo'llab-quvvatlash uchun oyiga $99 + ijtimoiy tarmoqlar uchun oyiga $149 (4-oydan boshlab)",
+        "description": "To'liq yechimga muhtoj bo'lgan barqaror bizneslar uchun.",
         "features": {
-          "customApp": "Maxsus Veb-Ilova",
-          "ecommerce": "Elektron Tijorat Funktsionalligi",
-          "api": "API Integratsiyalari",
-          "accountManager": "Maxsus Hisob Menejeri",
-          "support": "24/7 Ustuvor Qo'llab-quvvatlash"
+          "f1": "Maxsus veb-ilova",
+          "f2": "Elektron tijorat do'koni",
+          "f3": "AI avtomatizatsiyasi",
+          "f4": "API integratsiyalari",
+          "f5": "Kengaytirilgan analitika"
         }
       }
     }
@@ -116,7 +117,7 @@
   },
   "pricingDetailsPage": {
     "title": "Rejalarni batafsil taqqoslash",
-    "subtitle": "Ehtiyojlaringiz uchun mukammal yechimni toping. Har bir reja nimalarni o'z ichiga olganining batafsil tavsifi.",
+    "subtitle": "Biznesingizga mos rejani toping. Har bir rejaning tarkibiga nimalar kirishini ko'rib chiqing:",
     "goBack": "Ortga",
     "tableHeaders": {
       "features": "Xususiyatlar",
@@ -125,25 +126,26 @@
       "premium": "Premium"
     },
     "features": {
-      "consultation": "Biznesni bepul tekshirish",
-      "responsive": "Mobilga moslashgan dizayn",
-      "hosting": "Veb-sayt xostingi va domeni",
-      "basicSeo": "Asosiy qidiruv optimallashtirish",
-      "payment": "Oson to'lovni sozlash",
-      "training": "Mijozlarni qo'llab-quvvatlash bo'yicha trening",
-      "landing": "Lending sahifa",
-      "forms": "Aloqa va fikr-mulohaza shakllari",
-      "cms": "Veb-saytni boshqarish tizimi",
-      "basicAnalytics": "Oddiy ishlashni kuzatish",
-      "onlineStore": "Onlayn do'konni sozlash",
-      "telegramBot": "Telegram yordamchisi",
-      "simpleCrm": "Asosiy mijozlarni boshqarish",
-      "customApp": "Moslashtirilgan veb-yechim",
-      "advancedBot": "Ilg'or Telegram menejeri",
-      "crmIntegration": "Mijozlarni boshqarish tizimi integratsiyasi",
-      "smm": "Ijtimoiy media boshqaruvi (3 oy)",
-      "adminAnalytics": "Kengaytirilgan tahlil paneli",
-      "kpi": "Ishlash kafolatlari"
+      "f1": "Biznesni bepul tekshirish",
+      "f2": "Mobilga moslashgan veb-sayt",
+      "f3": "Veb-sayt xostingi va domeni",
+      "f4": "Asosiy qidiruv optimallashtirish (SEO)",
+      "f5": "Oson to'lovni sozlash",
+      "f6": "Mijozlarni qo'llab-quvvatlash bo'yicha trening",
+      "f7": "Maxsus Lending sahifa",
+      "f8": "Aloqa va fikr-mulohaza shakllari",
+      "f9": "Kontentni boshqarish tizimi (CMS)",
+      "f10": "Oddiy ishlashni kuzatish",
+      "f11": "Onlayn-do'konni sozlash",
+      "f12": "Telegram yordamchisi",
+      "f13": "Asosiy mijozlarni boshqarish",
+      "f14": "Maxsus veb-yechim",
+      "f15": "Ilg'or Telegram menejeri",
+      "f16": "AI bilan avtomatlashtirish",
+      "f17": "CRM bilan integratsiya",
+      "f18": "Ijtimoiy media boshqaruvi (3 oy)",
+      "f19": "Kengaytirilgan tahlil paneli",
+      "f20": "Ishlash kafolatlari"
     }
   }
 }
