@@ -22,7 +22,6 @@ export default function PricingDetailsPage() {
   const smoother = useScrollSmoother();
 
   const features = [
-    { feature: t.features.f1, start: true, business: true, premium: true },
     { feature: t.features.f2, start: true, business: true, premium: true },
     { feature: t.features.f3, start: true, business: true, premium: true },
     { feature: t.features.f4, start: true, business: true, premium: true },
@@ -40,8 +39,6 @@ export default function PricingDetailsPage() {
     { feature: t.features.f16, start: false, business: false, premium: true },
     { feature: t.features.f17, start: false, business: false, premium: true },
     { feature: t.features.f18, start: false, business: false, premium: true },
-    { feature: t.features.f19, start: false, business: false, premium: true },
-    { feature: t.features.f20, start: false, business: false, premium: true },
   ];
 
   useEffect(() => {

@@ -32,8 +32,7 @@
           "f2": "Mobil qurilmalarga mos dizayn",
           "f3": "Asosiy SEO",
           "f4": "Asosiy analitika",
-          "f5": "Lid yig'ish formalari",
-          "f6": "Kontentni boshqarish tizimi"
+          "f5": "Lid yig'ish formalari"
         }
       },
       "business": {
@@ -88,7 +87,7 @@
       "sfru": "Avtomatlashtirish kompaniyasi uchun murakkab xizmatlarni oddiy tilda tushuntiruvchi va kuchli lid-generatsiya vositasi bo'lib xizmat qiluvchi sayt yaratildi.",
       "gofrostal": "Sanoat xoldingi korxonasining sanoat qudrati va keng muhandislik tajribasini aks ettiruvchi rasmiy veb-sayti ishlab chiqildi."
     }
-  },
+},
   "leadCaptureSection": {
     "title": "Keyingi Qadamga Tayyormisiz?",
     "subtitle": "Loyihangiz haqida gaplashaylik. Bepul maslahat uchun quyidagi formani to'ldiring.",
@@ -126,7 +125,6 @@
       "premium": "Premium"
     },
     "features": {
-      "f1": "Biznesni bepul tekshirish",
       "f2": "Mobilga moslashgan veb-sayt",
       "f3": "Veb-sayt xostingi va domeni",
       "f4": "Asosiy qidiruv optimallashtirish (SEO)",
@@ -143,9 +141,7 @@
       "f15": "Ilg'or Telegram menejeri",
       "f16": "AI bilan avtomatlashtirish",
       "f17": "CRM bilan integratsiya",
-      "f18": "Ijtimoiy media boshqaruvi (3 oy)",
-      "f19": "Kengaytirilgan tahlil paneli",
-      "f20": "Ishlash kafolatlari"
+      "f18": "Ijtimoiy media boshqaruvi (3 oy)"
     }
   }
 }

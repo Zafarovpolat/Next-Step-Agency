@@ -125,7 +125,6 @@
       "premium": "Premium"
     },
     "features": {
-      "f1": "Free Business Checkup",
       "f2": "Mobile-Friendly Website",
       "f3": "Website Hosting & Domain",
       "f4": "Basic SEO",
@@ -142,9 +141,7 @@
       "f15": "Advanced Telegram Bot",
       "f16": "AI Automation",
       "f17": "Customer Management Integration",
-      "f18": "Social Media Management (3 Months)",
-      "f19": "Advanced Analytics Dashboard",
-      "f20": "Performance Guarantees"
+      "f18": "Social Media Management (3 Months)"
     }
   }
 }
