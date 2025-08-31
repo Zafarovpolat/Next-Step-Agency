@@ -57,7 +57,6 @@ export const GSAPProvider = ({ children }: { children: ReactNode }) => {
 
     mm.add("(max-width: 999px)", () => {
       // Ensure native smooth scrolling is enabled for mobile.
-      // GSAP's ScrollSmoother can interfere with this.
       document.documentElement.style.scrollBehavior = 'smooth';
       
       return () => {

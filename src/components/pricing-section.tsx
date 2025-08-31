@@ -150,7 +150,7 @@ export default function PricingSection({ setSelectedPlan }: { setSelectedPlan: (
           ))}
         </div>
         <div className="mt-12 text-center more-info-button">
-            <Button variant="secondary" size="lg" asChild>
+            <Button variant="ghost" size="lg" asChild>
                 <Link href="/pricing-details">{t.moreInfo}</Link>
             </Button>
         </div>
