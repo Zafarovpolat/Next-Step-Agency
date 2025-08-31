@@ -1,6 +1,6 @@
 
 "use client";
-import { useState, type FormEvent } from "react";
+import { useState, type FormEvent, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -8,13 +8,33 @@ import { CheckCircle2, Loader2 } from "lucide-react";
 import { useLanguage } from "@/contexts/language-context";
 import { cn } from "@/lib/utils";
 import { submitLead } from "@/app/actions";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Label } from "@/components/ui/label";
 
-export default function LeadCaptureCard({ className, showHeader = false }: { className?: string; showHeader?: boolean; }) {
+type Plan = 'Starter' | 'Business' | 'Premium' | '';
+
+export default function LeadCaptureCard({ 
+  className, 
+  showHeader = false,
+  selectedPlan,
+  setSelectedPlan
+}: { 
+  className?: string; 
+  showHeader?: boolean;
+  selectedPlan: Plan;
+  setSelectedPlan: (plan: Plan) => void;
+}) {
   const { translations } = useLanguage();
   const { leadCaptureSection: t } = translations;
   
   const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");
   const [error, setError] = useState<string | null>(null);
+
+  const planTranslations = {
+      'Starter': translations.pricingSection.plans.starter.name,
+      'Business': translations.pricingSection.plans.business.name,
+      'Premium': translations.pricingSection.plans.premium.name,
+  };
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -22,7 +42,9 @@ export default function LeadCaptureCard({ className, showHeader = false }: { cla
     setError(null);
 
     const formData = new FormData(event.currentTarget);
-    
+    const planKey = formData.get('plan_key') as keyof typeof planTranslations;
+    formData.append('plan', planTranslations[planKey]);
+
     try {
       const result = await submitLead(formData);
 
@@ -37,6 +59,13 @@ export default function LeadCaptureCard({ className, showHeader = false }: { cla
       setStatus("idle");
     }
   }
+  
+  useEffect(() => {
+    // If the card becomes visible and the plan is not set, default to Starter
+    if (selectedPlan === '') {
+        setSelectedPlan('Starter');
+    }
+  }, []);
 
   return (
     <Card className={cn("bg-card/80 backdrop-blur-sm border-secondary shadow-xl", className)}>
@@ -58,6 +87,19 @@ export default function LeadCaptureCard({ className, showHeader = false }: { cla
                 )}
                 <CardContent className={cn(!showHeader && "pt-6")}>
                     <form onSubmit={handleSubmit} className="space-y-4">
+                        <div className="space-y-2">
+                          <Label htmlFor="plan-select">{t.placeholders.plan}</Label>
+                          <Select name="plan_key" required value={selectedPlan} onValueChange={(value) => setSelectedPlan(value as Plan)}>
+                              <SelectTrigger id="plan-select" className="dark-glass">
+                                  <SelectValue placeholder={t.placeholders.plan} />
+                              </SelectTrigger>
+                              <SelectContent>
+                                  <SelectItem value="Starter">{planTranslations['Starter']}</SelectItem>
+                                  <SelectItem value="Business">{planTranslations['Business']}</SelectItem>
+                                  <SelectItem value="Premium">{planTranslations['Premium']}</SelectItem>
+                              </SelectContent>
+                          </Select>
+                        </div>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <Input name="name" placeholder={t.placeholders.name} required className="dark-glass" />
                             <Input name="phone" type="tel" placeholder={t.placeholders.phone} required className="dark-glass"/>

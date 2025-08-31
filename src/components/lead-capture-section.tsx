@@ -8,7 +8,15 @@ import { useRef } from 'react';
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function LeadCaptureSection() {
+type Plan = 'Starter' | 'Business' | 'Premium' | '';
+
+export default function LeadCaptureSection({
+  selectedPlan,
+  setSelectedPlan
+}: {
+  selectedPlan: Plan;
+  setSelectedPlan: (plan: Plan) => void;
+}) {
   const container = useRef(null);
 
   useGSAP(() => {
@@ -29,7 +37,12 @@ export default function LeadCaptureSection() {
        <div className="absolute inset-0 bg-grid-pattern-small opacity-10"></div>
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-2xl mx-auto">
-            <LeadCaptureCard className='lead-capture-card' showHeader={true} />
+            <LeadCaptureCard 
+              className='lead-capture-card' 
+              showHeader={true} 
+              selectedPlan={selectedPlan}
+              setSelectedPlan={setSelectedPlan}
+            />
         </div>
       </div>
       <style jsx>{`

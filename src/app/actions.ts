@@ -42,10 +42,12 @@ export async function submitLead(formData: FormData) {
   const phone = formData.get('phone') as string;
   const email = formData.get('email') as string;
   const company = formData.get('company') as string || 'Not provided';
+  const plan = formData.get('plan') as string;
 
-  console.log('Received lead submission:', { name, phone, email, company });
 
-  if (!name || !phone || !email) {
+  console.log('Received lead submission:', { name, phone, email, company, plan });
+
+  if (!name || !phone || !email || !plan) {
     return { success: false, error: 'Please fill out all required fields.' };
   }
 
@@ -54,6 +56,7 @@ export async function submitLead(formData: FormData) {
     phone,
     email,
     company,
+    plan,
     submittedAt: new Date().toISOString(),
   };
 
@@ -74,6 +77,7 @@ export async function submitLead(formData: FormData) {
         <b>Phone:</b> ${phone}
         <b>Email:</b> ${email}
         <b>Company:</b> ${company}
+        <b>Selected Plan:</b> ${plan}
         -------------------------
         ${new Date().toLocaleString()}
       `;

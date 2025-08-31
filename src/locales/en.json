@@ -95,7 +95,8 @@
       "name": "Full Name",
       "phone": "Phone Number",
       "email": "Email Address",
-      "company": "Company Name (Optional)"
+      "company": "Company Name (Optional)",
+      "plan": "Choose a Plan"
     },
     "buttonText": "Get My Free Quote",
     "submitting": "Submitting...",

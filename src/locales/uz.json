@@ -87,7 +87,7 @@
       "sfru": "Avtomatlashtirish kompaniyasi uchun murakkab xizmatlarni oddiy tilda tushuntiruvchi va kuchli lid-generatsiya vositasi bo'lib xizmat qiluvchi sayt yaratildi.",
       "gofrostal": "Sanoat xoldingi korxonasining sanoat qudrati va keng muhandislik tajribasini aks ettiruvchi rasmiy veb-sayti ishlab chiqildi."
     }
-},
+  },
   "leadCaptureSection": {
     "title": "Keyingi Qadamga Tayyormisiz?",
     "subtitle": "Loyihangiz haqida gaplashaylik. Bepul maslahat uchun quyidagi formani to'ldiring.",
@@ -95,7 +95,8 @@
       "name": "To'liq Ism",
       "phone": "Telefon Raqami",
       "email": "Elektron Pochta Manzili",
-      "company": "Kompaniya Nomi (Ixtiyoriy)"
+      "company": "Kompaniya Nomi (Ixtiyoriy)",
+      "plan": "Rejani tanlang"
     },
     "buttonText": "Bepul Hisob-kitob Olish",
     "submitting": "Yuborilmoqda...",

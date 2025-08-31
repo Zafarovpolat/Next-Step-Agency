@@ -4,6 +4,7 @@
 import dynamic from 'next/dynamic';
 import HeroSection from '@/components/hero-section';
 import { Skeleton } from '@/components/ui/skeleton';
+import { useState } from 'react';
 
 const LoadingSkeleton = () => (
   <div className="container mx-auto px-4 py-16 sm:py-24">
@@ -18,6 +19,8 @@ const LoadingSkeleton = () => (
     </div>
   </div>
 );
+
+type Plan = 'Starter' | 'Business' | 'Premium' | '';
 
 const PricingSection = dynamic(() => import('@/components/pricing-section'), { 
   ssr: false,
@@ -37,6 +40,8 @@ const LeadCaptureSection = dynamic(() => import('@/components/lead-capture-secti
 });
 
 export default function MainContent() {
+    const [selectedPlan, setSelectedPlan] = useState<Plan>('Starter');
+
     return (
         <>
             <div
@@ -49,10 +54,10 @@ export default function MainContent() {
             />
             <main className="flex-1">
                 <HeroSection />
-                <PricingSection />
+                <PricingSection setSelectedPlan={setSelectedPlan} />
                 <RoiCalculator />
                 <CaseStudiesSection />
-                <LeadCaptureSection />
+                <LeadCaptureSection selectedPlan={selectedPlan} setSelectedPlan={setSelectedPlan} />
             </main>
         </>
     );

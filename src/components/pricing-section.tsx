@@ -11,13 +11,29 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Link from 'next/link';
 import { useRef } from 'react';
+import { useScrollSmoother } from '../contexts/gsap-provider';
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function PricingSection() {
+type Plan = 'Starter' | 'Business' | 'Premium';
+
+export default function PricingSection({ setSelectedPlan }: { setSelectedPlan: (plan: Plan) => void }) {
   const { translations } = useLanguage();
   const { pricingSection: t } = translations;
   const container = useRef(null);
+  const smoother = useScrollSmoother();
+
+  const handleGetStartedClick = (planName: Plan) => {
+    setSelectedPlan(planName);
+    const targetElement = document.querySelector("#contact");
+    if (!targetElement) return;
+
+    if (smoother) {
+        smoother.scrollTo(targetElement, true, "top top");
+    } else {
+        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
 
   useGSAP(() => {
     const tl = gsap.timeline({
@@ -49,9 +65,10 @@ export default function PricingSection() {
 
   }, { scope: container });
 
-  const plans = [
+  const plans: {name: string, key: Plan, price: string, priceDetails: string, description: string, features: string[], isPopular: boolean}[] = [
     {
       name: t.plans.starter.name,
+      key: 'Starter',
       price: t.plans.starter.price,
       priceDetails: t.plans.starter.priceDetails,
       description: t.plans.starter.description,
@@ -60,6 +77,7 @@ export default function PricingSection() {
     },
     {
       name: t.plans.business.name,
+      key: 'Business',
       price: t.plans.business.price,
       priceDetails: t.plans.business.priceDetails,
       description: t.plans.business.description,
@@ -68,6 +86,7 @@ export default function PricingSection() {
     },
     {
       name: t.plans.premium.name,
+      key: 'Premium',
       price: t.plans.premium.price,
       priceDetails: t.plans.premium.priceDetails,
       description: t.plans.premium.description,
@@ -122,7 +141,7 @@ export default function PricingSection() {
                   </ul>
                 </CardContent>
                 <CardFooter>
-                  <Button className="w-full" size="lg" variant={plan.isPopular ? 'default' : 'secondary'}>
+                  <Button className="w-full" size="lg" variant={plan.isPopular ? 'default' : 'secondary'} onClick={() => handleGetStartedClick(plan.key)}>
                     {t.getStarted}
                   </Button>
                 </CardFooter>
