@@ -39,7 +39,7 @@ export default function HeroSection() {
   }, { scope: heroRef });
 
   return (
-    <section ref={heroRef} className="relative w-full h-[calc(100vh_-_4rem)] flex items-center justify-center text-center overflow-hidden">
+    <section ref={heroRef} className="relative w-full h-[calc(100vh_-_4rem)] flex items-center justify-center text-center">
         <div className="absolute inset-0 bg-background z-10">
             <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
             <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent"></div>

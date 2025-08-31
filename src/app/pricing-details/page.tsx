@@ -60,7 +60,7 @@ export default function PricingDetailsPage() {
   }, []);
 
   return (
-    <div className="flex min-h-screen flex-col bg-background relative overflow-hidden">
+    <div className="flex min-h-screen flex-col bg-background relative">
       <div
         className="absolute top-0 right-0 -translate-x-1/3 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-primary/5 blur-3xl -z-0"
         aria-hidden="true"
