@@ -20,7 +20,7 @@ export default function Footer() {
 
   const socialLinks = [
     { icon: Phone, href: `tel:${t.phone.replace(/\s/g, '')}`, name: 'Phone' },
-    { icon: Send, href: '#', name: 'Telegram' },
+    { icon: Send, href: 'https://t.me/nsagencyuz', name: 'Telegram' },
     { icon: Instagram, href: 'https://www.instagram.com/nextstep__agency?igsh=Yjc5NTAzc3l5Y2c1&utm_source=qr', name: 'Instagram' },
   ];
 
