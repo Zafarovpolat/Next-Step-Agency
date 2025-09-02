@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { useLanguage } from '@/contexts/language-context';
-import { useScrollSmoother } from '@/contexts/gsap-provider';
+import { useLenis } from '@studio-freight/react-lenis';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
 
@@ -22,7 +22,7 @@ export default function Header() {
   const { setTheme, theme, resolvedTheme } = useTheme();
   const { setLanguage, translations } = useLanguage();
   const { header: t } = translations;
-  const smoother = useScrollSmoother();
+  const lenis = useLenis();
   const pathname = usePathname();
   const router = useRouter();
 
@@ -53,17 +53,11 @@ export default function Header() {
     e.preventDefault();
   
     const scrollToAction = () => {
-      const targetElement = document.querySelector(targetId);
-      if (!targetElement) {
-        console.warn(`Element with ID ${targetId} not found`);
-        return;
-      }
-  
-      if (smoother) {
-        smoother.scrollTo(targetElement, true, 'top top');
-      } else {
-        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+      lenis?.scrollTo(targetId, {
+        offset: -80, // Компенсация высоты хедера
+        duration: 1.5, // Увеличенная длительность для плавности
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // easeOutExpo
+      });
     };
   
     // Если меню открыто, закрываем его и ждем завершения анимации
