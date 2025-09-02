@@ -2,7 +2,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { Send, Instagram } from 'lucide-react';
+import { Send, Instagram, Phone } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { useLanguage } from '@/contexts/language-context';
 import Image from 'next/image';
@@ -19,6 +19,7 @@ export default function Footer() {
   }, [resolvedTheme]);
 
   const socialLinks = [
+    { icon: Phone, href: `tel:${t.phone.replace(/\s/g, '')}`, name: 'Phone' },
     { icon: Send, href: '#', name: 'Telegram' },
     { icon: Instagram, href: 'https://www.instagram.com/nextstep__agency?igsh=Yjc5NTAzc3l5Y2c1&utm_source=qr', name: 'Instagram' },
   ];
@@ -30,15 +31,12 @@ export default function Footer() {
           <div className="flex items-center gap-2">
             <Image src={logoSrc} alt="Next Step Agency Logo" width={150} height={38} key={logoSrc} loading="lazy" />
           </div>
-          <div className="text-center text-muted-foreground">
-            <p>{t.phone}</p>
-          </div>
           <div className="flex gap-4">
             {socialLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                target="_blank"
+                target={link.name === 'Phone' ? '_self' : '_blank'}
                 rel="noopener noreferrer"
                 aria-label={link.name}
                 className="text-muted-foreground hover:text-primary transition-colors duration-300 hover:[filter:drop-shadow(0_0_3px_hsl(var(--primary)))]"
