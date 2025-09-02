@@ -44,6 +44,7 @@ export const GSAPProvider = ({ children }: { children: ReactNode }) => {
         smooth: 1.2,
         effects: true,
         smoothTouch: 0.1,
+        normalizeScroll: true, // Try true first for sync fixes; if it worsens, set to false
       });
       setSmoother(smootherInstance);
 
