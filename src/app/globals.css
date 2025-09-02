@@ -127,13 +127,12 @@
     -moz-osx-font-smoothing: grayscale;
   }
   
-  /* Оптимизация Sheet компонента для Safari */
-  [data-radix-dialog-content] {
-    -webkit-transform: translate3d(0, 0, 0) !important;
-    transform: translate3d(0, 0, 0) !important;
+  #smooth-wrapper, #smooth-content, [data-radix-dialog-content] {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    will-change: transform, opacity;
+    will-change: transform;
   }
   
   /* Оптимизация для мобильного Safari */

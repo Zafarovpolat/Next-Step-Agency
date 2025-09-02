@@ -72,8 +72,8 @@ export const GSAPProvider = ({ children }: { children: ReactNode }) => {
 
   return (
       <ScrollSmootherContext.Provider value={smoother}>
-        <div id="smooth-wrapper" className="relative">
-          <div id="smooth-content">
+        <div id="smooth-wrapper" className="relative overflow-hidden will-change-transform">
+          <div id="smooth-content" className="will-change-transform">
               {children}
           </div>
         </div>
