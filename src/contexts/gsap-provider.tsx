@@ -71,6 +71,8 @@ export const GSAPProvider = ({ children }: { children: ReactNode }) => {
     }
   }, []);
 
+  gsap.defaults({ force3D: true });
+
   return (
       <ScrollSmootherContext.Provider value={smoother}>
         <div id="smooth-wrapper" className="relative overflow-hidden will-change-transform">
